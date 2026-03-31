@@ -23,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let deal of analyzedDeals">
+          <tr *ngFor="let deal of analyzedDeals" class="deal-row" [routerLink]="'/deals/' + deal.deal.id">
             <td class="address">{{ deal.deal.address }}</td>
             <td>{{ deal.deal.purchasePrice | currency }}</td>
             <td>{{ deal.deal.afterRepairValue | currency }}</td>
@@ -35,7 +35,7 @@
             <td [class.roi-positive]="deal.roi > 0" [class.roi-negative]="deal.roi <= 0">
               {{ deal.roi | number:'1.1-1' }}%
             </td>
-            <td>
+            <td (click)="$event.stopPropagation()">
               <button class="btn-delete" (click)="deleteDeal(deal.deal.id)">Delete</button>
             </td>
           </tr>

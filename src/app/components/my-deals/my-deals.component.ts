@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { DealService } from '../../services/deal.service';
 import { DealAnalysis } from '../../models/deal';
 
@@ -8,7 +9,10 @@ import { DealAnalysis } from '../../models/deal';
   styleUrls: ['./my-deals.component.scss'],
 })
 export class MyDealsComponent {
-  constructor(public dealService: DealService) {}
+  constructor(
+    public dealService: DealService,
+    private router: Router
+  ) {}
 
   get analyzedDeals(): DealAnalysis[] {
     return this.dealService.analyzedDeals;

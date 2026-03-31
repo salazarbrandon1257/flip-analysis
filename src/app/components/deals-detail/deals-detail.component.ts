@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DealService } from '../../services/deal.service';
 import { DealAnalysis } from '../../models/deal';
 
@@ -7,13 +8,31 @@ import { DealAnalysis } from '../../models/deal';
   templateUrl: './deals-detail.component.html',
   styleUrls: ['./deals-detail.component.scss'],
 })
-export class DealsDetailComponent {
+export class DealsDetailComponent implements OnInit {
   expandedDealId: string | null = null;
+  selectedDealId: string | null = null;
 
-  constructor(public dealService: DealService) {}
+  constructor(
+    public dealService: DealService,
+    private route: ActivatedRoute
+  ) {}
+
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.selectedDealId = params['id'] || null;
+      if (this.selectedDealId) {
+        this.expandedDealId = this.selectedDealId;
+      }
+    });
+  }
 
   get analyzedDeals(): DealAnalysis[] {
     return this.dealService.analyzedDeals;
+  }
+
+  get selectedDeal(): DealAnalysis | undefined {
+    if (!this.selectedDealId) return undefined;
+    return this.analyzedDeals.find(d => d.deal.id === this.selectedDealId);
   }
 
   deleteDeal(id: string): void {

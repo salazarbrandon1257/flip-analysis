@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'my-deals', component: MyDealsComponent },
   { path: 'deals', component: DealsDetailComponent },
+  { path: 'deals/:id', component: DealsDetailComponent },
   { path: 'compare', component: CompareDealsPageComponent },
 ];
 

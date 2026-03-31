@@ -38,8 +38,16 @@
     color: #555;
   }
 
+  tr {
+    cursor: pointer;
+  }
+
   tr:hover {
-    background: #f8f9fa;
+    background: #f0f1f2;
+  }
+
+  .deal-row:hover td {
+    background: #e9ecef;
   }
 
   .address {
