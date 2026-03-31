@@ -1,0 +1,95 @@
+<div class="compare-deals-page">
+  <h2>Compare Deals</h2>
+
+  <div class="selection-section" *ngIf="analyzedDeals.length > 0">
+    <div class="selection-controls">
+      <button class="btn-select" (click)="selectAll()">Select All</button>
+      <button class="btn-clear" (click)="clearSelection()">Clear Selection</button>
+    </div>
+    <p class="selected-count">{{ selectedDeals.length }} deal(s) selected</p>
+  </div>
+
+  <div class="deals-selection" *ngIf="analyzedDeals.length > 0">
+    <div class="deal-checkbox" *ngFor="let deal of analyzedDeals">
+      <label>
+        <input
+          type="checkbox"
+          [checked]="selectedDealIds.has(deal.deal.id)"
+          (change)="toggleDealSelection(deal.deal.id)"
+        />
+        <span class="deal-name">{{ deal.deal.address }}</span>
+        <span class="deal-profit" [class.profit-positive]="deal.netProfit > 0" [class.profit-negative]="deal.netProfit <= 0">
+          {{ deal.netProfit | currency }}
+        </span>
+      </label>
+    </div>
+  </div>
+
+  <div class="no-deals" *ngIf="analyzedDeals.length === 0">
+    <p>No deals to compare. Add deals first!</p>
+  </div>
+
+  <div class="comparison-table-container" *ngIf="selectedDeals.length > 0">
+    <h3>Comparison</h3>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th *ngFor="let deal of selectedDeals">{{ deal.deal.address }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Purchase Price</td>
+          <td *ngFor="let deal of selectedDeals">{{ deal.deal.purchasePrice | currency }}</td>
+        </tr>
+        <tr>
+          <td>ARV</td>
+          <td *ngFor="let deal of selectedDeals">{{ deal.deal.afterRepairValue | currency }}</td>
+        </tr>
+        <tr>
+          <td>Rehab Costs</td>
+          <td *ngFor="let deal of selectedDeals">{{ deal.deal.rehabCosts | currency }}</td>
+        </tr>
+        <tr>
+          <td>Total Closing Costs</td>
+          <td *ngFor="let deal of selectedDeals">{{ deal.totalClosingCosts | currency }}</td>
+        </tr>
+        <tr>
+          <td>Total Holding Costs</td>
+          <td *ngFor="let deal of selectedDeals">{{ deal.totalHoldingCosts | currency }}</td>
+        </tr>
+        <tr>
+          <td>Total Project Cost</td>
+          <td *ngFor="let deal of selectedDeals">{{ deal.totalProjectCost | currency }}</td>
+        </tr>
+        <tr>
+          <td>Net Profit</td>
+          <td *ngFor="let deal of selectedDeals" [class.profit-positive]="deal.netProfit > 0" [class.profit-negative]="deal.netProfit <= 0">
+            {{ deal.netProfit | currency }}
+          </td>
+        </tr>
+        <tr>
+          <td>ROI</td>
+          <td *ngFor="let deal of selectedDeals" [class.roi-positive]="deal.roi > 0" [class.roi-negative]="deal.roi <= 0">
+            {{ deal.roi | number:'1.1-1' }}%
+          </td>
+        </tr>
+        <tr>
+          <td>Profit Margin</td>
+          <td *ngFor="let deal of selectedDeals">{{ deal.profitMargin | number:'1.1-1' }}%</td>
+        </tr>
+        <tr>
+          <td>MAO (70%)</td>
+          <td *ngFor="let deal of selectedDeals">{{ deal.mao70 | currency }}</td>
+        </tr>
+        <tr>
+          <td>vs MAO (70%)</td>
+          <td *ngFor="let deal of selectedDeals" [class.over-mao]="deal.vsMAO70 > 0" [class.under-mao]="deal.vsMAO70 <= 0">
+            {{ deal.vsMAO70 | currency }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

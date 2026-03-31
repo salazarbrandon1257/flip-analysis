@@ -1,0 +1,175 @@
+<div class="deal-list-container">
+  <h2>Your Deals</h2>
+
+  <div class="deals-grid" *ngIf="analyzedDeals.length > 0">
+    <div class="deal-card" *ngFor="let analysis of analyzedDeals">
+      <div class="deal-header">
+        <h3>{{ analysis.deal.address }}</h3>
+        <button
+          class="btn-delete"
+          (click)="deleteDeal(analysis.deal.id)"
+          title="Delete deal"
+        >
+          &times;
+        </button>
+      </div>
+
+      <!-- Acquisition Section -->
+      <div class="deal-section">
+        <div class="section-title">Acquisition</div>
+        <div class="stat-row">
+          <span class="stat-label">Purchase Price:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.deal.purchasePrice) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Buyer Closing Costs:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.deal.buyerClosingCosts) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Title Closing Costs:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.deal.titleClosingCosts) }}</span>
+        </div>
+        <div class="stat-row subtotal">
+          <span class="stat-label">Total Closing Costs:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.totalClosingCosts) }}</span>
+        </div>
+      </div>
+
+      <!-- Rehab Section -->
+      <div class="deal-section">
+        <div class="section-title">Rehab</div>
+        <div class="stat-row">
+          <span class="stat-label">Rehab Costs:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.deal.rehabCosts) }}</span>
+        </div>
+      </div>
+
+      <!-- Financing Section -->
+      <div class="deal-section">
+        <div class="section-title">Financing</div>
+        <div class="stat-row">
+          <span class="stat-label">HML Loan Amount:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.deal.loanAmount) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Down Payment:</span>
+          <span class="stat-value">{{ formatPercent(analysis.deal.downPaymentPercent) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Interest Rate:</span>
+          <span class="stat-value">{{ formatPercent(analysis.deal.interestRatePercent) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Hold Period:</span>
+          <span class="stat-value">{{ analysis.deal.holdPeriodMonths }} months</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Monthly Interest:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.deal.loanMonthlyInterest) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Total Loan Interest:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.deal.loanMonthlyInterest * analysis.deal.holdPeriodMonths) }}</span>
+        </div>
+      </div>
+
+      <!-- Holding Costs Section -->
+      <div class="deal-section">
+        <div class="section-title">Holding Costs</div>
+        <div class="stat-row">
+          <span class="stat-label">Taxes + Insurance + Utilities:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.deal.taxesInsuranceUtilities) }}</span>
+        </div>
+        <div class="stat-row subtotal">
+          <span class="stat-label">Total Holding Costs:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.totalHoldingCosts) }}</span>
+        </div>
+      </div>
+
+      <!-- Sale/Exit Section -->
+      <div class="deal-section">
+        <div class="section-title">Sale / Exit</div>
+        <div class="stat-row highlight">
+          <span class="stat-label">After Repair Value:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.deal.afterRepairValue) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Agent Commission:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.agentCommission) }} ({{ analysis.deal.agentCommissionPercent }}%)</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Seller Closing Costs:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.deal.sellerClosingCosts) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Total Selling Costs:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.totalSellingCosts) }}</span>
+        </div>
+        <div class="stat-row highlight">
+          <span class="stat-label">Net Sale Proceeds:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.netSaleProceeds) }}</span>
+        </div>
+      </div>
+
+      <!-- Returns Section -->
+      <div class="deal-section returns-section">
+        <div class="section-title">Returns & Verdict</div>
+        <div class="stat-row highlight">
+          <span class="stat-label">Total Project Cost:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.totalProjectCost) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Cash Required:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.cashRequired) }}</span>
+        </div>
+        <div class="stat-row big">
+          <span class="stat-label">Net Profit:</span>
+          <span class="stat-value" [ngClass]="getProfitClass(analysis.netProfit)">
+            {{ formatCurrency(analysis.netProfit) }}
+          </span>
+        </div>
+        <div class="stat-row big">
+          <span class="stat-label">ROI:</span>
+          <span class="stat-value" [ngClass]="getProfitClass(analysis.roi)">
+            {{ formatPercent(analysis.roi) }}
+          </span>
+        </div>
+        <div class="stat-row big">
+          <span class="stat-label">Profit Margin:</span>
+          <span class="stat-value" [ngClass]="getProfitClass(analysis.profitMargin)">
+            {{ formatPercent(analysis.profitMargin) }}
+          </span>
+        </div>
+      </div>
+
+      <!-- MAO Rules Section -->
+      <div class="deal-section mao-section">
+        <div class="section-title">MAO Rules</div>
+        <div class="stat-row">
+          <span class="stat-label">70% Rule MAO:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.mao70) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">65% Rule MAO:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.mao65) }}</span>
+        </div>
+        <div class="stat-row" [class]="analysis.vsMAO70 <= 0 ? 'good-deal' : 'bad-deal'">
+          <span class="stat-label">vs 70% MAO:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.vsMAO70) }} {{ analysis.vsMAO70 <= 0 ? 'under' : 'over' }}</span>
+        </div>
+        <div class="stat-row" [class]="analysis.vsMAO65 <= 0 ? 'good-deal' : 'bad-deal'">
+          <span class="stat-label">vs 65% MAO:</span>
+          <span class="stat-value">{{ formatCurrency(analysis.vsMAO65) }} {{ analysis.vsMAO65 <= 0 ? 'under' : 'over' }}</span>
+        </div>
+      </div>
+
+      <p class="deal-notes" *ngIf="analysis.deal.notes">
+        <strong>Notes:</strong> {{ analysis.deal.notes }}
+      </p>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="analyzedDeals.length === 0">
+    <p>No deals added yet. Add your first deal above to start analyzing!</p>
+  </div>
+</div>

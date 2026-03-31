@@ -1,0 +1,258 @@
+<div class="deals-detail-page">
+  <div class="page-header">
+    <h2>Deals Overview</h2>
+    <p class="page-subtitle">Detailed analysis of all your investment opportunities</p>
+  </div>
+
+  <div class="deals-grid" *ngIf="analyzedDeals.length > 0">
+    <div class="deal-card" *ngFor="let analysis of analyzedDeals">
+      <div class="deal-card-header" (click)="toggleExpand(analysis.deal.id)">
+        <div class="deal-main-info">
+          <h3 class="deal-address">{{ analysis.deal.address }}</h3>
+          <div class="deal-highlights">
+            <span class="highlight-chip" [class.positive]="analysis.netProfit > 0" [class.negative]="analysis.netProfit <= 0">
+              {{ analysis.netProfit | currency }}
+            </span>
+            <span class="highlight-chip" [class.positive]="analysis.roi > 0" [class.negative]="analysis.roi <= 0">
+              {{ analysis.roi | number:'1.1-1' }}% ROI
+            </span>
+            <span class="highlight-chip">
+              {{ analysis.profitMargin | number:'1.1-1' }}% Margin
+            </span>
+          </div>
+        </div>
+        <button class="expand-btn" [class.expanded]="isExpanded(analysis.deal.id)">
+          <span class="arrow">▼</span>
+        </button>
+      </div>
+
+      <div class="deal-card-body" *ngIf="isExpanded(analysis.deal.id)">
+        <div class="detail-sections">
+          <!-- Acquisition Costs -->
+          <div class="detail-section">
+            <h4>Acquisition</h4>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="label">Asking Price</span>
+                <span class="value">{{ analysis.deal.askingPrice | currency }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Purchase Price</span>
+                <span class="value">{{ analysis.deal.purchasePrice | currency }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Below Asking</span>
+                <span class="value" [class.positive]="analysis.deal.askingPrice - analysis.deal.purchasePrice > 0" [class.negative]="analysis.deal.askingPrice - analysis.deal.purchasePrice <= 0">
+                  {{ (analysis.deal.askingPrice - analysis.deal.purchasePrice) | currency }}
+                </span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Buyer Closing</span>
+                <span class="value">{{ analysis.deal.buyerClosingCosts | currency }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Title Closing</span>
+                <span class="value">{{ analysis.deal.titleClosingCosts | currency }}</span>
+              </div>
+              <div class="detail-item total">
+                <span class="label">Total Closing Costs</span>
+                <span class="value">{{ analysis.totalClosingCosts | currency }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Rehab Costs -->
+          <div class="detail-section">
+            <h4>Rehab</h4>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="label">Rehab Costs</span>
+                <span class="value">{{ analysis.deal.rehabCosts | currency }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Financing -->
+          <div class="detail-section">
+            <h4>Financing</h4>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="label">Loan Amount</span>
+                <span class="value">{{ analysis.deal.loanAmount | currency }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Down Payment</span>
+                <span class="value">{{ analysis.deal.downPaymentPercent }}%</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Interest Rate</span>
+                <span class="value">{{ analysis.deal.interestRatePercent }}%</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Hold Period</span>
+                <span class="value">{{ formatMonth(analysis.deal.holdPeriodMonths) }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Monthly Interest</span>
+                <span class="value">{{ analysis.deal.loanMonthlyInterest | currency }}</span>
+              </div>
+              <div class="detail-item total">
+                <span class="label">Total Loan Interest</span>
+                <span class="value">{{ (analysis.deal.loanMonthlyInterest * analysis.deal.holdPeriodMonths) | currency }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Personal Loan -->
+          <div class="detail-section" *ngIf="analysis.deal.personalLoanAmount > 0">
+            <h4>Personal Loan (Rehab)</h4>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="label">Loan Amount</span>
+                <span class="value">{{ analysis.deal.personalLoanAmount | currency }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">APR</span>
+                <span class="value">{{ analysis.deal.personalLoanApr }}%</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Term</span>
+                <span class="value">{{ formatMonth(analysis.deal.personalLoanTermMonths) }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Monthly Payment</span>
+                <span class="value">{{ analysis.deal.personalLoanMonthlyPayment | currency }}</span>
+              </div>
+              <div class="detail-item total">
+                <span class="label">Total Interest (full term)</span>
+                <span class="value">{{ analysis.deal.personalLoanTotalInterest | currency }}</span>
+              </div>
+              <div class="detail-item total">
+                <span class="label">Interest During Hold</span>
+                <span class="value">{{ (analysis.deal.personalLoanMonthlyPayment * analysis.deal.holdPeriodMonths) | currency }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Holding Costs -->
+          <div class="detail-section">
+            <h4>Holding Costs</h4>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="label">Taxes/Insurance/Utilities</span>
+                <span class="value">{{ analysis.deal.taxesInsuranceUtilities | currency }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Total Loan Interest</span>
+                <span class="value">{{ (analysis.deal.loanMonthlyInterest * analysis.deal.holdPeriodMonths) | currency }}</span>
+              </div>
+              <div class="detail-item total">
+                <span class="label">Total Holding Costs</span>
+                <span class="value">{{ analysis.totalHoldingCosts | currency }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sale/Exit -->
+          <div class="detail-section">
+            <h4>Sale / Exit</h4>
+            <div class="detail-grid">
+              <div class="detail-item">
+                <span class="label">After Repair Value</span>
+                <span class="value arvalue">{{ analysis.deal.afterRepairValue | currency }}</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Agent Commission</span>
+                <span class="value">{{ analysis.deal.agentCommissionPercent }}% ({{ analysis.agentCommission | currency }})</span>
+              </div>
+              <div class="detail-item">
+                <span class="label">Seller Closing Costs</span>
+                <span class="value">{{ analysis.deal.sellerClosingCosts | currency }}</span>
+              </div>
+              <div class="detail-item total">
+                <span class="label">Total Selling Costs</span>
+                <span class="value">{{ analysis.totalSellingCosts | currency }}</span>
+              </div>
+              <div class="detail-item total highlight">
+                <span class="label">Net Sale Proceeds</span>
+                <span class="value">{{ analysis.netSaleProceeds | currency }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Investment Summary -->
+          <div class="detail-section summary-section">
+            <h4>Investment Summary</h4>
+            <div class="summary-grid">
+              <div class="summary-item">
+                <span class="label">Total Project Cost</span>
+                <span class="value">{{ analysis.totalProjectCost | currency }}</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Cash Required</span>
+                <span class="value">{{ analysis.cashRequired | currency }}</span>
+              </div>
+              <div class="summary-item profit">
+                <span class="label">Net Profit</span>
+                <span class="value" [class.positive]="analysis.netProfit > 0" [class.negative]="analysis.netProfit <= 0">
+                  {{ analysis.netProfit | currency }}
+                </span>
+              </div>
+              <div class="summary-item">
+                <span class="label">ROI</span>
+                <span class="value" [class.positive]="analysis.roi > 0" [class.negative]="analysis.roi <= 0">
+                  {{ analysis.roi | number:'1.1-1' }}%
+                </span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Profit Margin</span>
+                <span class="value" [class.positive]="analysis.profitMargin > 0" [class.negative]="analysis.profitMargin <= 0">
+                  {{ analysis.profitMargin | number:'1.1-1' }}%
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MAO Analysis -->
+          <div class="detail-section mao-section">
+            <h4>MAO Analysis (Maximum Allowable Offer)</h4>
+            <div class="mao-grid">
+              <div class="mao-item">
+                <span class="mao-label">70% Rule MAO</span>
+                <span class="mao-value">{{ analysis.mao70 | currency }}</span>
+                <span class="mao-comparison" [class.over]="analysis.vsMAO70 > 0" [class.under]="analysis.vsMAO70 <= 0">
+                  {{ analysis.vsMAO70 > 0 ? '+' : '' }}{{ analysis.vsMAO70 | currency }} vs purchase
+                </span>
+              </div>
+              <div class="mao-item">
+                <span class="mao-label">65% Rule MAO</span>
+                <span class="mao-value">{{ analysis.mao65 | currency }}</span>
+                <span class="mao-comparison" [class.over]="analysis.vsMAO65 > 0" [class.under]="analysis.vsMAO65 <= 0">
+                  {{ analysis.vsMAO65 > 0 ? '+' : '' }}{{ analysis.vsMAO65 | currency }} vs purchase
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notes -->
+          <div class="detail-section" *ngIf="analysis.deal.notes">
+            <h4>Notes</h4>
+            <p class="notes-text">{{ analysis.deal.notes }}</p>
+          </div>
+
+          <!-- Actions -->
+          <div class="deal-actions">
+            <button class="btn-delete" (click)="deleteDeal(analysis.deal.id)">
+              Delete Deal
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="no-deals" *ngIf="analyzedDeals.length === 0">
+    <p>No deals yet. Navigate to My Deals to add your first deal!</p>
+    <a routerLink="/my-deals" class="btn btn-primary">Go to My Deals</a>
+  </div>
+</div>

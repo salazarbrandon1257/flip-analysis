@@ -1,0 +1,145 @@
+<div class="deal-input-card">
+  <h2>Add New Deal</h2>
+
+  <form [formGroup]="dealForm" (ngSubmit)="onSubmit()">
+    <div class="form-section">
+      <div class="form-group full-width">
+        <label for="address">Property Address</label>
+        <input
+          type="text"
+          id="address"
+          formControlName="address"
+          placeholder="925 Manning Street, Grand Prairie, TX 75051"
+          [class.invalid]="submitted && f['address'].errors"
+        />
+        <span class="error" *ngIf="submitted && f['address'].errors">
+          Address is required
+        </span>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="purchasePrice">Purchase Price</label>
+        <input
+          type="text"
+          id="purchasePrice"
+          formControlName="purchasePrice"
+          appCurrencyInput
+          [class.invalid]="submitted && f['purchasePrice'].errors"
+        />
+      </div>
+      <div class="form-group">
+        <label for="askingPrice">Asking Price</label>
+        <input
+          type="text"
+          id="askingPrice"
+          formControlName="askingPrice"
+          appCurrencyInput
+          [class.invalid]="submitted && f['askingPrice'].errors"
+        />
+      </div>
+      <div class="form-group">
+        <label for="afterRepairValue">After Repair Value (ARV)</label>
+        <input
+          type="text"
+          id="afterRepairValue"
+          formControlName="afterRepairValue"
+          appCurrencyInput
+          [class.invalid]="submitted && f['afterRepairValue'].errors"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="rehabCosts">Rehab Costs</label>
+        <input
+          type="text"
+          id="rehabCosts"
+          formControlName="rehabCosts"
+          appCurrencyInput
+          [class.invalid]="submitted && f['rehabCosts'].errors"
+        />
+      </div>
+      <div class="form-group">
+        <label for="downPaymentPercent">Down Payment (%)</label>
+        <input
+          type="number"
+          id="downPaymentPercent"
+          formControlName="downPaymentPercent"
+          min="0"
+          max="100"
+          step="1"
+          [class.invalid]="submitted && f['downPaymentPercent'].errors"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="interestRatePercent">Interest Rate (%)</label>
+        <input
+          type="number"
+          id="interestRatePercent"
+          formControlName="interestRatePercent"
+          min="0"
+          max="100"
+          step="0.25"
+          [class.invalid]="submitted && f['interestRatePercent'].errors"
+        />
+      </div>
+      <div class="form-group">
+        <label for="holdPeriodMonths">Hold Period (Months)</label>
+        <input
+          type="number"
+          id="holdPeriodMonths"
+          formControlName="holdPeriodMonths"
+          min="1"
+          step="1"
+          [class.invalid]="submitted && f['holdPeriodMonths'].errors"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="agentCommissionPercent">Agent Commission (%)</label>
+        <input
+          type="number"
+          id="agentCommissionPercent"
+          formControlName="agentCommissionPercent"
+          min="0"
+          max="100"
+          step="0.5"
+          [class.invalid]="submitted && f['agentCommissionPercent'].errors"
+        />
+      </div>
+      <div class="form-group">
+        <label for="personalLoanAmount">Personal Loan for Rehab</label>
+        <input
+          type="text"
+          id="personalLoanAmount"
+          formControlName="personalLoanAmount"
+          appCurrencyInput
+          placeholder="Optional"
+        />
+        <small class="field-hint">17% APR, 84 months</small>
+      </div>
+    </div>
+
+    <div class="form-group full-width">
+      <label for="notes">Notes (optional)</label>
+      <textarea
+        id="notes"
+        formControlName="notes"
+        rows="2"
+        placeholder="Additional details..."
+      ></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary">
+      Add Deal
+    </button>
+  </form>
+</div>

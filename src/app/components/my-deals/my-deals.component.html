@@ -1,0 +1,50 @@
+<div class="my-deals-page">
+  <div class="page-header">
+    <h2>Add New Deals</h2>
+  </div>
+
+  <app-deal-input (dealAdded)="onDealAdded()"></app-deal-input>
+
+  <div class="deals-section">
+    <h3>All Deals</h3>
+
+    <div class="deals-table-container" *ngIf="analyzedDeals.length > 0">
+      <table class="deals-table">
+        <thead>
+          <tr>
+            <th>Address</th>
+            <th>Purchase Price</th>
+            <th>ARV</th>
+            <th>Rehab</th>
+            <th>Total Cost</th>
+            <th>Net Profit</th>
+            <th>ROI</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let deal of analyzedDeals">
+            <td class="address">{{ deal.deal.address }}</td>
+            <td>{{ deal.deal.purchasePrice | currency }}</td>
+            <td>{{ deal.deal.afterRepairValue | currency }}</td>
+            <td>{{ deal.deal.rehabCosts | currency }}</td>
+            <td>{{ deal.totalProjectCost | currency }}</td>
+            <td [class.profit-positive]="deal.netProfit > 0" [class.profit-negative]="deal.netProfit <= 0">
+              {{ deal.netProfit | currency }}
+            </td>
+            <td [class.roi-positive]="deal.roi > 0" [class.roi-negative]="deal.roi <= 0">
+              {{ deal.roi | number:'1.1-1' }}%
+            </td>
+            <td>
+              <button class="btn-delete" (click)="deleteDeal(deal.deal.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="no-deals" *ngIf="analyzedDeals.length === 0">
+      <p>No deals yet. Add your first deal above!</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(ng new:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npx:*)",
+      "Bash(ng build:*)",
+      "Bash(npm run:*)",
+      "Bash(ls src/app/*.pipe.ts)",
+      "Bash(cd:*)"
+    ]
+  }
+}

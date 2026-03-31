@@ -1,0 +1,195 @@
+<div class="comparison-container">
+  <div class="comparison-header">
+    <h2>Compare Deals</h2>
+    <div class="comparison-controls">
+      <span class="selection-count">
+        {{ selectedDealIds.length }} of 4 selected
+      </span>
+      <button
+        class="btn-clear"
+        (click)="clearSelection()"
+        *ngIf="selectedDealIds.length > 0"
+      >
+        Clear Selection
+      </button>
+    </div>
+  </div>
+
+  <div class="deal-selection">
+    <label
+      class="deal-checkbox"
+      *ngFor="let analysis of analyzedDeals"
+      [class.selected]="isSelected(analysis.deal.id)"
+    >
+      <input
+        type="checkbox"
+        [checked]="isSelected(analysis.deal.id)"
+        (change)="toggleDealSelection(analysis.deal.id)"
+        [disabled]="!isSelected(analysis.deal.id) && !canSelectMore()"
+      />
+      <span class="deal-name">{{ analysis.deal.address }}</span>
+    </label>
+  </div>
+
+  <div class="comparison-table-wrapper" *ngIf="selectedDeals.length > 0">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th class="label-col">Metric</th>
+          <th *ngFor="let deal of selectedDeals">
+            <div class="deal-name">{{ deal.deal.address }}</div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Acquisition Section -->
+        <tr class="section-header">
+          <td>Acquisition</td>
+        </tr>
+        <tr>
+          <td class="metric-label">Purchase Price</td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="isLowest(deal, 'purchasePrice')">
+            {{ formatCurrency(deal.deal.purchasePrice) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label">Total Closing Costs</td>
+          <td *ngFor="let deal of selectedDeals">
+            {{ formatCurrency(deal.totalClosingCosts) }}
+          </td>
+        </tr>
+
+        <!-- Rehab Section -->
+        <tr class="section-header">
+          <td>Rehab</td>
+        </tr>
+        <tr>
+          <td class="metric-label">Rehab Costs</td>
+          <td *ngFor="let deal of selectedDeals">
+            {{ formatCurrency(deal.deal.rehabCosts) }}
+          </td>
+        </tr>
+
+        <!-- Holding Section -->
+        <tr class="section-header">
+          <td>Holding Costs</td>
+        </tr>
+        <tr>
+          <td class="metric-label">Loan Interest (Total)</td>
+          <td *ngFor="let deal of selectedDeals">
+            {{ formatCurrency(deal.deal.loanMonthlyInterest * deal.deal.holdPeriodMonths) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label">Taxes + Insurance + Utilities</td>
+          <td *ngFor="let deal of selectedDeals">
+            {{ formatCurrency(deal.deal.taxesInsuranceUtilities) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label"><strong>Total Holding Costs</strong></td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="isLowest(deal, 'totalHoldingCosts')">
+            <strong>{{ formatCurrency(deal.totalHoldingCosts) }}</strong>
+          </td>
+        </tr>
+
+        <!-- Sale/Exit Section -->
+        <tr class="section-header">
+          <td>Sale / Exit</td>
+        </tr>
+        <tr>
+          <td class="metric-label">After Repair Value</td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="isHighestARV(deal)">
+            {{ formatCurrency(deal.deal.afterRepairValue) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label">Agent Commission</td>
+          <td *ngFor="let deal of selectedDeals">
+            {{ formatCurrency(deal.agentCommission) }} ({{ deal.deal.agentCommissionPercent }}%)
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label">Seller Closing Costs</td>
+          <td *ngFor="let deal of selectedDeals">
+            {{ formatCurrency(deal.deal.sellerClosingCosts) }}
+          </td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="metric-label">Net Sale Proceeds</td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="isHighestNetProceeds(deal)">
+            {{ formatCurrency(deal.netSaleProceeds) }}
+          </td>
+        </tr>
+
+        <!-- Returns Section -->
+        <tr class="section-header">
+          <td>Returns & Verdict</td>
+        </tr>
+        <tr class="highlight-row">
+          <td class="metric-label">Total Project Cost</td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="isLowest(deal, 'totalProjectCost')">
+            {{ formatCurrency(deal.totalProjectCost) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label">Cash Required</td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="isLowest(deal, 'cashRequired')">
+            {{ formatCurrency(deal.cashRequired) }}
+          </td>
+        </tr>
+        <tr class="highlight-row big">
+          <td class="metric-label">Net Profit</td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="isHighestProfit(deal)" [class.negative]="deal.netProfit < 0">
+            {{ formatCurrency(deal.netProfit) }}
+          </td>
+        </tr>
+        <tr class="highlight-row big">
+          <td class="metric-label">ROI</td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="isHighestROI(deal)" [class.negative]="deal.roi < 0">
+            {{ formatPercent(deal.roi) }}
+          </td>
+        </tr>
+        <tr class="highlight-row big">
+          <td class="metric-label">Profit Margin</td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="isHighestMargin(deal)" [class.negative]="deal.profitMargin < 0">
+            {{ formatPercent(deal.profitMargin) }}
+          </td>
+        </tr>
+
+        <!-- MAO Rules Section -->
+        <tr class="section-header">
+          <td>MAO Rules</td>
+        </tr>
+        <tr>
+          <td class="metric-label">70% Rule MAO</td>
+          <td *ngFor="let deal of selectedDeals">
+            {{ formatCurrency(deal.mao70) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label">65% Rule MAO</td>
+          <td *ngFor="let deal of selectedDeals">
+            {{ formatCurrency(deal.mao65) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label">Purchase vs 70% MAO</td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="deal.vsMAO70 <= 0" [class.negative]="deal.vsMAO70 > 0">
+            {{ formatCurrency(deal.vsMAO70) }} {{ deal.vsMAO70 <= 0 ? 'under' : 'over' }}
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label">Purchase vs 65% MAO</td>
+          <td *ngFor="let deal of selectedDeals" [class.best]="deal.vsMAO65 <= 0" [class.negative]="deal.vsMAO65 > 0">
+            {{ formatCurrency(deal.vsMAO65) }} {{ deal.vsMAO65 <= 0 ? 'under' : 'over' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="empty-state" *ngIf="selectedDeals.length === 0">
+    <p>Select deals above to compare them side by side.</p>
+  </div>
+</div>

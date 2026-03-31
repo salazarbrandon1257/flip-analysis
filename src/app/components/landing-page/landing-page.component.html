@@ -1,0 +1,48 @@
+<div class="landing-page">
+  <div class="hero-section">
+    <h1>Welcome to Flip Analysis</h1>
+    <p class="hero-subtitle">Analyze and compare real estate flip deals with confidence</p>
+    <div class="hero-actions">
+      <a routerLink="/my-deals" class="btn btn-primary">View My Deals</a>
+      <a routerLink="/compare" class="btn btn-secondary">Compare Deals</a>
+    </div>
+  </div>
+
+  <div class="stats-section" *ngIf="totalDeals > 0">
+    <h2>Quick Overview</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-value">{{ totalDeals }}</span>
+        <span class="stat-label">Total Deals</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" [class.positive]="totalProfit > 0" [class.negative]="totalProfit <= 0">
+          {{ totalProfit | currency }}
+        </span>
+        <span class="stat-label">Total Potential Profit</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-value" [class.positive]="averageRoi > 0" [class.negative]="averageRoi <= 0">
+          {{ averageRoi | number:'1.1-1' }}%
+        </span>
+        <span class="stat-label">Average ROI</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="features-section">
+    <h2>Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3>My Deals</h3>
+        <p>Track and manage all your real estate deals in one place. Add purchase price, ARV, and rehab costs to analyze profitability.</p>
+        <a routerLink="/my-deals" class="feature-link">View Deals &rarr;</a>
+      </div>
+      <div class="feature-card">
+        <h3>Compare Deals</h3>
+        <p>Side-by-side comparison of multiple deals to help you make the best investment decision.</p>
+        <a routerLink="/compare" class="feature-link">Start Comparing &rarr;</a>
+      </div>
+    </div>
+  </div>
+</div>

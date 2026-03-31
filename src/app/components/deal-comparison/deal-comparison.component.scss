@@ -1,0 +1,183 @@
+.comparison-container {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.comparison-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+
+  h2 {
+    margin: 0;
+    color: #1a1a2e;
+  }
+}
+
+.comparison-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.selection-count {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.btn-clear {
+  padding: 6px 12px;
+  background: #f1f3f4;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #e0e0e0;
+  }
+}
+
+.deal-selection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+
+.deal-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: #4a90d9;
+  }
+
+  &.selected {
+    background: #e8f0fe;
+    border-color: #4a90d9;
+  }
+
+  input {
+    cursor: pointer;
+  }
+
+  .deal-name {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+}
+
+.comparison-table-wrapper {
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+
+  th,
+  td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+
+  th {
+    background: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .label-col {
+    text-align: left;
+    width: 220px;
+    color: #555;
+  }
+
+  .section-header {
+    td {
+      background: #1a1a2e;
+      color: #fff;
+      font-weight: 600;
+      text-align: left;
+      padding-left: 16px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .highlight-row {
+    td {
+      font-weight: 600;
+      background: #f0f7ff;
+
+      &.big {
+        font-size: 1.05rem;
+      }
+    }
+
+    &.negative {
+      color: #e74c3c;
+    }
+  }
+
+  .deal-name {
+    font-size: 0.85rem;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .section-divider {
+    td {
+      border-top: 2px solid #ddd;
+      background: #fafafa;
+    }
+  }
+
+  .highlight-row {
+    td {
+      font-weight: 600;
+      background: #f0f7ff;
+    }
+
+    &.negative {
+      color: #e74c3c;
+    }
+  }
+
+  .best {
+    background: #d4edda;
+    font-weight: 700;
+  }
+
+  .negative {
+    color: #e74c3c;
+  }
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+  background: #f8f9fa;
+  border-radius: 8px;
+}

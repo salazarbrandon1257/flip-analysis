@@ -1,0 +1,151 @@
+.deal-list-container {
+  h2 {
+    margin: 0 0 20px;
+    color: #1a1a2e;
+  }
+}
+
+.deals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.deal-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.deal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+
+  h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #1a1a2e;
+    flex: 1;
+  }
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  padding: 0 4px;
+  line-height: 1;
+  transition: color 0.2s;
+
+  &:hover {
+    color: #e74c3c;
+  }
+}
+
+.deal-section {
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+
+  &:last-of-type {
+    border-bottom: none;
+  }
+}
+
+.section-title {
+  font-size: 0.8rem;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 0.9rem;
+
+  &.highlight {
+    font-weight: 600;
+  }
+
+  &.subtotal {
+    border-top: 1px solid #eee;
+    margin-top: 4px;
+    padding-top: 8px;
+    font-weight: 600;
+  }
+
+  &.big {
+    font-size: 1.05rem;
+    font-weight: 600;
+  }
+
+  &.good-deal {
+    .stat-value {
+      color: #27ae60;
+    }
+  }
+
+  &.bad-deal {
+    .stat-value {
+      color: #e74c3c;
+    }
+  }
+}
+
+.stat-label {
+  color: #555;
+}
+
+.stat-value {
+  font-weight: 600;
+  color: #333;
+
+  &.profit-positive {
+    color: #27ae60;
+  }
+
+  &.profit-negative {
+    color: #e74c3c;
+  }
+
+  &.profit-neutral {
+    color: #7f8c8d;
+  }
+}
+
+.returns-section {
+  background: #f8f9fa;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.mao-section {
+  background: #e8f4fd;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #888;
+  background: #f8f9fa;
+  border-radius: 8px;
+}

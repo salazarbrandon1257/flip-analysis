@@ -1,0 +1,100 @@
+.deal-input-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+
+  h2 {
+    margin: 0 0 20px;
+    color: #1a1a2e;
+    font-size: 1.25rem;
+  }
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+
+  &.full-width {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #333;
+
+    .auto-calc {
+      font-size: 0.75rem;
+      color: #27ae60;
+      font-weight: normal;
+      margin-left: 6px;
+    }
+  }
+
+  input,
+  textarea {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #4a90d9;
+    }
+
+    &.invalid {
+      border-color: #e74c3c;
+    }
+
+    &.auto-calculated {
+      background: #f0f7ff;
+      border-color: #4a90d9;
+      color: #1a1a2e;
+      font-weight: 500;
+      cursor: not-allowed;
+    }
+  }
+
+  small {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  .error {
+    color: #e74c3c;
+    font-size: 0.85rem;
+    margin-top: 4px;
+  }
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 12px 24px;
+  background: #4a90d9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #357abd;
+  }
+}
