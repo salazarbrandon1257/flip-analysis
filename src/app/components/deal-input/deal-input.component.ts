@@ -118,6 +118,7 @@ export class DealInputComponent {
       personalLoanTermMonths,
       personalLoanMonthlyPayment: Math.round(personalLoanMonthlyPayment * 100) / 100,
       personalLoanTotalInterest: Math.round(personalLoanTotalInterest * 100) / 100,
+      personalLoanInterestForHold: Math.round(personalLoanInterestForHold * 100) / 100,
       notes: rawValue.notes,
     };
 

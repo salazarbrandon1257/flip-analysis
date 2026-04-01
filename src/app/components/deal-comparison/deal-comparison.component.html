@@ -133,9 +133,21 @@
           </td>
         </tr>
         <tr>
-          <td class="metric-label">Cash Required</td>
+          <td class="metric-label">Cash Required (Total)</td>
           <td *ngFor="let deal of selectedDeals" [class.best]="isLowest(deal, 'cashRequired')">
             {{ formatCurrency(deal.cashRequired) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label">Cash Required (Brandon)</td>
+          <td *ngFor="let deal of selectedDeals">
+            {{ formatCurrency(deal.cashRequiredBrandon) }}
+          </td>
+        </tr>
+        <tr>
+          <td class="metric-label">Cash Required (Aakash)</td>
+          <td *ngFor="let deal of selectedDeals">
+            {{ formatCurrency(deal.cashRequiredAakash) }}
           </td>
         </tr>
         <tr class="highlight-row big">

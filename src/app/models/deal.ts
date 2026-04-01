@@ -24,6 +24,7 @@ export interface Deal {
   personalLoanTermMonths: number;
   personalLoanMonthlyPayment: number;
   personalLoanTotalInterest: number;
+  personalLoanInterestForHold: number;
 
   // Holding Costs
   taxesInsuranceUtilities: number;
@@ -54,6 +55,8 @@ export interface DealAnalysis {
   // Investment & Returns
   totalProjectCost: number;
   cashRequired: number;
+  cashRequiredBrandon: number;
+  cashRequiredAakash: number;
   netProfit: number;
   roi: number;
   profitMargin: number;
@@ -85,9 +88,17 @@ export function calculateDealAnalysis(deal: Deal): DealAnalysis {
     deal.rehabCosts +
     totalHoldingCosts;
 
-  // Cash Required (down payment + closing + rehab + holding)
-  const downPayment = deal.purchasePrice * (deal.downPaymentPercent / 100);
-  const cashRequired = downPayment + totalClosingCosts + deal.rehabCosts + totalHoldingCosts;
+  // Cash Required Split
+  // Brandon: loan rehab interest (personal loan interest for hold period)
+  const cashRequiredBrandon = personalLoanPaymentsForHold || 0;
+
+  // Aakash: Taxes/Insurance/Utilities + HML interest + HML downpayment + total closing costs
+  const hmlDownPayment = deal.purchasePrice * (deal.downPaymentPercent / 100);
+  const hmlInterest = totalLoanInterest;
+  const cashRequiredAakash = deal.taxesInsuranceUtilities + hmlInterest + hmlDownPayment + totalClosingCosts;
+
+  // Total Cash Required
+  const cashRequired = cashRequiredBrandon + cashRequiredAakash;
 
   // Sale
   const agentCommission = deal.afterRepairValue * (deal.agentCommissionPercent / 100);
@@ -119,6 +130,8 @@ export function calculateDealAnalysis(deal: Deal): DealAnalysis {
     netSaleProceeds,
     totalProjectCost,
     cashRequired,
+    cashRequiredBrandon,
+    cashRequiredAakash,
     netProfit,
     roi,
     profitMargin,
