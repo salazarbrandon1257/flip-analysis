@@ -1,6 +1,7 @@
 # 🏠 Flip Analysis
 
 A real estate fix-and-flip deal comparison tool built with Angular and Firebase.
+https://flipanalysis.netlify.app/
  <p align="center">
   <a href="https://app.netlify.com/projects/flipanalysis/deploys" target="_blank">
     <img src="https://api.netlify.com/api/v1/badges/2e855123-4b76-4d5d-82ca-457a63ad0ac8/deploy-status" alt="Netlify Status" />
