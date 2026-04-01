@@ -8,7 +8,8 @@
       "Bash(ng build:*)",
       "Bash(npm run:*)",
       "Bash(ls src/app/*.pipe.ts)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(git stash:*)"
     ]
   }
 }
