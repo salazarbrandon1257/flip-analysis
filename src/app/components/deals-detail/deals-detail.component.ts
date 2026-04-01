@@ -12,9 +12,10 @@ function parseValue(val: any): number {
 }
 
 @Component({
-  selector: 'app-deals-detail',
-  templateUrl: './deals-detail.component.html',
-  styleUrls: ['./deals-detail.component.scss'],
+    selector: 'app-deals-detail',
+    templateUrl: './deals-detail.component.html',
+    styleUrls: ['./deals-detail.component.scss'],
+    standalone: false
 })
 export class DealsDetailComponent implements OnInit {
   expandedDealId: string | null = null;

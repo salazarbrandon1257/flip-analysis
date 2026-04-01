@@ -17,9 +17,10 @@ function parseValue(val: any): number {
 }
 
 @Component({
-  selector: 'app-deal-input',
-  templateUrl: './deal-input.component.html',
-  styleUrls: ['./deal-input.component.scss'],
+    selector: 'app-deal-input',
+    templateUrl: './deal-input.component.html',
+    styleUrls: ['./deal-input.component.scss'],
+    standalone: false
 })
 export class DealInputComponent {
   @Output() dealAdded = new EventEmitter<void>();
