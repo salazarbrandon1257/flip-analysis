@@ -119,8 +119,16 @@
           <span class="stat-value">{{ formatCurrency(analysis.totalProjectCost) }}</span>
         </div>
         <div class="stat-row">
-          <span class="stat-label">Cash Required:</span>
+          <span class="stat-label">Cash Required (Total):</span>
           <span class="stat-value">{{ formatCurrency(analysis.cashRequired) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Cash Required (Brandon):</span>
+          <span class="stat-value">{{ formatCurrency(analysis.cashRequiredBrandon) }}</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">Cash Required (Aakash):</span>
+          <span class="stat-value">{{ formatCurrency(analysis.cashRequiredAakash) }}</span>
         </div>
         <div class="stat-row big">
           <span class="stat-label">Net Profit:</span>

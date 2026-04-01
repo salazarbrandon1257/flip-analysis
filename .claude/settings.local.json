@@ -9,7 +9,10 @@
       "Bash(npm run:*)",
       "Bash(ls src/app/*.pipe.ts)",
       "Bash(cd:*)",
-      "Bash(git stash:*)"
+      "Bash(git stash:*)",
+      "Bash(ng serve:*)",
+      "Bash(netstat -ano)",
+      "Bash(findstr :4200)"
     ]
   }
 }

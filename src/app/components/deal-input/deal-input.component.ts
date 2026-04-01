@@ -51,7 +51,7 @@ export class DealInputComponent {
     });
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     this.submitted = true;
 
     if (this.dealForm.invalid) {
@@ -118,10 +118,11 @@ export class DealInputComponent {
       personalLoanTermMonths,
       personalLoanMonthlyPayment: Math.round(personalLoanMonthlyPayment * 100) / 100,
       personalLoanTotalInterest: Math.round(personalLoanTotalInterest * 100) / 100,
+      personalLoanInterestForHold: Math.round(personalLoanInterestForHold * 100) / 100,
       notes: rawValue.notes,
     };
 
-    this.dealService.addDeal(deal);
+    await this.dealService.addDeal(deal);
 
     this.dealForm.reset({
       purchasePrice: '0',

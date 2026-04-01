@@ -218,8 +218,16 @@
                 <span class="value">{{ selectedDeal.totalProjectCost | currency }}</span>
               </div>
               <div class="summary-item">
-                <span class="label">Cash Required</span>
+                <span class="label">Cash Required (Total)</span>
                 <span class="value">{{ selectedDeal.cashRequired | currency }}</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Cash Required (Brandon)</span>
+                <span class="value">{{ selectedDeal.cashRequiredBrandon | currency }}</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Cash Required (Aakash)</span>
+                <span class="value">{{ selectedDeal.cashRequiredAakash | currency }}</span>
               </div>
               <div class="summary-item profit">
                 <span class="label">Net Profit</span>
@@ -492,8 +500,16 @@
                 <span class="value">{{ analysis.totalProjectCost | currency }}</span>
               </div>
               <div class="summary-item">
-                <span class="label">Cash Required</span>
+                <span class="label">Cash Required (Total)</span>
                 <span class="value">{{ analysis.cashRequired | currency }}</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Cash Required (Brandon)</span>
+                <span class="value">{{ analysis.cashRequiredBrandon | currency }}</span>
+              </div>
+              <div class="summary-item">
+                <span class="label">Cash Required (Aakash)</span>
+                <span class="value">{{ analysis.cashRequiredAakash | currency }}</span>
               </div>
               <div class="summary-item profit">
                 <span class="label">Net Profit</span>
