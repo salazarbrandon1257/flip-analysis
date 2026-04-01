@@ -4,9 +4,10 @@ import { DealService } from '../../services/deal.service';
 import { DealAnalysis } from '../../models/deal';
 
 @Component({
-  selector: 'app-my-deals',
-  templateUrl: './my-deals.component.html',
-  styleUrls: ['./my-deals.component.scss'],
+    selector: 'app-my-deals',
+    templateUrl: './my-deals.component.html',
+    styleUrls: ['./my-deals.component.scss'],
+    standalone: false
 })
 export class MyDealsComponent {
   constructor(

@@ -2,7 +2,8 @@ import { Directive, ElementRef, HostListener, OnInit, Optional, Self } from '@an
 import { NgControl } from '@angular/forms';
 
 @Directive({
-  selector: '[appCurrencyInput]',
+    selector: '[appCurrencyInput]',
+    standalone: false
 })
 export class CurrencyInputDirective implements OnInit {
   private _el: HTMLInputElement;

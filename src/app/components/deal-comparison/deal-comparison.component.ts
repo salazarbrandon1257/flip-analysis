@@ -3,9 +3,10 @@ import { DealAnalysis } from '../../models/deal';
 import { DealService } from '../../services/deal.service';
 
 @Component({
-  selector: 'app-deal-comparison',
-  templateUrl: './deal-comparison.component.html',
-  styleUrls: ['./deal-comparison.component.scss'],
+    selector: 'app-deal-comparison',
+    templateUrl: './deal-comparison.component.html',
+    styleUrls: ['./deal-comparison.component.scss'],
+    standalone: false
 })
 export class DealComparisonComponent {
   selectedDealIds: string[] = [];

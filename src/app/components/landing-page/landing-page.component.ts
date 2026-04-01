@@ -3,9 +3,10 @@ import { DealService } from '../../services/deal.service';
 import { DealAnalysis } from '../../models/deal';
 
 @Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss'],
+    selector: 'app-landing-page',
+    templateUrl: './landing-page.component.html',
+    styleUrls: ['./landing-page.component.scss'],
+    standalone: false
 })
 export class LandingPageComponent {
   constructor(public dealService: DealService) {}

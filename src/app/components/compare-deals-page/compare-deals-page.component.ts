@@ -3,9 +3,10 @@ import { DealService } from '../../services/deal.service';
 import { DealAnalysis } from '../../models/deal';
 
 @Component({
-  selector: 'app-compare-deals-page',
-  templateUrl: './compare-deals-page.component.html',
-  styleUrls: ['./compare-deals-page.component.scss'],
+    selector: 'app-compare-deals-page',
+    templateUrl: './compare-deals-page.component.html',
+    styleUrls: ['./compare-deals-page.component.scss'],
+    standalone: false
 })
 export class CompareDealsPageComponent {
   selectedDealIds: Set<string> = new Set();

@@ -4,9 +4,10 @@ import { Deal, DealAnalysis } from '../../models/deal';
 import { DealService } from '../../services/deal.service';
 
 @Component({
-  selector: 'app-deal-list',
-  templateUrl: './deal-list.component.html',
-  styleUrls: ['./deal-list.component.scss'],
+    selector: 'app-deal-list',
+    templateUrl: './deal-list.component.html',
+    styleUrls: ['./deal-list.component.scss'],
+    standalone: false
 })
 export class DealListComponent {
   constructor(private dealService: DealService) {}
