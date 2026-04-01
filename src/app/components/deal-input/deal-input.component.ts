@@ -51,7 +51,7 @@ export class DealInputComponent {
     });
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     this.submitted = true;
 
     if (this.dealForm.invalid) {
@@ -121,7 +121,7 @@ export class DealInputComponent {
       notes: rawValue.notes,
     };
 
-    this.dealService.addDeal(deal);
+    await this.dealService.addDeal(deal);
 
     this.dealForm.reset({
       purchasePrice: '0',
