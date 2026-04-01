@@ -2,6 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
  hosted with <a href="https://www.netlify.com/" target="_blank">Netlify</a>
+ <p align="center">
+  <a href="https://app.netlify.com/projects/flipanalysis/deploys" target="_blank">
+    <img src="https://api.netlify.com/api/v1/badges/2e855123-4b76-4d5d-82ca-457a63ad0ac8/deploy-status" alt="Netlify Status" />
+  </a>
+</p>
 
 ## Development server
 
