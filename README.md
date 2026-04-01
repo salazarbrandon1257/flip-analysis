@@ -1,6 +1,7 @@
 # FlipAnalysis
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
+ hosted with <a href="https://www.netlify.com/" target="_blank">Netlify</a>
 
 ## Development server
 
