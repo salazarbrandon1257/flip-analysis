@@ -1,7 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DealService } from '../../services/deal.service';
-import { DealAnalysis } from '../../models/deal';
+import { DealAnalysis, Deal } from '../../models/deal';
+
+// Parse comma-formatted string to number
+function parseValue(val: any): number {
+  if (typeof val === 'string') {
+    return Number(val.replace(/,/g, '')) || 0;
+  }
+  return val || 0;
+}
 
 @Component({
   selector: 'app-deals-detail',
@@ -11,6 +19,8 @@ import { DealAnalysis } from '../../models/deal';
 export class DealsDetailComponent implements OnInit {
   expandedDealId: string | null = null;
   selectedDealId: string | null = null;
+  editingField: string | null = null;
+  editValue: string | number = '';
 
   constructor(
     public dealService: DealService,
@@ -24,6 +34,98 @@ export class DealsDetailComponent implements OnInit {
         this.expandedDealId = this.selectedDealId;
       }
     });
+  }
+
+  startEdit(field: string, value: string | number): void {
+    this.editingField = field;
+    this.editValue = value;
+  }
+
+  cancelEdit(): void {
+    this.editingField = null;
+    this.editValue = '';
+  }
+
+  saveEdit(field: string): void {
+    if (!this.selectedDealId || !this.selectedDeal) return;
+
+    // Get the actual input value from the DOM
+    const inputEl = document.querySelector('.inline-edit-input') as HTMLInputElement;
+    const rawValue = inputEl?.value || String(this.editValue);
+
+    const deal = this.selectedDeal.deal;
+    const update: Partial<Deal> = {};
+
+    switch (field) {
+      case 'address':
+        update.address = rawValue;
+        break;
+      case 'askingPrice':
+        update.askingPrice = parseValue(rawValue);
+        break;
+      case 'purchasePrice':
+        update.purchasePrice = parseValue(rawValue);
+        // Recalculate derived values
+        update.buyerClosingCosts = Math.round(update.purchasePrice * 0.01) + 999;
+        update.titleClosingCosts = Math.round(update.purchasePrice * 0.02);
+        update.loanAmount = Math.round(update.purchasePrice * 0.88);
+        update.loanMonthlyInterest = Math.round(update.loanAmount * (deal.interestRatePercent / 100) / 12);
+        break;
+      case 'afterRepairValue':
+        update.afterRepairValue = parseValue(rawValue);
+        update.sellerClosingCosts = Math.round(update.afterRepairValue * 0.04);
+        break;
+      case 'rehabCosts':
+        update.rehabCosts = parseValue(rawValue);
+        break;
+      case 'downPaymentPercent':
+        update.downPaymentPercent = parseValue(rawValue);
+        break;
+      case 'interestRatePercent':
+        update.interestRatePercent = parseValue(rawValue);
+        // Recalculate loan monthly interest
+        update.loanMonthlyInterest = Math.round(deal.loanAmount * (update.interestRatePercent / 100) / 12);
+        break;
+      case 'holdPeriodMonths':
+        update.holdPeriodMonths = parseValue(rawValue);
+        // Recalculate taxes/insurance/utilities
+        const annualPropertyTax = deal.purchasePrice * 0.04;
+        const holdPeriodPropertyTax = annualPropertyTax * (update.holdPeriodMonths / 12);
+        const utilitiesCost = 400 * update.holdPeriodMonths;
+        update.taxesInsuranceUtilities = Math.round(holdPeriodPropertyTax + utilitiesCost);
+        break;
+      case 'agentCommissionPercent':
+        update.agentCommissionPercent = parseValue(rawValue);
+        break;
+      case 'personalLoanAmount':
+        update.personalLoanAmount = parseValue(rawValue);
+        // Recalculate personal loan values
+        const personalLoanApr = 17;
+        const personalLoanTermMonths = 84;
+        const personalLoanMonthlyRate = personalLoanApr / 100 / 12;
+        const personalLoanMonthlyPayment = update.personalLoanAmount > 0
+          ? update.personalLoanAmount * (personalLoanMonthlyRate * Math.pow(1 + personalLoanMonthlyRate, personalLoanTermMonths)) / (Math.pow(1 + personalLoanMonthlyRate, personalLoanTermMonths) - 1)
+          : 0;
+        update.personalLoanApr = personalLoanApr;
+        update.personalLoanTermMonths = personalLoanTermMonths;
+        update.personalLoanMonthlyPayment = Math.round(personalLoanMonthlyPayment * 100) / 100;
+        update.personalLoanTotalInterest = update.personalLoanAmount > 0
+          ? (personalLoanMonthlyPayment * personalLoanTermMonths) - update.personalLoanAmount
+          : 0;
+        break;
+    }
+
+    this.dealService.updateDeal(this.selectedDealId, update);
+    this.editingField = null;
+    this.editValue = '';
+  }
+
+  onKeydown(event: KeyboardEvent, field: string): void {
+    if (event.key === 'Enter') {
+      this.saveEdit(field);
+    } else if (event.key === 'Escape') {
+      this.cancelEdit();
+    }
   }
 
   get analyzedDeals(): DealAnalysis[] {
@@ -59,5 +161,9 @@ export class DealsDetailComponent implements OnInit {
 
   formatMonth(value: number): string {
     return value + ' month' + (value !== 1 ? 's' : '');
+  }
+
+  formatNumber(value: number): string {
+    return value.toString();
   }
 }

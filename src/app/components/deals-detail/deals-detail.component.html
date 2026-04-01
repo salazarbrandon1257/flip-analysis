@@ -26,18 +26,37 @@
       </div>
 
       <div class="deal-card-body">
+        <!-- Field Type Legend -->
+        <div class="field-legend">
+          <div class="legend-item">
+            <span class="legend-box editable"></span>
+            <span class="legend-label">Editable (click to edit)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-box calculated"></span>
+            <span class="legend-label">Calculated (read-only)</span>
+          </div>
+        </div>
+
         <div class="detail-sections">
           <!-- Acquisition Costs -->
           <div class="detail-section">
             <h4>Acquisition</h4>
             <div class="detail-grid">
-              <div class="detail-item">
-                <span class="label">Asking Price</span>
-                <span class="value">{{ selectedDeal.deal.askingPrice | currency }}</span>
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('address', selectedDeal.deal.address)">
+                <span class="label">Address</span>
+                <span class="value" *ngIf="editingField !== 'address'">{{ selectedDeal.deal.address }}</span>
+                <input *ngIf="editingField === 'address'" type="text" class="inline-edit-input" [value]="editValue" (blur)="saveEdit('address')" (keydown)="onKeydown($event, 'address')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('askingPrice', selectedDeal.deal.askingPrice)">
+                <span class="label">Asking Price</span>
+                <span class="value" *ngIf="editingField !== 'askingPrice'">{{ selectedDeal.deal.askingPrice | currency }}</span>
+                <input *ngIf="editingField === 'askingPrice'" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('askingPrice')" (keydown)="onKeydown($event, 'askingPrice')" #editInput />
+              </div>
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('purchasePrice', selectedDeal.deal.purchasePrice)">
                 <span class="label">Purchase Price</span>
-                <span class="value">{{ selectedDeal.deal.purchasePrice | currency }}</span>
+                <span class="value" *ngIf="editingField !== 'purchasePrice'">{{ selectedDeal.deal.purchasePrice | currency }}</span>
+                <input *ngIf="editingField === 'purchasePrice'" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('purchasePrice')" (keydown)="onKeydown($event, 'purchasePrice')" #editInput />
               </div>
               <div class="detail-item">
                 <span class="label">Below Asking</span>
@@ -64,9 +83,10 @@
           <div class="detail-section">
             <h4>Rehab</h4>
             <div class="detail-grid">
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('rehabCosts', selectedDeal.deal.rehabCosts)">
                 <span class="label">Rehab Costs</span>
-                <span class="value">{{ selectedDeal.deal.rehabCosts | currency }}</span>
+                <span class="value" *ngIf="editingField !== 'rehabCosts'">{{ selectedDeal.deal.rehabCosts | currency }}</span>
+                <input *ngIf="editingField === 'rehabCosts'" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('rehabCosts')" (keydown)="onKeydown($event, 'rehabCosts')" #editInput />
               </div>
             </div>
           </div>
@@ -75,21 +95,24 @@
           <div class="detail-section">
             <h4>Financing</h4>
             <div class="detail-grid">
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Loan Amount</span>
                 <span class="value">{{ selectedDeal.deal.loanAmount | currency }}</span>
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('downPaymentPercent', selectedDeal.deal.downPaymentPercent)">
                 <span class="label">Down Payment</span>
-                <span class="value">{{ selectedDeal.deal.downPaymentPercent }}%</span>
+                <span class="value" *ngIf="editingField !== 'downPaymentPercent'">{{ selectedDeal.deal.downPaymentPercent }}%</span>
+                <input *ngIf="editingField === 'downPaymentPercent'" type="number" class="inline-edit-input" [value]="editValue" min="0" max="100" step="1" (blur)="saveEdit('downPaymentPercent')" (keydown)="onKeydown($event, 'downPaymentPercent')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('interestRatePercent', selectedDeal.deal.interestRatePercent)">
                 <span class="label">Interest Rate</span>
-                <span class="value">{{ selectedDeal.deal.interestRatePercent }}%</span>
+                <span class="value" *ngIf="editingField !== 'interestRatePercent'">{{ selectedDeal.deal.interestRatePercent }}%</span>
+                <input *ngIf="editingField === 'interestRatePercent'" type="number" class="inline-edit-input" [value]="editValue" min="0" max="100" step="0.25" (blur)="saveEdit('interestRatePercent')" (keydown)="onKeydown($event, 'interestRatePercent')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('holdPeriodMonths', selectedDeal.deal.holdPeriodMonths)">
                 <span class="label">Hold Period</span>
-                <span class="value">{{ formatMonth(selectedDeal.deal.holdPeriodMonths) }}</span>
+                <span class="value" *ngIf="editingField !== 'holdPeriodMonths'">{{ formatMonth(selectedDeal.deal.holdPeriodMonths) }}</span>
+                <input *ngIf="editingField === 'holdPeriodMonths'" type="number" class="inline-edit-input" [value]="editValue" min="1" step="1" (blur)="saveEdit('holdPeriodMonths')" (keydown)="onKeydown($event, 'holdPeriodMonths')" #editInput />
               </div>
               <div class="detail-item">
                 <span class="label">Monthly Interest</span>
@@ -103,12 +126,13 @@
           </div>
 
           <!-- Personal Loan -->
-          <div class="detail-section" *ngIf="selectedDeal.deal.personalLoanAmount > 0">
+          <div class="detail-section" *ngIf="selectedDeal.deal.personalLoanAmount > 0 || editingField === 'personalLoanAmount'">
             <h4>Personal Loan (Rehab)</h4>
             <div class="detail-grid">
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('personalLoanAmount', selectedDeal.deal.personalLoanAmount)">
                 <span class="label">Loan Amount</span>
-                <span class="value">{{ selectedDeal.deal.personalLoanAmount | currency }}</span>
+                <span class="value" *ngIf="editingField !== 'personalLoanAmount'">{{ selectedDeal.deal.personalLoanAmount | currency }}</span>
+                <input *ngIf="editingField === 'personalLoanAmount'" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('personalLoanAmount')" (keydown)="onKeydown($event, 'personalLoanAmount')" #editInput />
               </div>
               <div class="detail-item">
                 <span class="label">APR</span>
@@ -160,13 +184,15 @@
           <div class="detail-section">
             <h4>Sale / Exit</h4>
             <div class="detail-grid">
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('afterRepairValue', selectedDeal.deal.afterRepairValue)">
                 <span class="label">After Repair Value</span>
-                <span class="value arvalue">{{ selectedDeal.deal.afterRepairValue | currency }}</span>
+                <span class="value arvalue" *ngIf="editingField !== 'afterRepairValue'">{{ selectedDeal.deal.afterRepairValue | currency }}</span>
+                <input *ngIf="editingField === 'afterRepairValue'" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('afterRepairValue')" (keydown)="onKeydown($event, 'afterRepairValue')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('agentCommissionPercent', selectedDeal.deal.agentCommissionPercent)">
                 <span class="label">Agent Commission</span>
-                <span class="value">{{ selectedDeal.deal.agentCommissionPercent }}% ({{ selectedDeal.agentCommission | currency }})</span>
+                <span class="value" *ngIf="editingField !== 'agentCommissionPercent'">{{ selectedDeal.deal.agentCommissionPercent }}% ({{ selectedDeal.agentCommission | currency }})</span>
+                <input *ngIf="editingField === 'agentCommissionPercent'" type="number" class="inline-edit-input" [value]="editValue" min="0" max="100" step="0.5" (blur)="saveEdit('agentCommissionPercent')" (keydown)="onKeydown($event, 'agentCommissionPercent')" #editInput />
               </div>
               <div class="detail-item">
                 <span class="label">Seller Closing Costs</span>
@@ -256,7 +282,7 @@
 
   <!-- All Deals List View -->
   <div class="deals-grid" *ngIf="analyzedDeals.length > 0 && !selectedDealId">
-    <div class="deal-card" *ngFor="let analysis of analyzedDeals">
+    <div class="deal-card" *ngFor="let analysis of analyzedDeals; let i = index">
       <div class="deal-card-header" (click)="toggleExpand(analysis.deal.id)">
         <div class="deal-main-info">
           <h3 class="deal-address">{{ analysis.deal.address }}</h3>
@@ -278,34 +304,53 @@
       </div>
 
       <div class="deal-card-body" *ngIf="isExpanded(analysis.deal.id)">
+        <!-- Field Type Legend -->
+        <div class="field-legend">
+          <div class="legend-item">
+            <span class="legend-box editable"></span>
+            <span class="legend-label">Editable (click to edit)</span>
+          </div>
+          <div class="legend-item">
+            <span class="legend-box calculated"></span>
+            <span class="legend-label">Calculated (read-only)</span>
+          </div>
+        </div>
+
         <div class="detail-sections">
           <!-- Acquisition Costs -->
           <div class="detail-section">
             <h4>Acquisition</h4>
             <div class="detail-grid">
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('address', analysis.deal.address); selectedDealId = analysis.deal.id">
+                <span class="label">Address</span>
+                <span class="value" *ngIf="editingField !== 'address' || selectedDealId !== analysis.deal.id">{{ analysis.deal.address }}</span>
+                <input *ngIf="editingField === 'address' && selectedDealId === analysis.deal.id" type="text" class="inline-edit-input" [value]="editValue" (blur)="saveEdit('address')" (keydown)="onKeydown($event, 'address')" #editInput />
+              </div>
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('askingPrice', analysis.deal.askingPrice); selectedDealId = analysis.deal.id">
                 <span class="label">Asking Price</span>
-                <span class="value">{{ analysis.deal.askingPrice | currency }}</span>
+                <span class="value" *ngIf="editingField !== 'askingPrice' || selectedDealId !== analysis.deal.id">{{ analysis.deal.askingPrice | currency }}</span>
+                <input *ngIf="editingField === 'askingPrice' && selectedDealId === analysis.deal.id" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('askingPrice')" (keydown)="onKeydown($event, 'askingPrice')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('purchasePrice', analysis.deal.purchasePrice); selectedDealId = analysis.deal.id">
                 <span class="label">Purchase Price</span>
-                <span class="value">{{ analysis.deal.purchasePrice | currency }}</span>
+                <span class="value" *ngIf="editingField !== 'purchasePrice' || selectedDealId !== analysis.deal.id">{{ analysis.deal.purchasePrice | currency }}</span>
+                <input *ngIf="editingField === 'purchasePrice' && selectedDealId === analysis.deal.id" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('purchasePrice')" (keydown)="onKeydown($event, 'purchasePrice')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Below Asking</span>
                 <span class="value" [class.positive]="analysis.deal.askingPrice - analysis.deal.purchasePrice > 0" [class.negative]="analysis.deal.askingPrice - analysis.deal.purchasePrice <= 0">
                   {{ (analysis.deal.askingPrice - analysis.deal.purchasePrice) | currency }}
                 </span>
               </div>
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Buyer Closing</span>
                 <span class="value">{{ analysis.deal.buyerClosingCosts | currency }}</span>
               </div>
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Title Closing</span>
                 <span class="value">{{ analysis.deal.titleClosingCosts | currency }}</span>
               </div>
-              <div class="detail-item total">
+              <div class="detail-item total calculated">
                 <span class="label">Total Closing Costs</span>
                 <span class="value">{{ analysis.totalClosingCosts | currency }}</span>
               </div>
@@ -316,9 +361,10 @@
           <div class="detail-section">
             <h4>Rehab</h4>
             <div class="detail-grid">
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('rehabCosts', analysis.deal.rehabCosts); selectedDealId = analysis.deal.id">
                 <span class="label">Rehab Costs</span>
-                <span class="value">{{ analysis.deal.rehabCosts | currency }}</span>
+                <span class="value" *ngIf="editingField !== 'rehabCosts' || selectedDealId !== analysis.deal.id">{{ analysis.deal.rehabCosts | currency }}</span>
+                <input *ngIf="editingField === 'rehabCosts' && selectedDealId === analysis.deal.id" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('rehabCosts')" (keydown)="onKeydown($event, 'rehabCosts')" #editInput />
               </div>
             </div>
           </div>
@@ -327,27 +373,30 @@
           <div class="detail-section">
             <h4>Financing</h4>
             <div class="detail-grid">
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Loan Amount</span>
                 <span class="value">{{ analysis.deal.loanAmount | currency }}</span>
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('downPaymentPercent', analysis.deal.downPaymentPercent); selectedDealId = analysis.deal.id">
                 <span class="label">Down Payment</span>
-                <span class="value">{{ analysis.deal.downPaymentPercent }}%</span>
+                <span class="value" *ngIf="editingField !== 'downPaymentPercent' || selectedDealId !== analysis.deal.id">{{ analysis.deal.downPaymentPercent }}%</span>
+                <input *ngIf="editingField === 'downPaymentPercent' && selectedDealId === analysis.deal.id" type="number" class="inline-edit-input" [value]="editValue" min="0" max="100" step="1" (blur)="saveEdit('downPaymentPercent')" (keydown)="onKeydown($event, 'downPaymentPercent')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('interestRatePercent', analysis.deal.interestRatePercent); selectedDealId = analysis.deal.id">
                 <span class="label">Interest Rate</span>
-                <span class="value">{{ analysis.deal.interestRatePercent }}%</span>
+                <span class="value" *ngIf="editingField !== 'interestRatePercent' || selectedDealId !== analysis.deal.id">{{ analysis.deal.interestRatePercent }}%</span>
+                <input *ngIf="editingField === 'interestRatePercent' && selectedDealId === analysis.deal.id" type="number" class="inline-edit-input" [value]="editValue" min="0" max="100" step="0.25" (blur)="saveEdit('interestRatePercent')" (keydown)="onKeydown($event, 'interestRatePercent')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('holdPeriodMonths', analysis.deal.holdPeriodMonths); selectedDealId = analysis.deal.id">
                 <span class="label">Hold Period</span>
-                <span class="value">{{ formatMonth(analysis.deal.holdPeriodMonths) }}</span>
+                <span class="value" *ngIf="editingField !== 'holdPeriodMonths' || selectedDealId !== analysis.deal.id">{{ formatMonth(analysis.deal.holdPeriodMonths) }}</span>
+                <input *ngIf="editingField === 'holdPeriodMonths' && selectedDealId === analysis.deal.id" type="number" class="inline-edit-input" [value]="editValue" min="1" step="1" (blur)="saveEdit('holdPeriodMonths')" (keydown)="onKeydown($event, 'holdPeriodMonths')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Monthly Interest</span>
                 <span class="value">{{ analysis.deal.loanMonthlyInterest | currency }}</span>
               </div>
-              <div class="detail-item total">
+              <div class="detail-item total calculated">
                 <span class="label">Total Loan Interest</span>
                 <span class="value">{{ (analysis.deal.loanMonthlyInterest * analysis.deal.holdPeriodMonths) | currency }}</span>
               </div>
@@ -355,31 +404,32 @@
           </div>
 
           <!-- Personal Loan -->
-          <div class="detail-section" *ngIf="analysis.deal.personalLoanAmount > 0">
+          <div class="detail-section" *ngIf="analysis.deal.personalLoanAmount > 0 || (editingField === 'personalLoanAmount' && selectedDealId === analysis.deal.id)">
             <h4>Personal Loan (Rehab)</h4>
             <div class="detail-grid">
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('personalLoanAmount', analysis.deal.personalLoanAmount); selectedDealId = analysis.deal.id">
                 <span class="label">Loan Amount</span>
-                <span class="value">{{ analysis.deal.personalLoanAmount | currency }}</span>
+                <span class="value" *ngIf="editingField !== 'personalLoanAmount' || selectedDealId !== analysis.deal.id">{{ analysis.deal.personalLoanAmount | currency }}</span>
+                <input *ngIf="editingField === 'personalLoanAmount' && selectedDealId === analysis.deal.id" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('personalLoanAmount')" (keydown)="onKeydown($event, 'personalLoanAmount')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">APR</span>
                 <span class="value">{{ analysis.deal.personalLoanApr }}%</span>
               </div>
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Term</span>
                 <span class="value">{{ formatMonth(analysis.deal.personalLoanTermMonths) }}</span>
               </div>
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Monthly Payment</span>
                 <span class="value">{{ analysis.deal.personalLoanMonthlyPayment | currency }}</span>
               </div>
-              <div class="detail-item total">
+              <div class="detail-item total calculated">
                 <span class="label">Total Interest (full term)</span>
                 <span class="value">{{ analysis.deal.personalLoanTotalInterest | currency }}</span>
               </div>
-              <div class="detail-item total">
-                <span class="label">Interest During Hold</span>
+              <div class="detail-item total calculated">
+                <span class="label">Payments During Hold</span>
                 <span class="value">{{ (analysis.deal.personalLoanMonthlyPayment * analysis.deal.holdPeriodMonths) | currency }}</span>
               </div>
             </div>
@@ -389,15 +439,15 @@
           <div class="detail-section">
             <h4>Holding Costs</h4>
             <div class="detail-grid">
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Taxes/Insurance/Utilities</span>
                 <span class="value">{{ analysis.deal.taxesInsuranceUtilities | currency }}</span>
               </div>
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Total Loan Interest</span>
                 <span class="value">{{ (analysis.deal.loanMonthlyInterest * analysis.deal.holdPeriodMonths) | currency }}</span>
               </div>
-              <div class="detail-item total">
+              <div class="detail-item total calculated">
                 <span class="label">Total Holding Costs</span>
                 <span class="value">{{ analysis.totalHoldingCosts | currency }}</span>
               </div>
@@ -408,23 +458,25 @@
           <div class="detail-section">
             <h4>Sale / Exit</h4>
             <div class="detail-grid">
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('afterRepairValue', analysis.deal.afterRepairValue); selectedDealId = analysis.deal.id">
                 <span class="label">After Repair Value</span>
-                <span class="value arvalue">{{ analysis.deal.afterRepairValue | currency }}</span>
+                <span class="value arvalue" *ngIf="editingField !== 'afterRepairValue' || selectedDealId !== analysis.deal.id">{{ analysis.deal.afterRepairValue | currency }}</span>
+                <input *ngIf="editingField === 'afterRepairValue' && selectedDealId === analysis.deal.id" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('afterRepairValue')" (keydown)="onKeydown($event, 'afterRepairValue')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('agentCommissionPercent', analysis.deal.agentCommissionPercent); selectedDealId = analysis.deal.id">
                 <span class="label">Agent Commission</span>
-                <span class="value">{{ analysis.deal.agentCommissionPercent }}% ({{ analysis.agentCommission | currency }})</span>
+                <span class="value" *ngIf="editingField !== 'agentCommissionPercent' || selectedDealId !== analysis.deal.id">{{ analysis.deal.agentCommissionPercent }}% ({{ analysis.agentCommission | currency }})</span>
+                <input *ngIf="editingField === 'agentCommissionPercent' && selectedDealId === analysis.deal.id" type="number" class="inline-edit-input" [value]="editValue" min="0" max="100" step="0.5" (blur)="saveEdit('agentCommissionPercent')" (keydown)="onKeydown($event, 'agentCommissionPercent')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item calculated">
                 <span class="label">Seller Closing Costs</span>
                 <span class="value">{{ analysis.deal.sellerClosingCosts | currency }}</span>
               </div>
-              <div class="detail-item total">
+              <div class="detail-item total calculated">
                 <span class="label">Total Selling Costs</span>
                 <span class="value">{{ analysis.totalSellingCosts | currency }}</span>
               </div>
-              <div class="detail-item total highlight">
+              <div class="detail-item total highlight calculated">
                 <span class="label">Net Sale Proceeds</span>
                 <span class="value">{{ analysis.netSaleProceeds | currency }}</span>
               </div>
