@@ -1,33 +1,76 @@
-# FlipAnalysis
+# 🏠 Flip Analysis
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.14.
- hosted with <a href="https://www.netlify.com/" target="_blank">Netlify</a>
+A real estate fix-and-flip deal comparison tool built with Angular and Firebase.
  <p align="center">
   <a href="https://app.netlify.com/projects/flipanalysis/deploys" target="_blank">
     <img src="https://api.netlify.com/api/v1/badges/2e855123-4b76-4d5d-82ca-457a63ad0ac8/deploy-status" alt="Netlify Status" />
   </a>
 </p>
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Features
 
-## Code scaffolding
+- 📊 Compare multiple fix-and-flip deals side by side
+- 💾 Data persists across browsers via Firebase Firestore
+- ⚡ Built with Angular 20 and Angular Material
+- 🌐 Deployed and hosted on Netlify
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🛠️ Tech Stack
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+| Layer | Technology |
+|---|---|
+| Frontend | Angular 20 |
+| UI Components | Angular Material |
+| Database | Firebase Firestore |
+| Hosting | Netlify |
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📦 Getting Started
 
-## Running end-to-end tests
+### Prerequisites
+- Node.js 22+
+- Angular CLI
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+npm install -g @angular/cli
+```
 
-## Further help
+### Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+git clone https://github.com/salazarbrandon1257/flip-analysis.git
+cd flip-analysis
+npm install
+```
+
+### Development Server
+
+```bash
+npm run start
+```
+
+Navigate to `http://localhost:4200/`. The app will automatically reload on file changes.
+
+### Build
+
+```bash
+npm run build
+```
+
+Build artifacts are stored in the `dist/` directory.
+
+---
+
+## 🤝 Contributing
+
+This is a private tool currently used internally. Feel free to fork and adapt for your own use.
+
+---
+
+## 📄 License
+
+MIT
