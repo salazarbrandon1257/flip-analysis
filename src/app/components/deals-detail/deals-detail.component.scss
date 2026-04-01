@@ -160,6 +160,42 @@
   flex-direction: column;
   gap: 0.25rem;
 
+  &.editable {
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px dashed #667eea;
+    background: #f0f7ff;
+
+    &:hover {
+      background: #e3f2fd;
+      border-style: solid;
+      box-shadow: 0 0 0 2px #bbdefb;
+    }
+
+    .value {
+      position: relative;
+      padding-right: 1.5rem;
+
+      &::after {
+        content: '✏️';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.7rem;
+        opacity: 0.6;
+      }
+    }
+
+    &:hover .value::after {
+      opacity: 1;
+    }
+  }
+
+  &.calculated {
+    opacity: 0.8;
+  }
+
   &.total {
     background: #e9ecef;
     border-left: 3px solid #667eea;
@@ -202,6 +238,61 @@
       color: #ef4444;
     }
   }
+}
+
+.inline-edit-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #667eea;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: white;
+  color: #333;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  }
+}
+
+// Field legend for editable/calculated fields
+.field-legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+
+  &.editable {
+    background: #e3f2fd;
+    border: 2px solid #667eea;
+  }
+
+  &.calculated {
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    opacity: 0.8;
+  }
+}
+
+.legend-label {
+  color: #555;
+  font-weight: 500;
 }
 
 .summary-section {
