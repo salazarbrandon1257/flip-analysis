@@ -1,24 +1,95 @@
 .deal-input-card {
   background: #fff;
-  border-radius: 8px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 24px;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+  max-width: 800px;
+  margin: 0 auto 32px;
+}
 
-  h2 {
-    margin: 0 0 20px;
-    color: #1a1a2e;
-    font-size: 1.25rem;
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+
+  .header-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .header-text {
+    h2 {
+      margin: 0;
+      color: #1a1a2e;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin: 2px 0 0;
+      color: #888;
+      font-size: 0.9rem;
+    }
   }
 }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+.form-section {
+  margin-bottom: 24px;
+}
 
-  @media (max-width: 600px) {
-    grid-template-columns: 1fr;
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+
+  h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+}
+
+.section-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  &.icon-property {
+    background: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  &.icon-financial {
+    background: #fff3e0;
+    color: #e65100;
+  }
+
+  &.icon-loan {
+    background: #e3f2fd;
+    color: #1565c0;
+  }
+
+  &.icon-notes {
+    background: #fce4ec;
+    color: #c62828;
   }
 }
 
@@ -34,30 +105,43 @@
     font-weight: 500;
     margin-bottom: 6px;
     color: #333;
+    font-size: 0.9rem;
 
-    .auto-calc {
-      font-size: 0.75rem;
-      color: #27ae60;
-      font-weight: normal;
-      margin-left: 6px;
+    .optional {
+      font-weight: 400;
+      color: #999;
+      font-size: 0.8rem;
     }
   }
 
   input,
   textarea {
-    padding: 10px 12px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.2s;
+    padding: 10px 14px;
+    border: 1.5px solid #e8e8e8;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    background: #fafafa;
+    transition: all 0.2s;
+    color: #333;
+
+    &::placeholder {
+      color: #c0c0c0;
+    }
 
     &:focus {
       outline: none;
-      border-color: #4a90d9;
+      border-color: #667eea;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
 
     &.invalid {
-      border-color: #e74c3c;
+      border-color: #ef4444;
+      background: #fff;
+
+      &:focus {
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+      }
     }
 
     &.auto-calculated {
@@ -69,32 +153,69 @@
     }
   }
 
-  small {
-    font-size: 0.8rem;
-    color: #888;
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+  }
+
+  .field-hint {
+    font-size: 0.75rem;
+    color: #999;
     margin-top: 4px;
   }
 
   .error {
-    color: #e74c3c;
-    font-size: 0.85rem;
+    color: #ef4444;
+    font-size: 0.8rem;
     margin-top: 4px;
+  }
+}
+
+.form-row {
+  display: grid;
+  gap: 16px;
+
+  &.two-cols {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &.three-cols {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 700px) {
+    &.two-cols,
+    &.three-cols {
+      grid-template-columns: 1fr;
+    }
   }
 }
 
 .btn-primary {
   width: 100%;
-  padding: 12px 24px;
-  background: #4a90d9;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #fff;
   border: none;
-  border-radius: 4px;
+  border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
 
   &:hover {
-    background: #357abd;
+    background: linear-gradient(135deg, #5a6fd6 0%, #6a4294 100%);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 }
