@@ -1,8 +1,26 @@
 <div class="deal-input-card">
-  <h2>Add New Deal</h2>
+  <div class="card-header">
+    <div class="header-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      <h2>Add New Deal</h2>
+      <p class="subtitle">Enter the property details below</p>
+    </div>
+  </div>
 
   <form [formGroup]="dealForm" (ngSubmit)="onSubmit()">
+    <!-- Property Details -->
     <div class="form-section">
+      <div class="section-header">
+        <div class="section-icon icon-property">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/><line x1="1" y1="14" x2="7" y2="14"/><line x1="9" y1="8" x2="15" y2="8"/><line x1="17" y1="16" x2="23" y2="16"/></svg>
+        </div>
+        <h3>Property Details</h3>
+      </div>
       <div class="form-group full-width">
         <label for="address">Property Address</label>
         <input
@@ -18,127 +36,160 @@
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="form-group">
-        <label for="purchasePrice">Purchase Price</label>
-        <input
-          type="text"
-          id="purchasePrice"
-          formControlName="purchasePrice"
-          appCurrencyInput
-          [class.invalid]="submitted && f['purchasePrice'].errors"
-        />
+    <!-- Financial Overview -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-icon icon-financial">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>Financial Overview</h3>
       </div>
-      <div class="form-group">
-        <label for="askingPrice">Asking Price</label>
-        <input
-          type="text"
-          id="askingPrice"
-          formControlName="askingPrice"
-          appCurrencyInput
-          [class.invalid]="submitted && f['askingPrice'].errors"
-        />
+      <div class="form-row three-cols">
+        <div class="form-group">
+          <label for="purchasePrice">Purchase Price</label>
+          <input
+            type="text"
+            id="purchasePrice"
+            formControlName="purchasePrice"
+            appCurrencyInput
+            [class.invalid]="submitted && f['purchasePrice'].errors"
+            placeholder="$0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="askingPrice">Asking Price</label>
+          <input
+            type="text"
+            id="askingPrice"
+            formControlName="askingPrice"
+            appCurrencyInput
+            [class.invalid]="submitted && f['askingPrice'].errors"
+            placeholder="$0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="afterRepairValue">After Repair Value (ARV)</label>
+          <input
+            type="text"
+            id="afterRepairValue"
+            formControlName="afterRepairValue"
+            appCurrencyInput
+            [class.invalid]="submitted && f['afterRepairValue'].errors"
+            placeholder="$0"
+          />
+        </div>
       </div>
-      <div class="form-group">
-        <label for="afterRepairValue">After Repair Value (ARV)</label>
-        <input
-          type="text"
-          id="afterRepairValue"
-          formControlName="afterRepairValue"
-          appCurrencyInput
-          [class.invalid]="submitted && f['afterRepairValue'].errors"
-        />
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="rehabCosts">Rehab Costs</label>
-        <input
-          type="text"
-          id="rehabCosts"
-          formControlName="rehabCosts"
-          appCurrencyInput
-          [class.invalid]="submitted && f['rehabCosts'].errors"
-        />
-      </div>
-      <div class="form-group">
-        <label for="downPaymentPercent">Down Payment (%)</label>
-        <input
-          type="number"
-          id="downPaymentPercent"
-          formControlName="downPaymentPercent"
-          min="0"
-          max="100"
-          step="1"
-          [class.invalid]="submitted && f['downPaymentPercent'].errors"
-        />
-      </div>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <label for="interestRatePercent">Interest Rate (%)</label>
-        <input
-          type="number"
-          id="interestRatePercent"
-          formControlName="interestRatePercent"
-          min="0"
-          max="100"
-          step="0.25"
-          [class.invalid]="submitted && f['interestRatePercent'].errors"
-        />
-      </div>
-      <div class="form-group">
-        <label for="holdPeriodMonths">Hold Period (Months)</label>
-        <input
-          type="number"
-          id="holdPeriodMonths"
-          formControlName="holdPeriodMonths"
-          min="1"
-          step="1"
-          [class.invalid]="submitted && f['holdPeriodMonths'].errors"
-        />
+      <div class="form-row two-cols">
+        <div class="form-group">
+          <label for="rehabCosts">Rehab Costs</label>
+          <input
+            type="text"
+            id="rehabCosts"
+            formControlName="rehabCosts"
+            appCurrencyInput
+            [class.invalid]="submitted && f['rehabCosts'].errors"
+            placeholder="$0"
+          />
+        </div>
+        <div class="form-group">
+          <label for="agentCommissionPercent">Agent Commission (%)</label>
+          <input
+            type="number"
+            id="agentCommissionPercent"
+            formControlName="agentCommissionPercent"
+            min="0"
+            max="100"
+            step="0.5"
+            placeholder="3"
+            [class.invalid]="submitted && f['agentCommissionPercent'].errors"
+          />
+        </div>
       </div>
     </div>
 
-    <div class="form-row">
-      <div class="form-group">
-        <label for="agentCommissionPercent">Agent Commission (%)</label>
-        <input
-          type="number"
-          id="agentCommissionPercent"
-          formControlName="agentCommissionPercent"
-          min="0"
-          max="100"
-          step="0.5"
-          [class.invalid]="submitted && f['agentCommissionPercent'].errors"
-        />
+    <!-- Loan Terms -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-icon icon-loan">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </div>
+        <h3>Loan Terms</h3>
       </div>
-      <div class="form-group">
-        <label for="personalLoanAmount">Personal Loan for Rehab</label>
-        <input
-          type="text"
-          id="personalLoanAmount"
-          formControlName="personalLoanAmount"
-          appCurrencyInput
-          placeholder="Optional"
-        />
-        <small class="field-hint">17% APR, 84 months</small>
+      <div class="form-row two-cols">
+        <div class="form-group">
+          <label for="downPaymentPercent">Down Payment (%)</label>
+          <input
+            type="number"
+            id="downPaymentPercent"
+            formControlName="downPaymentPercent"
+            min="0"
+            max="100"
+            step="1"
+            placeholder="12"
+            [class.invalid]="submitted && f['downPaymentPercent'].errors"
+          />
+        </div>
+        <div class="form-group">
+          <label for="interestRatePercent">Interest Rate (%)</label>
+          <input
+            type="number"
+            id="interestRatePercent"
+            formControlName="interestRatePercent"
+            min="0"
+            max="100"
+            step="0.25"
+            placeholder="8.5"
+            [class.invalid]="submitted && f['interestRatePercent'].errors"
+          />
+        </div>
+      </div>
+      <div class="form-row two-cols">
+        <div class="form-group">
+          <label for="holdPeriodMonths">Hold Period (Months)</label>
+          <input
+            type="number"
+            id="holdPeriodMonths"
+            formControlName="holdPeriodMonths"
+            min="1"
+            step="1"
+            placeholder="12"
+            [class.invalid]="submitted && f['holdPeriodMonths'].errors"
+          />
+        </div>
+        <div class="form-group">
+          <label for="personalLoanAmount">Personal Loan for Rehab <span class="optional">(optional)</span></label>
+          <input
+            type="text"
+            id="personalLoanAmount"
+            formControlName="personalLoanAmount"
+            appCurrencyInput
+            placeholder="$0"
+          />
+          <small class="field-hint">17% APR, 84 month term</small>
+        </div>
       </div>
     </div>
 
-    <div class="form-group full-width">
-      <label for="notes">Notes (optional)</label>
-      <textarea
-        id="notes"
-        formControlName="notes"
-        rows="2"
-        placeholder="Additional details..."
-      ></textarea>
+    <!-- Notes -->
+    <div class="form-section">
+      <div class="section-header">
+        <div class="section-icon icon-notes">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+        <h3>Notes</h3>
+      </div>
+      <div class="form-group full-width">
+        <textarea
+          id="notes"
+          formControlName="notes"
+          rows="3"
+          placeholder="Additional details about the property..."
+        ></textarea>
+      </div>
     </div>
 
     <button type="submit" class="btn-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
       Add Deal
     </button>
   </form>

@@ -1,61 +1,90 @@
 .app-header {
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  color: #fff;
-  padding: 24px 16px;
-  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid #e8e8ec;
+  padding: 0 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
 
   .header-content {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
   }
 
   h1 {
     margin: 0;
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 1.3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
   }
 
   .tagline {
-    margin: 8px 0 0;
-    opacity: 0.8;
-    font-size: 1rem;
+    display: none;
   }
 
   .app-nav {
-    margin-top: 20px;
     display: flex;
-    justify-content: center;
-    gap: 16px;
+    align-items: center;
+    gap: 4px;
 
-    a {
-      color: rgba(255, 255, 255, 0.8);
+    a.router-link-svg {
+      color: #666;
       text-decoration: none;
-      padding: 8px 16px;
-      border-radius: 4px;
+      padding: 8px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: all 0.2s;
 
       &:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff;
+        background: #f3f4f8;
+        color: #1a1a2e;
+      }
+    }
+
+    a {
+      color: #666;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.2s;
+
+      &:hover {
+        background: #f3f4f8;
+        color: #1a1a2e;
       }
 
       &.active {
-        background: rgba(255, 255, 255, 0.2);
+        background: #667eea;
         color: #fff;
         font-weight: 600;
+        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
       }
     }
   }
 }
 
 .app-main {
-  background: #f5f7fa;
-  min-height: calc(100vh - 100px);
-  padding: 24px 16px;
+  background: #f3f4f8;
+  min-height: 100vh;
+  padding: 32px 24px;
 }
 
 .app-content {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 

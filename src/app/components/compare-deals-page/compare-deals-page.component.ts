@@ -36,4 +36,8 @@ export class CompareDealsPageComponent {
   clearSelection(): void {
     this.selectedDealIds.clear();
   }
+
+  isGoodDeal(analysis: DealAnalysis): boolean {
+    return analysis.profitMargin >= 15 && analysis.vsMAO70 <= 0;
+  }
 }

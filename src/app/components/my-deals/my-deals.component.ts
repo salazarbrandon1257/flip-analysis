@@ -25,6 +25,10 @@ export class MyDealsComponent {
     }
   }
 
+  navigateToDeal(id: string): void {
+    this.router.navigate(['/deals', id]);
+  }
+
   onDealAdded(): void {
     // Scroll to top of deals list after adding
     window.scrollTo({ top: 0, behavior: 'smooth' });
