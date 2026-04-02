@@ -123,6 +123,14 @@
     border-bottom: 1px solid #eee;
   }
 
+  tbody tr:nth-child(even) td:not(:first-child) {
+    background: #f9fafb;
+  }
+
+  tbody tr:nth-child(odd) td:not(:first-child) {
+    background: #ffffff;
+  }
+
   th {
     background: #f8f9fa;
     font-weight: 600;
@@ -164,6 +172,20 @@
   .under-mao {
     color: #28a745;
     font-weight: 600;
+  }
+
+  .good-deal {
+    color: #28a745;
+    font-weight: 700;
+    background: #d4edda;
+    border-radius: 4px;
+  }
+
+  .bad-deal {
+    color: #dc3545;
+    font-weight: 700;
+    background: #f8d7da;
+    border-radius: 4px;
   }
 }
 

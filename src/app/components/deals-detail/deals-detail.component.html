@@ -18,8 +18,14 @@
             <span class="highlight-chip" [class.positive]="selectedDeal.roi > 0" [class.negative]="selectedDeal.roi <= 0">
               {{ selectedDeal.roi | number:'1.1-1' }}% ROI
             </span>
-            <span class="highlight-chip">
+            <span class="highlight-chip" [class.good-deal]="selectedDeal.profitMargin >= 15" [class.bad-deal]="selectedDeal.profitMargin < 15">
               {{ selectedDeal.profitMargin | number:'1.1-1' }}% Margin
+            </span>
+            <span class="highlight-chip good-deal" *ngIf="isGoodDeal(selectedDeal)">
+              Good Deal
+            </span>
+            <span class="highlight-chip bad-deal" *ngIf="!isGoodDeal(selectedDeal)">
+              Bad Deal
             </span>
           </div>
         </div>
@@ -301,8 +307,14 @@
             <span class="highlight-chip" [class.positive]="analysis.roi > 0" [class.negative]="analysis.roi <= 0">
               {{ analysis.roi | number:'1.1-1' }}% ROI
             </span>
-            <span class="highlight-chip">
+            <span class="highlight-chip" [class.good-deal]="analysis.profitMargin >= 15" [class.bad-deal]="analysis.profitMargin < 15">
               {{ analysis.profitMargin | number:'1.1-1' }}% Margin
+            </span>
+            <span class="highlight-chip good-deal" *ngIf="isGoodDeal(analysis)">
+              Good Deal
+            </span>
+            <span class="highlight-chip bad-deal" *ngIf="!isGoodDeal(analysis)">
+              Bad Deal
             </span>
           </div>
         </div>

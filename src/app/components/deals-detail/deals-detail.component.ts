@@ -164,6 +164,10 @@ export class DealsDetailComponent implements OnInit {
     return value + ' month' + (value !== 1 ? 's' : '');
   }
 
+  isGoodDeal(analysis: DealAnalysis): boolean {
+    return analysis.profitMargin >= 15 && analysis.vsMAO70 <= 0;
+  }
+
   formatNumber(value: number): string {
     return value.toString();
   }

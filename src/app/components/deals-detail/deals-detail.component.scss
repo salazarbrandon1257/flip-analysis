@@ -88,6 +88,16 @@
   background: #e9ecef;
   color: #495057;
 
+  &.good-deal {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  &.bad-deal {
+    background: #f8d7da;
+    color: #721c24;
+  }
+
   &.positive {
     background: #d4edda;
     color: #155724;

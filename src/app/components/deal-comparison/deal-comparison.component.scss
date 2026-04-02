@@ -181,3 +181,21 @@
   background: #f8f9fa;
   border-radius: 8px;
 }
+
+.verdict-row {
+  td {
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-align: center;
+  }
+
+  .good-deal {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .bad-deal {
+    background: #f8d7da;
+    color: #721c24;
+  }
+}

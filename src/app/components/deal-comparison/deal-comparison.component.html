@@ -197,6 +197,14 @@
             {{ formatCurrency(deal.vsMAO65) }} {{ deal.vsMAO65 <= 0 ? 'under' : 'over' }}
           </td>
         </tr>
+
+        <!-- Verdict Section -->
+        <tr class="verdict-row">
+          <td class="metric-label">Good Deal?</td>
+          <td *ngFor="let deal of selectedDeals" [class.good-deal]="isGoodDeal(deal)" [class.bad-deal]="!isGoodDeal(deal)">
+            {{ isGoodDeal(deal) ? 'Yes' : 'No' }}
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>

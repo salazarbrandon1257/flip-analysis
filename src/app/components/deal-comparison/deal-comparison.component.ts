@@ -147,4 +147,8 @@ export class DealComparisonComponent {
     const max = Math.max(...values);
     return deal.profitMargin === max;
   }
+
+  isGoodDeal(deal: DealAnalysis): boolean {
+    return deal.profitMargin >= 15 && deal.vsMAO70 <= 0;
+  }
 }
