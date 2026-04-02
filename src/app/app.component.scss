@@ -74,6 +74,29 @@
         box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
       }
     }
+
+    .btn-logout {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: none;
+      border: 1.5px solid #ddd;
+      color: #666;
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      font-family: inherit;
+      margin-left: 4px;
+
+      &:hover {
+        color: #ef4444;
+        border-color: #ef4444;
+        background: #fef2f2;
+      }
+    }
   }
 }
 
