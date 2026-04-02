@@ -97,3 +97,57 @@
     grid-template-columns: 1fr;
   }
 }
+
+.app-footer {
+  background: #111;
+  color: #aaa;
+  padding: 20px 24px;
+  border-top: 2px solid #c6a664;
+
+  .footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .footer-logo {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #c6a664;
+    letter-spacing: 0.5px;
+  }
+
+  .footer-tagline {
+    font-size: 0.75rem;
+    color: #666;
+    letter-spacing: 0.3px;
+  }
+
+  .footer-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: #555;
+  }
+
+  .footer-divider {
+    color: #333;
+  }
+
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+      gap: 8px;
+    }
+  }
+}

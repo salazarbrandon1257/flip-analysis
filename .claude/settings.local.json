@@ -13,7 +13,8 @@
       "Bash(ng serve:*)",
       "Bash(netstat -ano)",
       "Bash(findstr :4200)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(npm test:*)"
     ]
   }
 }
