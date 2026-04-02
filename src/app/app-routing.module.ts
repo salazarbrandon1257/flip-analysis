@@ -4,13 +4,16 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { MyDealsComponent } from './components/my-deals/my-deals.component';
 import { CompareDealsPageComponent } from './components/compare-deals-page/compare-deals-page.component';
 import { DealsDetailComponent } from './components/deals-detail/deals-detail.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'my-deals', component: MyDealsComponent },
-  { path: 'deals', component: DealsDetailComponent },
-  { path: 'deals/:id', component: DealsDetailComponent },
-  { path: 'compare', component: CompareDealsPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'my-deals', component: MyDealsComponent, canActivate: [authGuard] },
+  { path: 'deals', component: DealsDetailComponent, canActivate: [authGuard] },
+  { path: 'deals/:id', component: DealsDetailComponent, canActivate: [authGuard] },
+  { path: 'compare', component: CompareDealsPageComponent, canActivate: [authGuard] },
 ];
 
 @NgModule({

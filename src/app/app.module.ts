@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { provideAuth, getAuth } from '@angular/fire/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { MyDealsComponent } from './components/my-deals/my-deals.component';
 import { CompareDealsPageComponent } from './components/compare-deals-page/compare-deals-page.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DealsDetailComponent } from './components/deals-detail/deals-detail.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
 import { CurrencyInputDirective } from './directives/currency-input/currency-input.directive';
 
 const firebaseConfig = {
@@ -36,17 +38,20 @@ const firebaseConfig = {
     CompareDealsPageComponent,
     LandingPageComponent,
     DealsDetailComponent,
+    LoginPageComponent,
     CurrencyInputDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [
     provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
   ],
   bootstrap: [AppComponent]
 })

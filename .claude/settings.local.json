@@ -13,7 +13,12 @@
       "Bash(ng serve:*)",
       "Bash(netstat -ano)",
       "Bash(findstr :4200)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(npm test:*)",
+      "Bash(git rebase:*)",
+      "Bash(git fetch:*)",
+      "Bash(GIT_SEQUENCE_EDITOR=\":\" git rebase:*)",
+      "Bash(git push:*)"
     ]
   }
 }

@@ -1,19 +1,40 @@
-<header class="app-header">
-  <div class="header-content">
-    <h1>Flip Analysis</h1>
-    <nav class="app-nav">
-      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      </a>
-      <a routerLink="/my-deals" routerLinkActive="active">Add Deals</a>
-      <a routerLink="/deals" routerLinkActive="active">Deals</a>
-      <a routerLink="/compare" routerLinkActive="active">Compare</a>
-    </nav>
-  </div>
-</header>
+<ng-container *ngIf="auth.isLoggedIn">
+  <header class="app-header">
+    <div class="header-content">
+      <h1>Flip Analysis</h1>
+      <nav class="app-nav">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </a>
+        <a routerLink="/my-deals" routerLinkActive="active">Add Deals</a>
+        <a routerLink="/deals" routerLinkActive="active">Deals</a>
+        <a routerLink="/compare" routerLinkActive="active">Compare</a>
+        <button class="btn-logout" (click)="onLogout()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          Sign Out
+        </button>
+      </nav>
+    </div>
+  </header>
 
-<main class="app-main">
-  <div class="app-content">
-    <router-outlet></router-outlet>
-  </div>
-</main>
+  <main class="app-main">
+    <div class="app-content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <span class="footer-logo">M&S Turnkey Homes LLC</span>
+        <span class="footer-tagline">Turnkey Properties. Proven Returns.</span>
+      </div>
+      <div class="footer-meta">
+        <span class="footer-app">Flip Analysis</span>
+        <span class="footer-year">&copy; {{ currentYear }}</span>
+      </div>
+    </div>
+  </footer>
+</ng-container>
+
+<router-outlet *ngIf="!auth.isLoggedIn"></router-outlet>

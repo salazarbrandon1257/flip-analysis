@@ -74,4 +74,4 @@ This is a private tool currently used internally. Feel free to fork and adapt fo
 
 ## 📄 License
 
-MIT
+© 2026 M&S Turnkey Homes LLC. All Rights Reserved.
