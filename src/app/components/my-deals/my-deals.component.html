@@ -1,6 +1,6 @@
 <div class="my-deals-page">
   <div class="page-header">
-    <h2>Add New Deals</h2>
+    <h2>Add New Deal</h2>
   </div>
 
   <app-deal-input (dealAdded)="onDealAdded()"></app-deal-input>
@@ -8,42 +8,44 @@
   <div class="deals-section">
     <h3>All Deals</h3>
 
-    <div class="deals-table-container" *ngIf="analyzedDeals.length > 0">
-      <table class="deals-table">
-        <thead>
-          <tr>
-            <th>Address</th>
-            <th>Purchase Price</th>
-            <th>ARV</th>
-            <th>Rehab</th>
-            <th>Total Cost</th>
-            <th>Net Profit</th>
-            <th>ROI</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let deal of analyzedDeals" class="deal-row" [routerLink]="'/deals/' + deal.deal.id">
-            <td class="address">{{ deal.deal.address }}</td>
-            <td>{{ deal.deal.purchasePrice | currency }}</td>
-            <td>{{ deal.deal.afterRepairValue | currency }}</td>
-            <td>{{ deal.deal.rehabCosts | currency }}</td>
-            <td>{{ deal.totalProjectCost | currency }}</td>
-            <td [class.profit-positive]="deal.netProfit > 0" [class.profit-negative]="deal.netProfit <= 0">
-              {{ deal.netProfit | currency }}
-            </td>
-            <td [class.roi-positive]="deal.roi > 0" [class.roi-negative]="deal.roi <= 0">
-              {{ deal.roi | number:'1.1-1' }}%
-            </td>
-            <td (click)="$event.stopPropagation()">
-              <button class="btn-delete" (click)="deleteDeal(deal.deal.id)">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="deals-grid" *ngIf="analyzedDeals.length > 0">
+      <div class="deal-card" *ngFor="let deal of analyzedDeals" (click)="navigateToDeal(deal.deal.id)">
+        <div class="card-header">
+          <h4 class="deal-address">{{ deal.deal.address }}</h4>
+          <button class="btn-icon-delete" (click)="$event.stopPropagation(); deleteDeal(deal.deal.id)" title="Delete deal">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          </button>
+        </div>
+        <div class="card-stats">
+          <div class="stat-item">
+            <span class="stat-label">Purchase</span>
+            <span class="stat-value">{{ deal.deal.purchasePrice | currency }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">ARV</span>
+            <span class="stat-value">{{ deal.deal.afterRepairValue | currency }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Profit</span>
+            <span class="stat-value" [class.positive]="deal.netProfit > 0" [class.negative]="deal.netProfit <= 0">{{ deal.netProfit | currency }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">ROI</span>
+            <span class="stat-value" [class.positive]="deal.roi > 0" [class.negative]="deal.roi <= 0">{{ deal.roi | number:'1.1-1' }}%</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Margin</span>
+            <span class="stat-value" [class.positive]="deal.profitMargin >= 15" [class.negative]="deal.profitMargin < 15">{{ deal.profitMargin | number:'1.1-1' }}%</span>
+          </div>
+        </div>
+        <div class="card-arrow">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+      </div>
     </div>
 
     <div class="no-deals" *ngIf="analyzedDeals.length === 0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       <p>No deals yet. Add your first deal above!</p>
     </div>
   </div>
