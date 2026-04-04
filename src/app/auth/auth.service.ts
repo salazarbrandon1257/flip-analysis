@@ -33,7 +33,7 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<void> {
     await signInWithEmailAndPassword(this.auth, email, password);
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
   }
 
   async logout(): Promise<void> {

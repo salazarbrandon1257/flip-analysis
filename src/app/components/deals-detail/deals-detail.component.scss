@@ -86,6 +86,62 @@
   flex-wrap: wrap;
 }
 
+.status-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.status-selector {
+  margin: 0 2rem 1.5rem;
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.status-selector-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.status-pill {
+  padding: 6px 16px;
+  border: 2px solid transparent;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  opacity: 0.45;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  &.active {
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+}
+
 .highlight-chip {
   padding: 0.4rem 0.85rem;
   border-radius: 50px;
@@ -463,6 +519,69 @@
     background: #dc2626;
     box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
     transform: translateY(-1px);
+  }
+}
+
+/* Pipeline Filter */
+.pipeline-filter {
+  display: flex;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 4px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  overflow-x: auto;
+}
+
+.pipeline-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: all 0.2s;
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-color, #999);
+  }
+
+  .count {
+    font-size: 0.7rem;
+    background: rgba(0,0,0,0.06);
+    padding: 1px 6px;
+    border-radius: 10px;
+    color: #999;
+  }
+
+  &:hover {
+    background: #f5f5f7;
+    color: #333;
+  }
+
+  &.active {
+    background: #1a1a2e;
+    color: white;
+
+    .count {
+      background: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+    }
+
+    .status-dot {
+      background: white;
+    }
   }
 }
 

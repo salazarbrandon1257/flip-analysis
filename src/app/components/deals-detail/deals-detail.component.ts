@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DealService } from '../../services/deal.service';
-import { DealAnalysis, Deal } from '../../models/deal';
+import { DealAnalysis, Deal, DEAL_STATUSES, statusColor, statusBackground } from '../../models/deal';
 
 // Parse comma-formatted string to number
 function parseValue(val: any): number {
@@ -22,6 +22,7 @@ export class DealsDetailComponent implements OnInit {
   selectedDealId: string | null = null;
   editingField: string | null = null;
   editValue: string | number = '';
+  activeFilter = 'All';
 
   constructor(
     public dealService: DealService,
@@ -185,5 +186,29 @@ export class DealsDetailComponent implements OnInit {
 
   formatNumber(value: number): string {
     return value.toString();
+  }
+
+  // Status
+  dealStatuses = DEAL_STATUSES;
+  statusColor = statusColor;
+  statusBackground = statusBackground;
+
+  updateStatus(status: string): void {
+    if (!this.selectedDealId) return;
+    this.dealService.updateDeal(this.selectedDealId, { status });
+  }
+
+  get filteredDeals(): DealAnalysis[] {
+    if (this.activeFilter === 'All') return this.analyzedDeals;
+    return this.analyzedDeals.filter(d => d.deal.status === this.activeFilter);
+  }
+
+  filterCount(status: string): number {
+    if (status === 'All') return this.analyzedDeals.length;
+    return this.analyzedDeals.filter(d => d.deal.status === status).length;
+  }
+
+  setFilter(status: string): void {
+    this.activeFilter = status;
   }
 }
