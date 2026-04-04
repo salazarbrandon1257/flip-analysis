@@ -1,0 +1,251 @@
+.page-container {
+  background: #fff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+
+  h2 {
+    margin-bottom: 8px;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    letter-spacing: -0.3px;
+  }
+}
+
+.subtitle {
+  color: #888;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.btn-toggle {
+  background: #f3f4f8;
+  color: #666;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  &:hover {
+    background: #e8e8ec;
+    color: #333;
+  }
+}
+
+.form-card {
+  margin-bottom: 28px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #555;
+  }
+
+  .form-control {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1.5px solid #e0e0e5;
+    background: #f9fafb;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.2s;
+    box-sizing: border-box;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+      background: #fff;
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-calculate {
+  background: #667eea;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #5a6fd6;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
+  }
+}
+
+.btn-save {
+  background: #22c55e;
+  color: #fff;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #16a34a;
+    box-shadow: 0 2px 8px rgba(34, 197, 94, 0.25);
+  }
+}
+
+.results-section {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 24px;
+}
+
+.result-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.result-card {
+  background: #f9fafb;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+
+  .result-label {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .result-value {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1a1a2e;
+    letter-spacing: -0.5px;
+  }
+
+  &.highlight {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+
+    .result-label {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .result-value {
+      color: #fff;
+    }
+  }
+}
+
+.no-quotes {
+  text-align: center;
+  padding: 60px 20px;
+  color: #999;
+  background: #f9fafb;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+.quotes-table {
+  overflow-x: auto;
+  border-radius: 12px;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+      padding: 12px 14px;
+      text-align: left;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #f9fafb;
+      font-weight: 700;
+      color: #555;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    tbody tr {
+      transition: background 0.15s;
+
+      &:hover {
+        background: #f9fafb;
+      }
+    }
+
+    .lender-cell {
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .cell-highlight {
+      font-weight: 700;
+      color: #667eea;
+    }
+  }
+}
+
+.btn-delete {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  display: flex;
+
+  &:hover {
+    background: #fde8e8;
+    color: #ef4444;
+  }
+}
