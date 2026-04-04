@@ -3,6 +3,17 @@
     <a routerLink="/deals" (click)="onBack()" class="back-link" *ngIf="selectedDealId">&larr; Back to All Deals</a>
     <h2>{{ selectedDealId ? 'Deal Details' : 'Deals Overview' }}</h2>
     <p class="page-subtitle">{{ selectedDealId ? 'Detailed analysis of this investment opportunity' : 'Detailed analysis of all your investment opportunities' }}</p>
+
+    <!-- Pipeline Filter (all deals view) -->
+    <div class="pipeline-filter" *ngIf="!selectedDealId && analyzedDeals.length > 0">
+      <button class="pipeline-tab" [class.active]="activeFilter === 'All'" (click)="setFilter('All')">
+        All <span class="count">{{ filterCount('All') }}</span>
+      </button>
+      <button class="pipeline-tab" *ngFor="let status of dealStatuses" [class.active]="activeFilter === status" (click)="setFilter(status)" [style.--status-color]="statusColor(status)">
+        <span class="status-dot" [style.background]="statusColor(status)"></span>
+        {{ status }} <span class="count">{{ filterCount(status) }}</span>
+      </button>
+    </div>
   </div>
 
   <!-- Single Deal View -->
@@ -10,6 +21,9 @@
     <div class="deal-card">
       <div class="deal-card-header">
         <div class="deal-main-info">
+          <span class="status-badge" [style.background]="statusBackground(selectedDeal.deal.status)" [style.color]="statusColor(selectedDeal.deal.status)">
+            {{ selectedDeal.deal.status }}
+          </span>
           <h3 class="deal-address">{{ selectedDeal.deal.address }}</h3>
           <div class="deal-highlights">
             <span class="highlight-chip" [class.positive]="selectedDeal.netProfit > 0" [class.negative]="selectedDeal.netProfit <= 0">
@@ -32,6 +46,23 @@
       </div>
 
       <div class="deal-card-body">
+        <!-- Status Selector -->
+        <div class="status-selector">
+          <span class="status-selector-label">Status</span>
+          <div class="status-pills">
+            <button
+              *ngFor="let s of dealStatuses"
+              class="status-pill"
+              [class.active]="selectedDeal.deal.status === s"
+              [style.background]="statusColor(s)"
+              [style.--status-hover]="statusColor(s) + '20'"
+              (click)="updateStatus(s)"
+            >
+              {{ s }}
+            </button>
+          </div>
+        </div>
+
         <!-- Field Type Legend -->
         <div class="field-legend">
           <div class="legend-item">
@@ -295,10 +326,13 @@
   </div>
 
   <!-- All Deals List View -->
-  <div class="deals-grid" *ngIf="analyzedDeals.length > 0 && !selectedDealId">
-    <div class="deal-card" *ngFor="let analysis of analyzedDeals; let i = index">
+  <div class="deals-grid" *ngIf="filteredDeals.length > 0 && !selectedDealId">
+    <div class="deal-card" *ngFor="let analysis of filteredDeals; let i = index">
       <div class="deal-card-header" (click)="toggleExpand(analysis.deal.id)">
         <div class="deal-main-info">
+          <span class="status-badge" [style.background]="statusBackground(analysis.deal.status)" [style.color]="statusColor(analysis.deal.status)">
+            {{ analysis.deal.status }}
+          </span>
           <h3 class="deal-address">{{ analysis.deal.address }}</h3>
           <div class="deal-highlights">
             <span class="highlight-chip" [class.positive]="analysis.netProfit > 0" [class.negative]="analysis.netProfit <= 0">
@@ -324,6 +358,22 @@
       </div>
 
       <div class="deal-card-body" *ngIf="isExpanded(analysis.deal.id)">
+        <!-- Status Selector -->
+        <div class="status-selector">
+          <span class="status-selector-label">Status</span>
+          <div class="status-pills">
+            <button
+              *ngFor="let s of dealStatuses"
+              class="status-pill"
+              [class.active]="analysis.deal.status === s"
+              [style.background]="statusColor(s)"
+              (click)="selectedDealId = analysis.deal.id; updateStatus(s)"
+            >
+              {{ s }}
+            </button>
+          </div>
+        </div>
+
         <!-- Field Type Legend -->
         <div class="field-legend">
           <div class="legend-item">

@@ -53,7 +53,12 @@
     <div class="budget-grid">
       <div class="budget-card" *ngFor="let deal of analyzedDeals">
         <div class="budget-header">
-          <h3 class="deal-address">{{ deal.deal.address }}</h3>
+          <div class="budget-header-left">
+            <span class="status-badge" [style.background]="statusBackground(deal.deal.status)" [style.color]="statusColor(deal.deal.status)">
+              {{ deal.deal.status }}
+            </span>
+            <h3 class="deal-address">{{ deal.deal.address }}</h3>
+          </div>
           <span class="deal-badge" [class.good]="isGoodDeal(deal)" [class.bad]="!isGoodDeal(deal)">
             {{ isGoodDeal(deal) ? 'Good Deal' : 'Bad Deal' }}
           </span>
@@ -84,7 +89,12 @@
     <div class="cost-grid">
       <div class="cost-card" *ngFor="let deal of analyzedDeals">
         <div class="cost-header">
-          <h3 class="deal-address">{{ deal.deal.address }}</h3>
+          <div class="cost-header-left">
+            <span class="status-badge" [style.background]="statusBackground(deal.deal.status)" [style.color]="statusColor(deal.deal.status)">
+              {{ deal.deal.status }}
+            </span>
+            <h3 class="deal-address">{{ deal.deal.address }}</h3>
+          </div>
           <span class="cost-total">{{ formatCurrency(deal.deal.rehabCosts) }}</span>
         </div>
         <div class="cost-items">
@@ -113,7 +123,12 @@
     <div class="timeline-grid">
       <div class="timeline-card" *ngFor="let deal of analyzedDeals">
         <div class="timeline-header">
-          <h3 class="deal-address">{{ deal.deal.address }}</h3>
+          <div class="timeline-header-left">
+            <span class="status-badge" [style.background]="statusBackground(deal.deal.status)" [style.color]="statusColor(deal.deal.status)">
+              {{ deal.deal.status }}
+            </span>
+            <h3 class="deal-address">{{ deal.deal.address }}</h3>
+          </div>
           <span class="timeline-badge" [class.complete]="isOverHold(deal)">
             {{ isOverHold(deal) ? 'Hold Complete' : 'Active' }}
           </span>

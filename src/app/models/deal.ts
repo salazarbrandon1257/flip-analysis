@@ -1,6 +1,42 @@
+export const DEAL_STATUSES = [
+  'Analyzing',
+  'Offer Made',
+  'Contract',
+  'Rehab',
+  'Listed',
+  'Sold',
+] as const;
+
+export function statusColor(status: string): string {
+  switch (status) {
+    case 'Analyzing': return '#64748b';
+    case 'Offer Made': return '#3b82f6';
+    case 'Contract': return '#f59e0b';
+    case 'Rehab': return '#f97316';
+    case 'Listed': return '#6366f1';
+    case 'Sold': return '#22c55e';
+    default: return '#64748b';
+  }
+}
+
+export function statusBackground(status: string): string {
+  const bgMap: Record<string, string> = {
+    Analyzing: 'rgba(100,116,139,0.10)',
+    'Offer Made': 'rgba(59,130,246,0.10)',
+    Contract: 'rgba(245,158,11,0.10)',
+    Rehab: 'rgba(249,115,22,0.10)',
+    Listed: 'rgba(99,102,241,0.10)',
+    Sold: 'rgba(34,197,94,0.10)',
+  };
+  return bgMap[status] ?? bgMap['Analyzing'];
+}
+
 export interface Deal {
   id: string;
   address: string;
+
+  // Status
+  status: string;
 
   // Acquisition
   purchasePrice: number;

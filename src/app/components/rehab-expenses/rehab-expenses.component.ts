@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DealService } from '../../services/deal.service';
 import { ExpenseService } from '../../services/expense.service';
 import { ExpenseEntry, EXPENSE_CATEGORIES } from '../../models/expense-entry';
-import { DealAnalysis } from '../../models/deal';
+import { DealAnalysis, statusColor, statusBackground } from '../../models/deal';
 import { Observable, of } from 'rxjs';
 import { map, shareReplay, switchMap } from 'rxjs/operators';
 
@@ -138,4 +138,7 @@ export class RehabExpensesComponent implements OnInit {
       maximumFractionDigits: 0,
     }).format(value);
   }
+
+  statusColor = statusColor;
+  statusBackground = statusBackground;
 }

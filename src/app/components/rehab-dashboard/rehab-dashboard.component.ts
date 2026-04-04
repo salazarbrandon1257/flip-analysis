@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DealService } from '../../services/deal.service';
-import { DealAnalysis } from '../../models/deal';
+import { DealAnalysis, statusColor, statusBackground } from '../../models/deal';
 
 @Component({
     selector: 'app-rehab-dashboard',
@@ -92,4 +92,7 @@ export class RehabDashboardComponent {
   isOverHold(deal: DealAnalysis): boolean {
     return this.holdProgressPercent(deal) >= 100;
   }
+
+  statusColor = statusColor;
+  statusBackground = statusBackground;
 }

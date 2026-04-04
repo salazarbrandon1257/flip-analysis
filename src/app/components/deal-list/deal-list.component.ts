@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Deal, DealAnalysis } from '../../models/deal';
+import { Deal, DealAnalysis, DEAL_STATUSES, statusColor, statusBackground } from '../../models/deal';
 import { DealService } from '../../services/deal.service';
 
 @Component({
@@ -10,10 +10,29 @@ import { DealService } from '../../services/deal.service';
     standalone: false
 })
 export class DealListComponent {
+  activeFilter = 'All';
+  readonly filterOptions = ['All', ...DEAL_STATUSES];
+  statusColor = statusColor;
+  statusBackground = statusBackground;
+
   constructor(private dealService: DealService) {}
 
   get analyzedDeals(): DealAnalysis[] {
     return this.dealService.analyzedDeals;
+  }
+
+  get filteredDeals(): DealAnalysis[] {
+    if (this.activeFilter === 'All') return this.analyzedDeals;
+    return this.analyzedDeals.filter(d => d.deal.status === this.activeFilter);
+  }
+
+  statusCount(status: string): number {
+    if (status === 'All') return this.analyzedDeals.length;
+    return this.analyzedDeals.filter(d => d.deal.status === status).length;
+  }
+
+  setFilter(status: string): void {
+    this.activeFilter = status;
   }
 
   deleteDeal(id: string): void {

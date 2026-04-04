@@ -99,6 +99,7 @@ export class DealInputComponent {
 
     const deal = {
       address: rawValue.address,
+      status: 'Analyzing',
       purchasePrice,
       askingPrice,
       buyerClosingCosts,

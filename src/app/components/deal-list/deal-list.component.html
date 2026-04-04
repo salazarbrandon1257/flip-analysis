@@ -1,10 +1,40 @@
 <div class="deal-list-container">
   <h2>Your Deals</h2>
 
-  <div class="deals-grid" *ngIf="analyzedDeals.length > 0">
-    <div class="deal-card" *ngFor="let analysis of analyzedDeals">
+  <!-- Pipeline Filter -->
+  <div class="pipeline-filter" *ngIf="analyzedDeals.length > 0">
+    <button
+      class="pipeline-tab"
+      [class.active]="activeFilter === 'All'"
+      (click)="setFilter('All')"
+    >
+      All
+      <span class="count">{{ statusCount('All') }}</span>
+    </button>
+    <ng-container *ngFor="let status of filterOptions">
+      <button
+        *ngIf="status !== 'All'"
+        class="pipeline-tab"
+        [class.active]="activeFilter === status"
+        (click)="setFilter(status)"
+        [style.--status-color]="statusColor(status)"
+      >
+        <span class="status-dot" [style.background]="statusColor(status)"></span>
+        {{ status }}
+        <span class="count">{{ statusCount(status) }}</span>
+      </button>
+    </ng-container>
+  </div>
+
+  <div class="deals-grid" *ngIf="filteredDeals.length > 0">
+    <div class="deal-card" *ngFor="let analysis of filteredDeals">
       <div class="deal-header">
-        <h3>{{ analysis.deal.address }}</h3>
+        <div class="deal-header-left">
+          <span class="status-badge" [style.background]="statusBackground(analysis.deal.status)" [style.color]="statusColor(analysis.deal.status)">
+            {{ analysis.deal.status }}
+          </span>
+          <h3>{{ analysis.deal.address }}</h3>
+        </div>
         <button
           class="btn-delete"
           (click)="deleteDeal(analysis.deal.id)"

@@ -7,6 +7,96 @@
   }
 }
 
+/* Pipeline Filter */
+.pipeline-filter {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 24px;
+  padding: 4px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  overflow-x: auto;
+}
+
+.pipeline-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: all 0.2s;
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--status-color, #999);
+  }
+
+  .count {
+    font-size: 0.7rem;
+    background: rgba(0,0,0,0.06);
+    padding: 1px 6px;
+    border-radius: 10px;
+    color: #999;
+  }
+
+  &:hover {
+    background: #f5f5f7;
+    color: #333;
+  }
+
+  &.active {
+    background: #1a1a2e;
+    color: white;
+
+    .count {
+      background: rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+    }
+
+    .status-dot {
+      background: white;
+    }
+  }
+}
+
+/* Status Badge on Deal Cards */
+.status-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+.deal-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+
+  h3 {
+    margin: 0;
+    font-size: 1.05rem;
+    color: #1a1a2e;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+}
+
 .deals-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));

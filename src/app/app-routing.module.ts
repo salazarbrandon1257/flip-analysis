@@ -11,8 +11,9 @@ import { ArvFinderComponent } from './components/arv-finder/arv-finder.component
 import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
+  { path: '', component: LandingPageComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginPageComponent },
+  { path: 'home', component: LandingPageComponent, canActivate: [authGuard] },
   { path: 'rehab', component: RehabDashboardComponent, canActivate: [authGuard] },
   { path: 'rehab/expenses', component: RehabExpensesComponent, canActivate: [authGuard] },
   { path: 'my-deals', component: MyDealsComponent, canActivate: [authGuard] },

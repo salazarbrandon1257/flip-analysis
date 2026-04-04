@@ -9,7 +9,7 @@
     <label for="dealSelect">Select Deal</label>
     <select id="dealSelect" [value]="selectedDealIndex" (change)="selectDealByIndex(+($any($event.target).value))">
       <option *ngFor="let deal of analyzedDeals; let i = index" [value]="i">
-        {{ deal.deal.address }}
+        {{ deal.deal.address }} ({{ deal.deal.status }})
       </option>
     </select>
   </div>

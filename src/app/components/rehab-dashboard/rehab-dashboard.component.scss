@@ -141,6 +141,34 @@
   line-height: 1.4;
 }
 
+.status-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+}
+
+.budget-header-left,
+.cost-header-left,
+.timeline-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.budget-header,
+.cost-header,
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
 .deal-badge {
   font-size: 0.7rem;
   padding: 4px 10px;
