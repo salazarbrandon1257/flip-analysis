@@ -16,7 +16,9 @@ import { CompareDealsPageComponent } from './components/compare-deals-page/compa
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { DealsDetailComponent } from './components/deals-detail/deals-detail.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
+import { RehabDashboardComponent } from './components/rehab-dashboard/rehab-dashboard.component';
 import { CurrencyInputDirective } from './directives/currency-input/currency-input.directive';
+import { ClickOutsideDirective } from './directives/click-outside/click-outside.directive';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCUlTwADMw3fNNSc76yBgJRyRa2pdyNUd4",
@@ -39,7 +41,9 @@ const firebaseConfig = {
     LandingPageComponent,
     DealsDetailComponent,
     LoginPageComponent,
-    CurrencyInputDirective
+    RehabDashboardComponent,
+    CurrencyInputDirective,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,

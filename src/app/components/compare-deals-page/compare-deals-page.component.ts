@@ -22,11 +22,13 @@ export class CompareDealsPageComponent {
   }
 
   toggleDealSelection(dealId: string): void {
-    if (this.selectedDealIds.has(dealId)) {
-      this.selectedDealIds.delete(dealId);
+    const next = new Set(this.selectedDealIds);
+    if (next.has(dealId)) {
+      next.delete(dealId);
     } else {
-      this.selectedDealIds.add(dealId);
+      next.add(dealId);
     }
+    this.selectedDealIds = next;
   }
 
   selectAll(): void {
