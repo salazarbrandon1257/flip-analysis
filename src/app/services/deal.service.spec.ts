@@ -54,6 +54,7 @@ describe('DealService', () => {
         id: 'manual-1',
         createdAt: new Date(),
         address: '123 Test Ave',
+        status: 'Analyzing',
         purchasePrice: 100000,
         askingPrice: 120000,
         buyerClosingCosts: 1999,
