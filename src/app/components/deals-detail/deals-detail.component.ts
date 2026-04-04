@@ -130,6 +130,30 @@ export class DealsDetailComponent implements OnInit {
           ? (personalLoanMonthlyPayment * personalLoanTermMonths) - update.personalLoanAmount
           : 0;
         break;
+      case 'personalLoanApr':
+        update.personalLoanApr = parseValue(rawValue);
+        const aprRate = update.personalLoanApr / 100 / 12;
+        const aprTerm = deal.personalLoanTermMonths || 84;
+        const aprMonthly = deal.personalLoanAmount > 0
+          ? deal.personalLoanAmount * (aprRate * Math.pow(1 + aprRate, aprTerm)) / (Math.pow(1 + aprRate, aprTerm) - 1)
+          : 0;
+        update.personalLoanMonthlyPayment = aprMonthly > 0 ? Math.round(aprMonthly * 100) / 100 : 0;
+        update.personalLoanTotalInterest = aprMonthly > 0
+          ? Math.round((aprMonthly * aprTerm - deal.personalLoanAmount) * 100) / 100
+          : 0;
+        break;
+      case 'personalLoanTermMonths':
+        update.personalLoanTermMonths = Math.round(parseValue(rawValue));
+        const termRate = (deal.personalLoanApr || 17) / 100 / 12;
+        const termMonths = update.personalLoanTermMonths;
+        const termMonthly = deal.personalLoanAmount > 0 && termMonths > 0
+          ? deal.personalLoanAmount * (termRate * Math.pow(1 + termRate, termMonths)) / (Math.pow(1 + termRate, termMonths) - 1)
+          : 0;
+        update.personalLoanMonthlyPayment = termMonthly > 0 ? Math.round(termMonthly * 100) / 100 : 0;
+        update.personalLoanTotalInterest = termMonthly > 0
+          ? Math.round((termMonthly * termMonths - deal.personalLoanAmount) * 100) / 100
+          : 0;
+        break;
     }
 
     this.dealService.updateDeal(this.selectedDealId, update);

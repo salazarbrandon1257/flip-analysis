@@ -1,0 +1,105 @@
+<div class="page-container">
+  <div class="header-row">
+    <div>
+      <h2>Personal Loan for Rehab</h2>
+      <p class="subtitle">Calculate payments and save lender quotes</p>
+    </div>
+    <button class="btn-toggle" (click)="viewingQuotes = !viewingQuotes">
+      {{ viewingQuotes ? 'Calculator' : 'My Quotes (' + savedQuotes.length + ')' }}
+    </button>
+  </div>
+
+  <!-- Calculator View -->
+  <ng-container *ngIf="!viewingQuotes">
+    <div class="form-card">
+      <form [formGroup]="loanForm" (ngSubmit)="calculate()">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Lender Name</label>
+            <input type="text" [(ngModel)]="lenderName" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="e.g. SoFi, LightStream" />
+          </div>
+          <div class="form-group">
+            <label>Loan Amount ($)</label>
+            <input type="number" formControlName="loanAmount" class="form-control" placeholder="10000" />
+          </div>
+          <div class="form-group">
+            <label>APR (%)</label>
+            <input type="number" formControlName="apr" step="0.1" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Term (months)</label>
+            <input type="number" formControlName="termMonths" class="form-control" />
+          </div>
+          <div class="form-group">
+            <label>Hold Period (months)</label>
+            <input type="number" formControlName="holdPeriodMonths" class="form-control" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-calculate">Calculate</button>
+          <button type="button" class="btn-save" (click)="saveQuote()" *ngIf="results && lenderName.trim()">Save Quote</button>
+        </div>
+        <div class="save-message" *ngIf="saveMessage">
+          <span [class.error]="saveMessage.includes('Error')">{{ saveMessage }}</span>
+        </div>
+      </form>
+    </div>
+
+    <div class="results-section" *ngIf="results">
+      <div class="result-cards">
+        <div class="result-card highlight">
+          <span class="result-label">Monthly Payment</span>
+          <span class="result-value">{{ currency(results.monthlyPayment) }}</span>
+        </div>
+        <div class="result-card">
+          <span class="result-label">Total Interest</span>
+          <span class="result-value">{{ currency(results.totalInterest) }}</span>
+        </div>
+        <div class="result-card">
+          <span class="result-label">Total Repayment</span>
+          <span class="result-value">{{ currency(results.totalRepayment) }}</span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- Quotes View -->
+  <ng-container *ngIf="viewingQuotes">
+    <div class="no-quotes" *ngIf="savedQuotes.length === 0">
+      <p>No quotes saved yet. Calculate a quote and save it with a lender name.</p>
+    </div>
+
+    <div class="quotes-table" *ngIf="savedQuotes.length > 0">
+      <table>
+        <thead>
+          <tr>
+            <th>Lender</th>
+            <th>Loan Amount</th>
+            <th>APR</th>
+            <th>Term</th>
+            <th>Monthly Payment</th>
+            <th>Total Interest</th>
+            <th>Total Repayment</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let q of savedQuotes">
+            <td class="lender-cell">{{ q.lenderName }}</td>
+            <td>{{ currency(q.loanAmount) }}</td>
+            <td>{{ q.apr }}%</td>
+            <td>{{ q.termMonths }} mos</td>
+            <td class="cell-highlight">{{ currency(q.monthlyPayment) }}</td>
+            <td>{{ currency(q.totalInterest) }}</td>
+            <td>{{ currency(q.totalRepayment) }}</td>
+            <td>
+              <button class="btn-delete" (click)="deleteQuote(q.id || '')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+</div>

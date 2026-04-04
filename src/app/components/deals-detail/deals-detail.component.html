@@ -171,13 +171,15 @@
                 <span class="value" *ngIf="editingField !== 'personalLoanAmount'">{{ selectedDeal.deal.personalLoanAmount | currency }}</span>
                 <input *ngIf="editingField === 'personalLoanAmount'" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('personalLoanAmount')" (keydown)="onKeydown($event, 'personalLoanAmount')" #editInput />
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('personalLoanApr', selectedDeal.deal.personalLoanApr)">
                 <span class="label">APR</span>
-                <span class="value">{{ selectedDeal.deal.personalLoanApr }}%</span>
+                <span class="value" *ngIf="editingField !== 'personalLoanApr'">{{ selectedDeal.deal.personalLoanApr }}%</span>
+                <input *ngIf="editingField === 'personalLoanApr'" type="number" class="inline-edit-input" [value]="editValue" min="0" max="100" step="0.25" (blur)="saveEdit('personalLoanApr')" (keydown)="onKeydown($event, 'personalLoanApr')" />
               </div>
-              <div class="detail-item">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('personalLoanTermMonths', selectedDeal.deal.personalLoanTermMonths)">
                 <span class="label">Term</span>
-                <span class="value">{{ formatMonth(selectedDeal.deal.personalLoanTermMonths) }}</span>
+                <span class="value" *ngIf="editingField !== 'personalLoanTermMonths'">{{ formatMonth(selectedDeal.deal.personalLoanTermMonths) }}</span>
+                <input *ngIf="editingField === 'personalLoanTermMonths'" type="number" class="inline-edit-input" [value]="editValue" min="1" step="1" (blur)="saveEdit('personalLoanTermMonths')" (keydown)="onKeydown($event, 'personalLoanTermMonths')" />
               </div>
               <div class="detail-item">
                 <span class="label">Monthly Payment</span>
@@ -482,13 +484,15 @@
                 <span class="value" *ngIf="editingField !== 'personalLoanAmount' || selectedDealId !== analysis.deal.id">{{ analysis.deal.personalLoanAmount | currency }}</span>
                 <input *ngIf="editingField === 'personalLoanAmount' && selectedDealId === analysis.deal.id" type="text" class="inline-edit-input" [value]="editValue" appCurrencyInput (blur)="saveEdit('personalLoanAmount')" (keydown)="onKeydown($event, 'personalLoanAmount')" #editInput />
               </div>
-              <div class="detail-item calculated">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('personalLoanApr', analysis.deal.personalLoanApr); selectedDealId = analysis.deal.id">
                 <span class="label">APR</span>
-                <span class="value">{{ analysis.deal.personalLoanApr }}%</span>
+                <span class="value" *ngIf="editingField !== 'personalLoanApr' || selectedDealId !== analysis.deal.id">{{ analysis.deal.personalLoanApr }}%</span>
+                <input *ngIf="editingField === 'personalLoanApr' && selectedDealId === analysis.deal.id" type="number" class="inline-edit-input" [value]="editValue" min="0" max="100" step="0.25" (blur)="saveEdit('personalLoanApr')" (keydown)="onKeydown($event, 'personalLoanApr')" />
               </div>
-              <div class="detail-item calculated">
+              <div class="detail-item editable" title="Click to edit" (click)="startEdit('personalLoanTermMonths', analysis.deal.personalLoanTermMonths); selectedDealId = analysis.deal.id">
                 <span class="label">Term</span>
-                <span class="value">{{ formatMonth(analysis.deal.personalLoanTermMonths) }}</span>
+                <span class="value" *ngIf="editingField !== 'personalLoanTermMonths' || selectedDealId !== analysis.deal.id">{{ formatMonth(analysis.deal.personalLoanTermMonths) }}</span>
+                <input *ngIf="editingField === 'personalLoanTermMonths' && selectedDealId === analysis.deal.id" type="number" class="inline-edit-input" [value]="editValue" min="1" step="1" (blur)="saveEdit('personalLoanTermMonths')" (keydown)="onKeydown($event, 'personalLoanTermMonths')" />
               </div>
               <div class="detail-item calculated">
                 <span class="label">Monthly Payment</span>

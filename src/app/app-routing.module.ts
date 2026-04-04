@@ -8,6 +8,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { RehabDashboardComponent } from './components/rehab-dashboard/rehab-dashboard.component';
 import { RehabExpensesComponent } from './components/rehab-expenses/rehab-expenses.component';
 import { ArvFinderComponent } from './components/arv-finder/arv-finder.component';
+import { PersonalLoanRehabComponent } from './components/personal-loan-rehab/personal-loan-rehab.component';
+import { HardMoneyLenderComponent } from './components/hard-money-lender/hard-money-lender.component';
 import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'deals/:id', component: DealsDetailComponent, canActivate: [authGuard] },
   { path: 'compare', component: CompareDealsPageComponent, canActivate: [authGuard] },
   { path: 'arv-finder', component: ArvFinderComponent, canActivate: [authGuard] },
+  { path: 'lender/personal-loan', component: PersonalLoanRehabComponent, canActivate: [authGuard] },
+  { path: 'lender/hard-money', component: HardMoneyLenderComponent, canActivate: [authGuard] },
 ];
 
 @NgModule({
