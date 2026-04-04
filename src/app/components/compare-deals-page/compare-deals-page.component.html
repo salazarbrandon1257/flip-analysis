@@ -10,18 +10,16 @@
   </div>
 
   <div class="deals-selection" *ngIf="analyzedDeals.length > 0">
-    <div class="deal-checkbox" *ngFor="let deal of analyzedDeals">
-      <label>
-        <input
-          type="checkbox"
-          [checked]="selectedDealIds.has(deal.deal.id)"
-          (change)="toggleDealSelection(deal.deal.id)"
-        />
-        <span class="deal-name">{{ deal.deal.address }}</span>
-        <span class="deal-profit" [class.profit-positive]="deal.netProfit > 0" [class.profit-negative]="deal.netProfit <= 0">
-          {{ deal.netProfit | currency }}
-        </span>
-      </label>
+    <div class="deal-checkbox" *ngFor="let deal of analyzedDeals" (click)="toggleDealSelection(deal.deal.id)">
+      <input
+        type="checkbox"
+        class="deal-checkbox-checkbox"
+        [checked]="selectedDealIds.has(deal.deal.id)"
+      />
+      <span class="deal-name">{{ deal.deal.address }}</span>
+      <span class="deal-profit" [class.profit-positive]="deal.netProfit > 0" [class.profit-negative]="deal.netProfit <= 0">
+        {{ deal.netProfit | currency }}
+      </span>
     </div>
   </div>
 
@@ -46,6 +44,10 @@
         <tr>
           <td>ARV</td>
           <td *ngFor="let deal of selectedDeals">{{ deal.deal.afterRepairValue | currency }}</td>
+        </tr>
+        <tr>
+          <td>Hold Period</td>
+          <td *ngFor="let deal of selectedDeals">{{ deal.deal.holdPeriodMonths }} months</td>
         </tr>
         <tr>
           <td>Rehab Costs</td>

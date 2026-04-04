@@ -89,7 +89,7 @@ export class DealInputComponent {
     // Calculate all derived values
     const buyerClosingCosts = Math.round(purchasePrice * 0.01) + 999; // 1% + $999 fee
     const titleClosingCosts = Math.round(purchasePrice * 0.02); // 2%
-    const loanAmount = Math.round(purchasePrice * 0.88); // 88%
+    const loanAmount = Math.round(purchasePrice * (1 - downPaymentPercent / 100));
     const loanMonthlyInterest = Math.round(loanAmount * (interestRatePercent / 100) / 12);
     const annualPropertyTax = purchasePrice * 0.04; // 4%
     const holdPeriodPropertyTax = annualPropertyTax * (holdPeriodMonths / 12);

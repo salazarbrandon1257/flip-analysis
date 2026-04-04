@@ -1,6 +1,6 @@
 <div class="deals-detail-page">
   <div class="page-header">
-    <a routerLink="/deals" class="back-link" *ngIf="selectedDealId">&larr; Back to All Deals</a>
+    <a routerLink="/deals" (click)="onBack()" class="back-link" *ngIf="selectedDealId">&larr; Back to All Deals</a>
     <h2>{{ selectedDealId ? 'Deal Details' : 'Deals Overview' }}</h2>
     <p class="page-subtitle">{{ selectedDealId ? 'Detailed analysis of this investment opportunity' : 'Detailed analysis of all your investment opportunities' }}</p>
   </div>

@@ -1,14 +1,56 @@
 <ng-container *ngIf="auth.isLoggedIn">
   <header class="app-header">
     <div class="header-content">
-      <h1>Flip Analysis</h1>
+      <h1><a routerLink="/">Flip Analysis</a></h1>
       <nav class="app-nav">
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         </a>
-        <a routerLink="/my-deals" routerLinkActive="active">Add Deals</a>
-        <a routerLink="/deals" routerLinkActive="active">Deals</a>
-        <a routerLink="/compare" routerLinkActive="active">Compare</a>
+
+        <!-- Deal Analysis Dropdown -->
+        <div class="nav-dropdown" (clickOutside)="closeDropdown()">
+          <button class="nav-dropdown-trigger" [class.active]="activeDropdown === 'deals'" (click)="toggleDropdown('deals')">
+            Deal Analysis
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" *ngIf="activeDropdown === 'deals'">
+            <a routerLink="/my-deals" routerLinkActive="active" (click)="closeDropdown()" [routerLinkActiveOptions]="{ exact: true }">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Deals
+            </a>
+            <a routerLink="/deals" routerLinkActive="active" (click)="closeDropdown()" [routerLinkActiveOptions]="{ exact: true }">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Deals Detail
+            </a>
+            <a routerLink="/compare" routerLinkActive="active" (click)="closeDropdown()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Compare Deals
+            </a>
+            <a routerLink="/arv-finder" routerLinkActive="active" (click)="closeDropdown()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              ARV Finder
+            </a>
+          </div>
+        </div>
+
+        <!-- Rehab Dropdown -->
+        <div class="nav-dropdown" (clickOutside)="closeDropdown()">
+          <button class="nav-dropdown-trigger" [class.active]="activeDropdown === 'rehab'" (click)="toggleDropdown('rehab')">
+            Rehab
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="nav-dropdown-menu" *ngIf="activeDropdown === 'rehab'">
+            <a routerLink="/rehab" routerLinkActive="active" (click)="closeDropdown()" [routerLinkActiveOptions]="{ exact: true }">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+              Dashboard
+            </a>
+            <a routerLink="/rehab/expenses" routerLinkActive="active" (click)="closeDropdown()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Expenses
+            </a>
+          </div>
+        </div>
+
         <button class="btn-logout" (click)="onLogout()">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
           Sign Out

@@ -26,6 +26,18 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: -0.5px;
+    a {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+      &:hover {
+        opacity: 0.75;
+      }
+    }
   }
 
   .tagline {
@@ -100,6 +112,99 @@
   }
 }
 
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-dropdown-trigger {
+  background: none;
+  border: none;
+  color: #666;
+  padding: 8px 14px 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: inherit;
+
+  &:hover {
+    background: #f3f4f8;
+    color: #1a1a2e;
+  }
+
+  &.active {
+    background: #667eea;
+    color: #fff;
+
+    svg {
+      color: #fff;
+    }
+  }
+
+  svg {
+    transition: transform 0.2s;
+  }
+}
+
+.nav-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 10px;
+  padding: 4px;
+  min-width: 180px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  z-index: 200;
+  animation: dropIn 0.15s ease;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    color: #333;
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.15s;
+
+    &:hover {
+      background: #f3f4f8;
+      color: #1a1a2e;
+    }
+
+    &.active {
+      background: #667eea;
+      color: white;
+      box-shadow: none;
+    }
+
+    svg {
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+  }
+}
+
+@keyframes dropIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
 .app-main {
   background: #f3f4f8;
   min-height: 100vh;
@@ -125,7 +230,7 @@
   background: #111;
   color: #aaa;
   padding: 20px 24px;
-  border-top: 2px solid #c6a664;
+  border-top: 2px solid #667eea;
 
   .footer-content {
     max-width: 1400px;
@@ -144,7 +249,10 @@
   .footer-logo {
     font-size: 0.95rem;
     font-weight: 800;
-    color: #c6a664;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: 0.5px;
   }
 

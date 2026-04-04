@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DealService } from '../../services/deal.service';
 import { DealAnalysis, Deal } from '../../models/deal';
 
@@ -25,16 +25,26 @@ export class DealsDetailComponent implements OnInit {
 
   constructor(
     public dealService: DealService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.selectedDealId = params['id'] || null;
+    this.route.paramMap.subscribe(params => {
+      this.selectedDealId = params.get('id') || null;
       if (this.selectedDealId) {
         this.expandedDealId = this.selectedDealId;
+      } else {
+        this.expandedDealId = null;
+        this.editingField = null;
       }
     });
+  }
+
+  onBack(): void {
+    this.selectedDealId = null;
+    this.expandedDealId = null;
+    this.editingField = null;
   }
 
   startEdit(field: string, value: string | number): void {
@@ -69,7 +79,8 @@ export class DealsDetailComponent implements OnInit {
         // Recalculate derived values
         update.buyerClosingCosts = Math.round(update.purchasePrice * 0.01) + 999;
         update.titleClosingCosts = Math.round(update.purchasePrice * 0.02);
-        update.loanAmount = Math.round(update.purchasePrice * 0.88);
+        const downPayment = deal.downPaymentPercent || 0;
+        update.loanAmount = Math.round(update.purchasePrice * (1 - downPayment / 100));
         update.loanMonthlyInterest = Math.round(update.loanAmount * (deal.interestRatePercent / 100) / 12);
         break;
       case 'afterRepairValue':
@@ -81,6 +92,10 @@ export class DealsDetailComponent implements OnInit {
         break;
       case 'downPaymentPercent':
         update.downPaymentPercent = parseValue(rawValue);
+        // Recalculate loan amount and monthly interest
+        const newDownPayment = parseValue(rawValue);
+        update.loanAmount = Math.round(deal.purchasePrice * (1 - newDownPayment / 100));
+        update.loanMonthlyInterest = Math.round(update.loanAmount * (deal.interestRatePercent / 100) / 12);
         break;
       case 'interestRatePercent':
         update.interestRatePercent = parseValue(rawValue);
