@@ -19,6 +19,8 @@ import { LoginPageComponent } from './components/login-page/login-page.component
 import { RehabDashboardComponent } from './components/rehab-dashboard/rehab-dashboard.component';
 import { CurrencyInputDirective } from './directives/currency-input/currency-input.directive';
 import { ClickOutsideDirective } from './directives/click-outside/click-outside.directive';
+import { RehabExpensesComponent } from './components/rehab-expenses/rehab-expenses.component';
+import { ArvFinderComponent } from './components/arv-finder/arv-finder.component';
 
 const firebaseConfig = {
   apiKey: "AIzaSyCUlTwADMw3fNNSc76yBgJRyRa2pdyNUd4",
@@ -43,7 +45,9 @@ const firebaseConfig = {
     LoginPageComponent,
     RehabDashboardComponent,
     CurrencyInputDirective,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    RehabExpensesComponent,
+    ArvFinderComponent
   ],
   imports: [
     BrowserModule,

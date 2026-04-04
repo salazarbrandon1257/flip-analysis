@@ -1,0 +1,102 @@
+<div class="arv-finder">
+  <div class="header-section">
+    <h2>ARV Finder</h2>
+    <p class="subtitle">Add comps to estimate the After Repair Value for your deals</p>
+  </div>
+
+  <div class="deal-selector">
+    <label for="deal-select">Select Deal</label>
+    <select id="deal-select">
+      <option value="">Select a deal...</option>
+      <option *ngFor="let deal of deals" [value]="deal.id">
+        {{ deal.address }} - ${{ deal.purchasePrice | number }}
+      </option>
+    </select>
+  </div>
+
+  <div class="comps-section">
+    <div class="comps-header">
+      <h3>Comparable Sales</h3>
+      <div class="comps-actions">
+        <button class="btn-add" (click)="addComp()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Add Comp
+        </button>
+        <button class="btn-reset" (click)="resetForm()">Reset</button>
+      </div>
+    </div>
+
+    <div class="comps-grid">
+      <div class="comp-card" *ngFor="let comp of comps; let i = index">
+        <div class="comp-card-header">
+          <span class="comp-number">Comp #{{ i + 1 }}</span>
+          <button class="btn-remove" (click)="removeComp(i)" *ngIf="comps.length > 1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <div class="comp-card-body">
+          <div class="form-group full-width">
+            <label>Address</label>
+            <input type="text" [(ngModel)]="comp.address" placeholder="123 Main St" class="form-control" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Sold Price ($)</label>
+              <input type="number" [(ngModel)]="comp.soldPrice" (ngModelChange)="calculateArv()" placeholder="250000" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label>Sq Ft</label>
+              <input type="number" [(ngModel)]="comp.sqft" (ngModelChange)="calculateArv()" placeholder="1500" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Beds</label>
+              <input type="number" [(ngModel)]="comp.beds" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label>Baths</label>
+              <input type="number" [(ngModel)]="comp.baths" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label>Year Built</label>
+              <input type="number" [(ngModel)]="comp.yearBuilt" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Distance (miles)</label>
+              <input type="number" [(ngModel)]="comp.distanceMiles" step="0.1" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label>Sold Date</label>
+              <input type="date" [(ngModel)]="comp.soldDate" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arv-results" *ngIf="suggestedArv > 0">
+    <h3>Estimated ARV</h3>
+    <div class="arv-cards">
+      <div class="arv-card">
+        <span class="arv-value">${{ avgCompPrice | number }}</span>
+        <span class="arv-label">Avg Comp Sold Price</span>
+      </div>
+      <div class="arv-card">
+        <span class="arv-value">${{ avgPricePerSqft | number }}<small>/sqft</small></span>
+        <span class="arv-label">Avg Price Per Sq Ft</span>
+      </div>
+      <div class="arv-card highlight">
+        <span class="arv-label">Suggested ARV</span>
+        <span class="arv-value">${{ suggestedArv | number }}</span>
+      </div>
+    </div>
+  </div>
+</div>
