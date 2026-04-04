@@ -48,6 +48,10 @@
           <td *ngFor="let deal of selectedDeals">{{ deal.deal.afterRepairValue | currency }}</td>
         </tr>
         <tr>
+          <td>Hold Period</td>
+          <td *ngFor="let deal of selectedDeals">{{ deal.deal.holdPeriodMonths }} months</td>
+        </tr>
+        <tr>
           <td>Rehab Costs</td>
           <td *ngFor="let deal of selectedDeals">{{ deal.deal.rehabCosts | currency }}</td>
         </tr>
