@@ -14,4 +14,4 @@ jobs:
       - name: Install dependencies
         run: npm install        # or pip install, etc.
       - name: Run tests
-        run: npm test           # or pytest, etc.
+        run: npm test -- --no-progress --browsers=ChromeHeadless
