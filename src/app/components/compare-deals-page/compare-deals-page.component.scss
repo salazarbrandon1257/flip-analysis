@@ -1,14 +1,14 @@
 .compare-deals-page {
-  background: #16161e;
+  background: var(--bg-card);
   border-radius: 20px;
   padding: 28px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.3);
+  box-shadow: var(--shadow-card-lg);
 
   h2 {
     margin-bottom: 20px;
     font-size: 1.3rem;
     font-weight: 800;
-    color: #e4e4e7;
+    color: var(--text-heading);
     letter-spacing: -0.3px;
   }
 
@@ -16,7 +16,7 @@
     margin: 24px 0 16px;
     font-size: 1.05rem;
     font-weight: 700;
-    color: #a1a1aa;
+    color: var(--text-secondary);
   }
 }
 
@@ -40,28 +40,28 @@
   }
 
   .btn-select {
-    background: #667eea;
+    background: var(--color-accent);
     color: #fff;
 
     &:hover {
-      background: #5a6fd6;
-      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.25);
+      background: var(--color-accent-hover);
+      box-shadow: var(--shadow-active);
     }
   }
 
   .btn-clear {
-    background: rgba(255,255,255,0.06);
-    color: #a1a1aa;
+    background: var(--bg-hover);
+    color: var(--text-secondary);
 
     &:hover {
-      background: rgba(255,255,255,0.1);
-      color: #e4e4e7;
+      background: var(--bg-hover-strong);
+      color: var(--text-primary);
     }
   }
 }
 
 .selected-count {
-  color: #71717a;
+  color: var(--text-tertiary);
   font-size: 14px;
   font-weight: 500;
 }
@@ -80,7 +80,7 @@
   display: flex;
   align-items: center;
   padding: 14px;
-  background: #16161e;
+  background: var(--bg-card);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s;
@@ -88,14 +88,14 @@
   user-select: none;
 
   &:hover {
-    background: rgba(255,255,255,0.06);
-    border-color: rgba(255,255,255,0.1);
+    background: var(--bg-hover);
+    border-color: var(--border-hover);
   }
 }
 
 .deal-checkbox-checkbox {
   margin-right: 10px;
-  accent-color: #667eea;
+  accent-color: var(--color-accent);
   pointer-events: none;
   flex-shrink: 0;
 }
@@ -104,7 +104,7 @@
   flex: 1;
   font-size: 14px;
   font-weight: 600;
-  color: #e4e4e7;
+  color: var(--text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -119,13 +119,13 @@
 }
 
 .profit-positive {
-  color: #22c55e;
-  background: rgba(34,197,94,0.12);
+  color: var(--color-success);
+  background: var(--color-success-bg);
 }
 
 .profit-negative {
-  color: #ef4444;
-  background: rgba(239,68,68,0.12);
+  color: var(--color-danger);
+  background: var(--color-danger-bg);
 }
 
 .comparison-table-container {
@@ -142,21 +142,21 @@
   th, td {
     padding: 14px 16px;
     text-align: left;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid var(--border-divider);
   }
 
   tbody tr:nth-child(even) td:not(:first-child) {
-    background: rgba(255,255,255,0.03);
+    background: var(--bg-section-alt);
   }
 
   tbody tr:nth-child(odd) td:not(:first-child) {
-    background: #16161e;
+    background: var(--bg-card);
   }
 
   th {
-    background: rgba(255,255,255,0.03);
+    background: var(--bg-header);
     font-weight: 700;
-    color: #e4e4e7;
+    color: var(--text-heading);
     white-space: nowrap;
     font-size: 0.9rem;
     letter-spacing: -0.2px;
@@ -164,51 +164,51 @@
 
   td:first-child {
     font-weight: 600;
-    color: #a1a1aa;
-    background: rgba(255,255,255,0.03);
+    color: var(--text-secondary);
+    background: var(--bg-section);
   }
 
   .profit-positive {
-    color: #22c55e;
+    color: var(--color-success);
     font-weight: 600;
   }
 
   .profit-negative {
-    color: #ef4444;
+    color: var(--color-danger);
     font-weight: 600;
   }
 
   .roi-positive {
-    color: #22c55e;
+    color: var(--color-success);
     font-weight: 700;
   }
 
   .roi-negative {
-    color: #ef4444;
+    color: var(--color-danger);
     font-weight: 700;
   }
 
   .over-mao {
-    color: #ef4444;
+    color: var(--color-danger);
     font-weight: 600;
   }
 
   .under-mao {
-    color: #22c55e;
+    color: var(--color-success);
     font-weight: 600;
   }
 
   .good-deal {
-    color: #22c55e;
+    color: var(--color-success);
     font-weight: 700;
-    background: rgba(34,197,94,0.12) !important;
+    background: var(--color-success-bg) !important;
     border-radius: 8px;
   }
 
   .bad-deal {
-    color: #ef4444;
+    color: var(--color-danger);
     font-weight: 700;
-    background: rgba(239,68,68,0.12) !important;
+    background: var(--color-danger-bg) !important;
     border-radius: 8px;
   }
 }
@@ -216,8 +216,8 @@
 .no-deals {
   text-align: center;
   padding: 60px 20px;
-  color: #71717a;
-  background: rgba(255,255,255,0.03);
+  color: var(--text-tertiary);
+  background: var(--bg-section);
   border-radius: 12px;
   font-weight: 500;
 }

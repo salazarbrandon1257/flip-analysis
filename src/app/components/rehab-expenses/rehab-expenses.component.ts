@@ -139,6 +139,12 @@ export class RehabExpensesComponent implements OnInit {
     }).format(value);
   }
 
+  formatDisplay(val: string): string {
+    const raw = val.replace(/[^0-9.\-]/g, '');
+    const num = Number(raw);
+    return !isNaN(num) && num !== 0 ? num.toLocaleString('en-US') : '';
+  }
+
   statusColor = statusColor;
   statusBackground = statusBackground;
 }

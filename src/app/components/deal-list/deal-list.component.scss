@@ -1,7 +1,7 @@
 .deal-list-container {
   h2 {
     margin: 0 0 24px;
-    color: #e4e4e7;
+    color: var(--text-heading);
     font-size: 1.5rem;
     font-weight: 700;
   }
@@ -13,9 +13,9 @@
   gap: 4px;
   margin-bottom: 24px;
   padding: 4px;
-  background: #16161e;
+  background: var(--bg-card);
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.06);
+  box-shadow: var(--shadow-card);
   overflow-x: auto;
 }
 
@@ -29,7 +29,7 @@
   border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #a1a1aa;
+  color: var(--text-secondary);
   cursor: pointer;
   white-space: nowrap;
   font-family: inherit;
@@ -39,24 +39,24 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--status-color, #71717a);
+    background: var(--status-color, var(--text-tertiary));
   }
 
   .count {
     font-size: 0.7rem;
-    background: rgba(255,255,255,0.06);
+    background: var(--bg-hover);
     padding: 1px 6px;
     border-radius: 10px;
-    color: #71717a;
+    color: var(--text-tertiary);
   }
 
   &:hover {
-    background: rgba(255,255,255,0.06);
-    color: #e4e4e7;
+    background: var(--bg-hover);
+    color: var(--text-primary);
   }
 
   &.active {
-    background: #1a1a2e;
+    background: var(--bg-active);
     color: white;
 
     .count {
@@ -91,7 +91,7 @@
   h3 {
     margin: 0;
     font-size: 1.05rem;
-    color: #e4e4e7;
+    color: var(--text-heading);
     font-weight: 700;
     line-height: 1.4;
   }
@@ -104,16 +104,16 @@
 }
 
 .deal-card {
-  background: #16161e;
+  background: var(--bg-card);
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.06), 0 6px 16px rgba(0,0,0,0.2);
+  box-shadow: var(--shadow-card);
   transition: all 0.25s;
-  border: 1px solid rgba(255,255,255,0.06);
+  border: 1px solid var(--border-default);
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-card-hover);
   }
 }
 
@@ -123,12 +123,12 @@
   align-items: flex-start;
   margin-bottom: 20px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--border-divider);
 
   h3 {
     margin: 0;
     font-size: 1.05rem;
-    color: #e4e4e7;
+    color: var(--text-heading);
     font-weight: 700;
     flex: 1;
     line-height: 1.4;
@@ -140,7 +140,7 @@
   background: none;
   border: none;
   font-size: 1.3rem;
-  color: #52525b;
+  color: var(--text-muted);
   cursor: pointer;
   padding: 4px;
   line-height: 1;
@@ -151,15 +151,15 @@
   justify-content: center;
 
   &:hover {
-    color: #ef4444;
-    background: rgba(239,68,68,0.1);
+    color: var(--color-danger);
+    background: var(--color-danger-bg);
   }
 }
 
 .deal-section {
   margin-bottom: 16px;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--border-divider);
 
   &:last-of-type {
     border-bottom: none;
@@ -168,7 +168,7 @@
 
 .section-title {
   font-size: 0.7rem;
-  color: #71717a;
+  color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.8px;
   margin-bottom: 10px;
@@ -186,7 +186,7 @@
   }
 
   &.subtotal {
-    border-top: 1px solid rgba(255,255,255,0.06);
+    border-top: 1px solid var(--border-divider);
     margin-top: 6px;
     padding-top: 10px;
     font-weight: 600;
@@ -198,68 +198,68 @@
   }
 
   &.good-deal .stat-value {
-    color: #22c55e;
+    color: var(--color-success);
   }
 
   &.bad-deal .stat-value {
-    color: #ef4444;
+    color: var(--color-danger);
   }
 }
 
 .stat-label {
-  color: #a1a1aa;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .stat-value {
   font-weight: 600;
-  color: #e4e4e7;
+  color: var(--text-primary);
   text-align: right;
 
   &.profit-positive {
-    color: #22c55e;
+    color: var(--color-success);
   }
 
   &.profit-negative {
-    color: #ef4444;
+    color: var(--color-danger);
   }
 
   &.profit-neutral {
-    color: #71717a;
+    color: var(--text-tertiary);
   }
 }
 
 .returns-section {
-  background: rgba(102,126,234,0.08);
+  background: var(--bg-returns);
   border-radius: 12px;
   padding: 16px;
-  border: 1px solid rgba(102,126,234,0.15);
+  border: 1px solid var(--bg-returns-border);
 }
 
 .mao-section {
-  background: rgba(34,197,94,0.08);
+  background: var(--bg-mao-good);
   border-radius: 12px;
   padding: 16px;
-  border: 1px solid rgba(34,197,94,0.15);
+  border: 1px solid var(--bg-mao-good-border);
 }
 
 .deal-notes {
   margin-top: 12px;
   padding: 12px;
-  background: rgba(255,255,255,0.03);
+  background: var(--bg-section);
   border-radius: 8px;
   font-size: 0.85rem;
-  color: #a1a1aa;
+  color: var(--text-secondary);
   line-height: 1.6;
-  border-left: 3px solid #52525b;
+  border-left: 3px solid var(--text-muted);
 }
 
 .empty-state {
   text-align: center;
   padding: 60px 20px;
-  color: #71717a;
-  background: #16161e;
+  color: var(--text-tertiary);
+  background: var(--bg-card);
   border-radius: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.06), 0 6px 16px rgba(0,0,0,0.2);
-  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-default);
 }

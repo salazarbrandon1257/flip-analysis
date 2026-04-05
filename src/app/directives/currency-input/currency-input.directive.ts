@@ -16,7 +16,6 @@ export class CurrencyInputDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    // Set initial value if present
     if (this._el.value) {
       this.formatValue(this._el.value);
     }
@@ -40,7 +39,6 @@ export class CurrencyInputDirective implements OnInit {
 
   @HostListener('focus', ['$event'])
   onFocus(event: Event): void {
-    // Remove commas on focus for easier editing
     const value = this._el.value.replace(/,/g, '');
     this._el.value = value;
   }

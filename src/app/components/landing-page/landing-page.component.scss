@@ -8,7 +8,7 @@
   overflow: hidden;
   padding: 5rem 2rem 4rem;
   color: white;
-  background: #0f0e17;
+  background: var(--bg-primary);
 
   .hero-bg {
     position: absolute;
@@ -20,18 +20,40 @@
     position: absolute;
     inset: 0;
     background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      linear-gradient(var(--bg-card-border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--bg-card-border) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
-  .hero-glow {
+  .hero-glow-1 {
     position: absolute;
-    top: -30%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(102,126,234,0.25) 0%, transparent 70%);
+    top: -20%;
+    left: 10%;
+    width: 400px;
+    height: 400px;
+    background: var(--gradient-glow1);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-glow-2 {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 350px;
+    height: 350px;
+    background: var(--gradient-glow2);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .hero-glow-3 {
+    position: absolute;
+    bottom: 0;
+    left: 40%;
+    width: 300px;
+    height: 300px;
+    background: var(--gradient-glow3);
     border-radius: 50%;
     pointer-events: none;
   }
@@ -43,7 +65,7 @@
     left: 0;
     right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(102,126,234,0.3), transparent);
+    background: var(--gradient-hero-border-top);
   }
 }
 
@@ -198,20 +220,20 @@
 }
 
 .stat {
-  background: #16161e;
-  border: 1px solid rgba(255,255,255,0.06);
+  background: var(--landing-card-bg);
+  border: 1px solid var(--bg-card-border);
   border-radius: 16px;
   padding: 20px 24px;
   display: flex;
   align-items: center;
   gap: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 6px 16px rgba(0,0,0,0.3);
+  box-shadow: var(--shadow-card);
   transition: all 0.2s;
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.3);
-    border-color: rgba(255,255,255,0.1);
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--border-hover);
   }
 }
 
@@ -239,25 +261,25 @@
 .stat-value {
   font-size: 1.3rem;
   font-weight: 800;
-  color: #e4e4e7;
+  color: var(--text-primary);
   letter-spacing: -0.5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
-  &.positive { color: #22c55e; }
-  &.negative { color: #ef4444; }
+  &.positive { color: var(--color-success); }
+  &.negative { color: var(--color-danger); }
 
   &.stat-address {
     font-size: 0.95rem;
     font-weight: 600;
-    color: #e4e4e7;
+    color: var(--text-primary);
   }
 }
 
 .stat-label {
   font-size: 0.7rem;
-  color: #71717a;
+  color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 600;
@@ -312,21 +334,21 @@
 }
 
 .feature {
-  background: #16161e;
+  background: var(--landing-card-bg);
   border-radius: 16px;
   padding: 28px 24px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 6px 16px rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--bg-card-border);
   transition: all 0.25s;
 
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-card-hover);
     border-color: rgba(102,126,234,0.2);
 
     .feature-icon-wrap {
-      background: rgba(102,126,234,0.12);
-      color: #667eea;
+      background: var(--bg-icon-hover);
+      color: var(--color-accent);
     }
   }
 }
@@ -335,8 +357,8 @@
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: rgba(255,255,255,0.06);
-  color: #a1a1aa;
+  background: var(--bg-icon);
+  color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -347,13 +369,13 @@
 .feature h3 {
   font-size: 1rem;
   font-weight: 700;
-  color: #e4e4e7;
+  color: var(--text-heading);
   margin: 0 0 6px;
 }
 
 .feature p {
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: var(--text-desc);
   line-height: 1.6;
   margin: 0;
 }

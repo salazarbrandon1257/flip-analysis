@@ -10,13 +10,13 @@
   h2 {
     font-size: 1.8rem;
     font-weight: 800;
-    color: #e4e4e7;
+    color: var(--text-heading);
     margin: 0 0 0.25rem;
     letter-spacing: -0.5px;
   }
 
   .page-subtitle {
-    color: #71717a;
+    color: var(--text-tertiary);
     font-size: 1rem;
     margin: 0;
   }
@@ -32,24 +32,24 @@
   label {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #a1a1aa;
+    color: var(--text-secondary);
   }
 
   select {
     padding: 8px 14px;
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid var(--border-input);
     border-radius: 8px;
     font-size: 0.95rem;
     font-weight: 600;
-    color: #e4e4e7;
-    background: #232330;
+    color: var(--text-primary);
+    background: var(--bg-input);
     min-width: 300px;
     transition: border-color 0.2s;
 
     &:focus {
       outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-focus);
     }
   }
 }
@@ -58,9 +58,9 @@
 .no-deals {
   text-align: center;
   padding: 80px 20px;
-  background: #16161e;
+  background: var(--bg-card);
   border-radius: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.3);
+  box-shadow: var(--shadow-card-lg);
 
   svg {
     opacity: 0.3;
@@ -68,7 +68,7 @@
   }
 
   p {
-    color: #71717a;
+    color: var(--text-tertiary);
     font-size: 1rem;
     margin-bottom: 20px;
   }
@@ -76,7 +76,7 @@
   a.btn-primary {
     display: inline-block;
     padding: 10px 24px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-primary);
     color: white;
     text-decoration: none;
     border-radius: 10px;
@@ -86,7 +86,7 @@
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
+      box-shadow: var(--shadow-btn-primary);
     }
   }
 }
@@ -99,10 +99,10 @@
 }
 
 .expense-table {
-  background: #16161e;
+  background: var(--bg-card);
   border-radius: 16px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 6px 16px rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-default);
   overflow: hidden;
 }
 
@@ -110,16 +110,16 @@
   display: flex;
   align-items: center;
   padding: 14px 20px;
-  background: rgba(255,255,255,0.06);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  background: var(--bg-table-header);
+  border-bottom: 1px solid var(--bg-table-header-border);
   font-size: 0.75rem;
   font-weight: 700;
-  color: #71717a;
+  color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 
   .col {
-    color: #71717a;
+    color: var(--text-tertiary);
   }
 }
 
@@ -127,7 +127,7 @@
   display: flex;
   align-items: center;
   padding: 12px 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid var(--border-divider);
   transition: background 0.15s;
 
   &:last-of-type {
@@ -135,7 +135,7 @@
   }
 
   &:hover {
-    background: rgba(255,255,255,0.03);
+    background: var(--bg-section);
   }
 }
 
@@ -151,19 +151,19 @@
 .input-text,
 .input-currency {
   padding: 6px 10px;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid var(--border-input);
   border-radius: 6px;
   font-size: 0.85rem;
   font-weight: 500;
-  color: #e4e4e7;
+  color: var(--text-primary);
   width: 100%;
-  background: #232330;
+  background: var(--bg-input);
   transition: border-color 0.2s, box-shadow 0.2s;
 
   &:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-focus);
   }
 }
 
@@ -175,10 +175,10 @@
 .variance-cell {
   font-size: 0.85rem;
   font-weight: 700;
-  color: #22c55e;
+  color: var(--color-success);
 
   &.over-budget {
-    color: #ef4444;
+    color: var(--color-danger);
   }
 }
 
@@ -191,21 +191,21 @@
   height: 32px;
   border: none;
   background: transparent;
-  color: #52525b;
+  color: var(--text-muted);
   cursor: pointer;
   border-radius: 6px;
   transition: all 0.2s;
 
   &:hover {
-    background: rgba(239,68,68,0.1);
-    color: #ef4444;
+    background: var(--color-danger-bg);
+    color: var(--color-danger);
   }
 }
 
 /* Add Row */
 .table-footer {
   padding: 14px 20px;
-  border-top: 1px solid rgba(255,255,255,0.06);
+  border-top: 1px solid var(--border-divider);
 }
 
 .btn-add-row {
@@ -215,7 +215,7 @@
   padding: 8px 16px;
   border: none;
   background: transparent;
-  color: #667eea;
+  color: var(--color-accent);
   font-weight: 600;
   font-size: 0.85rem;
   cursor: pointer;
@@ -224,7 +224,7 @@
   transition: all 0.2s;
 
   &:hover {
-    background: rgba(102, 126, 234, 0.08);
+    background: var(--bg-highlight);
   }
 }
 
@@ -234,10 +234,10 @@
   align-items: center;
   gap: 32px;
   padding: 16px 20px;
-  background: #16161e;
+  background: var(--bg-card);
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 6px 16px rgba(0,0,0,0.3);
-  border: 1px solid rgba(255,255,255,0.06);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-default);
   flex-wrap: wrap;
 }
 
@@ -250,27 +250,27 @@
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: #71717a;
+    color: var(--text-tertiary);
     font-weight: 600;
   }
 
   .summary-value {
     font-size: 1.1rem;
     font-weight: 800;
-    color: #e4e4e7;
+    color: var(--text-primary);
   }
 
   &.over-budget .summary-value {
-    color: #ef4444;
+    color: var(--color-danger);
   }
 
   &.highlight {
     .summary-label {
-      color: #667eea;
+      color: var(--color-accent);
     }
 
     .summary-value {
-      color: #667eea;
+      color: var(--color-accent);
     }
   }
 }
@@ -278,7 +278,7 @@
 .summary-divider {
   width: 1px;
   height: 36px;
-  background: rgba(255,255,255,0.08);
+  background: var(--border-input);
   align-self: center;
 }
 
@@ -288,7 +288,7 @@
   align-items: center;
   gap: 6px;
   padding: 10px 20px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--gradient-primary);
   color: white;
   border: none;
   border-radius: 10px;
@@ -300,6 +300,6 @@
 
   &:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
+    box-shadow: var(--shadow-btn-primary);
   }
 }

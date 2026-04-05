@@ -43,10 +43,10 @@
           <input type="text" [(ngModel)]="row.description" placeholder="e.g. Kitchen floor" class="input-text" />
         </div>
         <div class="col col-cost">
-          <input type="text" [(ngModel)]="row.estimatedCost" placeholder="$0" appCurrencyInput class="input-currency" />
+          <input type="text" [ngModel]="formatDisplay(row.estimatedCost)" (ngModelChange)="row.estimatedCost = $event" placeholder="$0" appCurrencyInput class="input-currency" />
         </div>
         <div class="col col-cost">
-          <input type="text" [(ngModel)]="row.actualCost" placeholder="$0" appCurrencyInput class="input-currency" />
+          <input type="text" [ngModel]="formatDisplay(row.actualCost)" (ngModelChange)="row.actualCost = $event" placeholder="$0" appCurrencyInput class="input-currency" />
         </div>
         <div class="col col-cost variance-cell" [class.over-budget]="rowVariance(row) > 0">
           {{ formatCurrency(rowVariance(row)) }}
