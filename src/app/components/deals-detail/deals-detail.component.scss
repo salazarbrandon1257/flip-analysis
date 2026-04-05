@@ -26,13 +26,13 @@
   h2 {
     font-size: 1.8rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: #e4e4e7;
     margin-bottom: 0.25rem;
     letter-spacing: -0.5px;
   }
 
   .page-subtitle {
-    color: #999;
+    color: #71717a;
     font-size: 1rem;
   }
 }
@@ -42,15 +42,15 @@
 }
 
 .deal-card {
-  background: white;
+  background: #16161e;
   border-radius: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.3);
   overflow: hidden;
   transition: box-shadow 0.3s;
-  border: 1px solid rgba(0,0,0,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
 
   &:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.3);
   }
 }
 
@@ -60,11 +60,11 @@
   align-items: center;
   padding: 2rem;
   cursor: pointer;
-  background: white;
-  border-bottom: 1px solid #f0f0f0;
+  background: #16161e;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 
   &:hover {
-    background: #fafbfc;
+    background: rgba(255,255,255,0.03);
   }
 }
 
@@ -74,7 +74,7 @@
 
 .deal-address {
   font-size: 1.4rem;
-  color: #1a1a2e;
+  color: #e4e4e7;
   margin: 0 0 1rem 0;
   font-weight: 800;
   letter-spacing: -0.5px;
@@ -109,7 +109,7 @@
 .status-selector-label {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #999;
+  color: #71717a;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -138,7 +138,7 @@
 
   &.active {
     opacity: 1;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   }
 }
 
@@ -147,27 +147,27 @@
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 600;
-  background: #f3f4f8;
-  color: #666;
+  background: rgba(255,255,255,0.06);
+  color: #a1a1aa;
 
   &.good-deal {
-    background: #d4edda;
-    color: #155724;
+    background: rgba(34,197,94,0.12);
+    color: #22c55e;
   }
 
   &.bad-deal {
-    background: #f8d7da;
-    color: #721c24;
+    background: rgba(239,68,68,0.12);
+    color: #ef4444;
   }
 
   &.positive {
-    background: #d4edda;
-    color: #155724;
+    background: rgba(34,197,94,0.12);
+    color: #22c55e;
   }
 
   &.negative {
-    background: #f8d7da;
-    color: #721c24;
+    background: rgba(239,68,68,0.12);
+    color: #ef4444;
   }
 }
 
@@ -191,7 +191,7 @@
 }
 
 .deal-card-body {
-  background: #fff;
+  background: #16161e;
 }
 
 .detail-sections {
@@ -201,7 +201,7 @@
 .detail-section {
   margin-bottom: 2.5rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 
   &:last-child {
     border-bottom: none;
@@ -226,7 +226,7 @@
 }
 
 .detail-item {
-  background: #f9fafb;
+  background: rgba(255,255,255,0.03);
   padding: 1rem 1.25rem;
   border-radius: 12px;
   display: flex;
@@ -237,10 +237,10 @@
   &.editable {
     cursor: pointer;
     border: 1px dashed rgba(102, 126, 234, 0.3);
-    background: #f8faff;
+    background: rgba(102,126,234,0.08);
 
     &:hover {
-      background: #eef3ff;
+      background: rgba(102,126,234,0.12);
       border-style: solid;
       box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     }
@@ -257,7 +257,7 @@
         transform: translateY(-50%);
         width: 16px;
         height: 16px;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'/%3E%3C/svg%3E");
         background-size: contain;
         background-repeat: no-repeat;
         opacity: 0.4;
@@ -274,7 +274,7 @@
   }
 
   &.total {
-    background: #f0f3ff;
+    background: rgba(102,126,234,0.08);
     border-left: 3px solid #667eea;
   }
 
@@ -293,7 +293,7 @@
 
   .label {
     font-size: 0.7rem;
-    color: #999;
+    color: #71717a;
     text-transform: uppercase;
     letter-spacing: 0.8px;
     font-weight: 700;
@@ -302,7 +302,7 @@
   .value {
     font-size: 1.15rem;
     font-weight: 700;
-    color: #333;
+    color: #e4e4e7;
     letter-spacing: -0.3px;
 
     &.arvalue {
@@ -326,8 +326,8 @@
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  background: white;
-  color: #333;
+  background: #232330;
+  color: #e4e4e7;
   font-family: inherit;
 
   &:focus {
@@ -342,7 +342,7 @@
   gap: 1.5rem;
   margin-bottom: 2rem;
   padding: 0.75rem 1rem;
-  background: #f9fafb;
+  background: rgba(255,255,255,0.03);
   border-radius: 10px;
   font-size: 0.8rem;
   align-items: center;
@@ -360,19 +360,19 @@
   border-radius: 4px;
 
   &.editable {
-    background: #f0f3ff;
+    background: rgba(102,126,234,0.08);
     border: 2px solid #667eea;
   }
 
   &.calculated {
-    background: #f5f5f5;
-    border: 1px solid #e0e0e0;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
     opacity: 0.8;
   }
 }
 
 .legend-label {
-  color: #777;
+  color: #a1a1aa;
   font-weight: 500;
 }
 
@@ -428,13 +428,13 @@
 }
 
 .mao-section {
-  background: #fefcf3;
+  background: rgba(254,252,243,0.06);
   padding: 2rem;
   border-radius: 16px;
-  border: 1.5px solid #f0dea0;
+  border: 1.5px solid rgba(240,222,160,0.2);
 
   h4 {
-    color: #333;
+    color: #e4e4e7;
   }
 }
 
@@ -451,7 +451,7 @@
 
   .mao-label {
     font-size: 0.7rem;
-    color: #999;
+    color: #71717a;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.8px;
@@ -460,7 +460,7 @@
   .mao-value {
     font-size: 1.4rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: #e4e4e7;
     letter-spacing: -0.5px;
   }
 
@@ -472,22 +472,22 @@
     font-weight: 500;
 
     &.over {
-      background: #fde8e8;
-      color: #c62828;
+      background: rgba(239,68,68,0.1);
+      color: #ef4444;
     }
 
     &.under {
-      background: #e6f5e9;
-      color: #2e7d32;
+      background: rgba(34,197,94,0.1);
+      color: #22c55e;
     }
   }
 }
 
 .notes-text {
-  background: #f9fafb;
+  background: rgba(255,255,255,0.03);
   padding: 1.25rem;
   border-radius: 12px;
-  color: #555;
+  color: #a1a1aa;
   line-height: 1.7;
   border-left: 3px solid #ffc107;
   font-size: 0.9rem;
@@ -496,7 +496,7 @@
 .deal-actions {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid rgba(255,255,255,0.06);
   display: flex;
   justify-content: flex-end;
 }
@@ -528,9 +528,9 @@
   gap: 4px;
   margin-top: 12px;
   padding: 4px;
-  background: white;
+  background: #16161e;
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.06);
   overflow-x: auto;
 }
 
@@ -544,7 +544,7 @@
   border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #666;
+  color: #a1a1aa;
   cursor: pointer;
   white-space: nowrap;
   font-family: inherit;
@@ -554,20 +554,20 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--status-color, #999);
+    background: var(--status-color, #71717a);
   }
 
   .count {
     font-size: 0.7rem;
-    background: rgba(0,0,0,0.06);
+    background: rgba(255,255,255,0.06);
     padding: 1px 6px;
     border-radius: 10px;
-    color: #999;
+    color: #71717a;
   }
 
   &:hover {
-    background: #f5f5f7;
-    color: #333;
+    background: rgba(255,255,255,0.06);
+    color: #e4e4e7;
   }
 
   &.active {
@@ -588,12 +588,12 @@
 .no-deals {
   text-align: center;
   padding: 4rem 2rem;
-  background: white;
+  background: #16161e;
   border-radius: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.3);
 
   p {
-    color: #999;
+    color: #71717a;
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
     font-weight: 500;

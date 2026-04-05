@@ -1,8 +1,8 @@
 .deal-input-card {
-  background: #fff;
+  background: #16161e;
   border-radius: 16px;
   padding: 32px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.3);
   max-width: 800px;
   margin: 0 auto 32px;
 }
@@ -13,7 +13,7 @@
   gap: 16px;
   margin-bottom: 28px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 
   .header-icon {
     width: 44px;
@@ -30,14 +30,14 @@
   .header-text {
     h2 {
       margin: 0;
-      color: #1a1a2e;
+      color: #e4e4e7;
       font-size: 1.5rem;
       font-weight: 700;
     }
 
     .subtitle {
       margin: 2px 0 0;
-      color: #888;
+      color: #71717a;
       font-size: 0.9rem;
     }
   }
@@ -57,7 +57,7 @@
     margin: 0;
     font-size: 1rem;
     font-weight: 600;
-    color: #555;
+    color: #a1a1aa;
     text-transform: none;
     letter-spacing: normal;
   }
@@ -73,22 +73,22 @@
   flex-shrink: 0;
 
   &.icon-property {
-    background: #e8f5e9;
-    color: #2e7d32;
+    background: rgba(34,197,94,0.12);
+    color: #22c55e;
   }
 
   &.icon-financial {
-    background: #fff3e0;
+    background: rgba(230,81,0,0.12);
     color: #e65100;
   }
 
   &.icon-loan {
-    background: #e3f2fd;
+    background: rgba(21,101,192,0.12);
     color: #1565c0;
   }
 
   &.icon-notes {
-    background: #fce4ec;
+    background: rgba(198,40,40,0.12);
     color: #c62828;
   }
 }
@@ -104,12 +104,12 @@
   label {
     font-weight: 500;
     margin-bottom: 6px;
-    color: #333;
+    color: #e4e4e7;
     font-size: 0.9rem;
 
     .optional {
       font-weight: 400;
-      color: #999;
+      color: #71717a;
       font-size: 0.8rem;
     }
   }
@@ -117,37 +117,37 @@
   input,
   textarea {
     padding: 10px 14px;
-    border: 1.5px solid #e8e8e8;
+    border: 1.5px solid rgba(255,255,255,0.08);
     border-radius: 10px;
     font-size: 0.95rem;
-    background: #fafafa;
+    background: #232330;
     transition: all 0.2s;
-    color: #333;
+    color: #e4e4e7;
 
     &::placeholder {
-      color: #c0c0c0;
+      color: #52525b;
     }
 
     &:focus {
       outline: none;
       border-color: #667eea;
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      background: #16161e;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
     }
 
     &.invalid {
       border-color: #ef4444;
-      background: #fff;
+      background: #16161e;
 
       &:focus {
-        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
       }
     }
 
     &.auto-calculated {
-      background: #f0f7ff;
+      background: rgba(102,126,234,0.08);
       border-color: #4a90d9;
-      color: #1a1a2e;
+      color: #e4e4e7;
       font-weight: 500;
       cursor: not-allowed;
     }
@@ -161,7 +161,7 @@
 
   .field-hint {
     font-size: 0.75rem;
-    color: #999;
+    color: #71717a;
     margin-top: 4px;
   }
 

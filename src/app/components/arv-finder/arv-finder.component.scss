@@ -1,14 +1,14 @@
 .arv-finder {
-  background: #fff;
+  background: #16161e;
   border-radius: 20px;
   padding: 28px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.3);
 
   h2 {
     margin-bottom: 8px;
     font-size: 1.3rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: #e4e4e7;
     letter-spacing: -0.3px;
   }
 
@@ -16,12 +16,12 @@
     margin: 0;
     font-size: 1.05rem;
     font-weight: 700;
-    color: #333;
+    color: #e4e4e7;
   }
 }
 
 .subtitle {
-  color: #888;
+  color: #71717a;
   font-size: 0.9rem;
   margin: 0 0 24px;
 }
@@ -33,7 +33,7 @@
     display: block;
     font-size: 0.85rem;
     font-weight: 600;
-    color: #555;
+    color: #a1a1aa;
     margin-bottom: 6px;
   }
 
@@ -42,15 +42,15 @@
     max-width: 400px;
     padding: 10px 14px;
     border-radius: 10px;
-    border: 1.5px solid #e0e0e5;
-    background: #f9fafb;
+    border: 1.5px solid rgba(255,255,255,0.08);
+    background: #232330;
     font-size: 0.9rem;
     font-weight: 500;
-    color: #333;
+    color: #e4e4e7;
     cursor: pointer;
     transition: all 0.2s;
     appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23a1a1aa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 12px center;
     padding-right: 36px;
@@ -103,8 +103,8 @@
 }
 
 .btn-reset {
-  background: #f3f4f8;
-  color: #666;
+  background: rgba(255,255,255,0.06);
+  color: #a1a1aa;
   border: none;
   padding: 8px 16px;
   border-radius: 8px;
@@ -114,8 +114,8 @@
   transition: all 0.2s;
 
   &:hover {
-    background: #e8e8ec;
-    color: #333;
+    background: rgba(255,255,255,0.1);
+    color: #e4e4e7;
   }
 }
 
@@ -126,15 +126,15 @@
 }
 
 .comp-card {
-  background: #f9fafb;
+  background: rgba(255,255,255,0.03);
   border-radius: 12px;
   padding: 18px;
   border: 1.5px solid transparent;
   transition: all 0.2s;
 
   &:hover {
-    border-color: #e0e0e5;
-    background: #f5f5f7;
+    border-color: rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.06);
   }
 }
 
@@ -156,7 +156,7 @@
 .btn-remove {
   background: none;
   border: none;
-  color: #999;
+  color: #71717a;
   cursor: pointer;
   padding: 4px;
   border-radius: 6px;
@@ -166,7 +166,7 @@
   justify-content: center;
 
   &:hover {
-    background: #fde8e8;
+    background: rgba(239,68,68,0.1);
     color: #ef4444;
   }
 }
@@ -191,7 +191,7 @@
   label {
     font-size: 0.8rem;
     font-weight: 600;
-    color: #888;
+    color: #71717a;
     text-transform: uppercase;
     letter-spacing: 0.3px;
   }
@@ -201,11 +201,11 @@
     box-sizing: border-box;
     padding: 8px 12px;
     border-radius: 8px;
-    border: 1.5px solid #e0e0e5;
-    background: #fff;
+    border: 1.5px solid rgba(255,255,255,0.08);
+    background: #232330;
     font-size: 0.9rem;
     font-weight: 500;
-    color: #333;
+    color: #e4e4e7;
     transition: all 0.2s;
 
     &:focus {
@@ -215,7 +215,7 @@
     }
 
     &::placeholder {
-      color: #ccc;
+      color: #52525b;
     }
   }
 }
@@ -230,7 +230,7 @@
 }
 
 .arv-results {
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid rgba(255,255,255,0.06);
   padding-top: 24px;
 
   h3 {
@@ -245,7 +245,7 @@
 }
 
 .arv-card {
-  background: #f9fafb;
+  background: rgba(255,255,255,0.03);
   padding: 20px;
   border-radius: 12px;
   display: flex;
@@ -257,19 +257,19 @@
   .arv-value {
     font-size: 1.4rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: #e4e4e7;
     letter-spacing: -0.5px;
 
     small {
       font-size: 0.8rem;
       font-weight: 600;
-      color: #888;
+      color: #71717a;
     }
   }
 
   .arv-label {
     font-size: 0.8rem;
-    color: #888;
+    color: #71717a;
     text-transform: uppercase;
     letter-spacing: 0.3px;
   }

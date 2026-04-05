@@ -6,7 +6,7 @@
       margin: 0;
       font-size: 1.5rem;
       font-weight: 700;
-      color: #1a1a2e;
+      color: #e4e4e7;
     }
   }
 }
@@ -16,7 +16,7 @@
 
   h3 {
     margin-bottom: 20px;
-    color: #333;
+    color: #e4e4e7;
     font-size: 1.2rem;
     font-weight: 700;
   }
@@ -33,19 +33,19 @@
 }
 
 .deal-card {
-  background: white;
+  background: #16161e;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 16px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.06), 0 6px 16px rgba(0,0,0,0.2);
   cursor: pointer;
   transition: all 0.25s;
-  border: 1px solid rgba(0,0,0,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
   position: relative;
   overflow: hidden;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.06);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.3);
     border-color: #667eea;
 
     .card-arrow {
@@ -65,7 +65,7 @@
     margin: 0;
     font-size: 1rem;
     font-weight: 700;
-    color: #1a1a2e;
+    color: #e4e4e7;
     flex: 1;
     line-height: 1.4;
     padding-right: 8px;
@@ -75,7 +75,7 @@
 .btn-icon-delete {
   background: none;
   border: none;
-  color: #ccc;
+  color: #52525b;
   cursor: pointer;
   padding: 4px;
   border-radius: 6px;
@@ -87,7 +87,7 @@
 
   &:hover {
     color: #ef4444;
-    background: #fef2f2;
+    background: rgba(239,68,68,0.1);
   }
 }
 
@@ -106,14 +106,14 @@
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    color: #999;
+    color: #71717a;
     font-weight: 600;
   }
 
   .stat-value {
     font-weight: 700;
     font-size: 0.95rem;
-    color: #333;
+    color: #e4e4e7;
     letter-spacing: -0.3px;
 
     &.positive {
@@ -140,7 +140,7 @@
 .no-deals {
   text-align: center;
   padding: 60px 20px;
-  color: #999;
+  color: #71717a;
   display: flex;
   flex-direction: column;
   align-items: center;

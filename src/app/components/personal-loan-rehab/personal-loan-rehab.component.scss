@@ -1,20 +1,20 @@
 .page-container {
-  background: #fff;
+  background: #16161e;
   border-radius: 20px;
   padding: 28px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.3);
 
   h2 {
     margin-bottom: 8px;
     font-size: 1.3rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: #e4e4e7;
     letter-spacing: -0.3px;
   }
 }
 
 .subtitle {
-  color: #888;
+  color: #71717a;
   font-size: 0.9rem;
   margin: 0;
 }
@@ -32,8 +32,8 @@
 }
 
 .btn-toggle {
-  background: #f3f4f8;
-  color: #666;
+  background: rgba(255,255,255,0.06);
+  color: #a1a1aa;
   border: none;
   padding: 8px 16px;
   border-radius: 8px;
@@ -45,8 +45,8 @@
   flex-shrink: 0;
 
   &:hover {
-    background: #e8e8ec;
-    color: #333;
+    background: rgba(255,255,255,0.1);
+    color: #e4e4e7;
   }
 }
 
@@ -69,17 +69,17 @@
   label {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #555;
+    color: #a1a1aa;
   }
 
   .form-control {
     padding: 10px 14px;
     border-radius: 10px;
-    border: 1.5px solid #e0e0e5;
-    background: #f9fafb;
+    border: 1.5px solid rgba(255,255,255,0.08);
+    background: #232330;
     font-size: 0.9rem;
     font-weight: 500;
-    color: #333;
+    color: #e4e4e7;
     transition: all 0.2s;
     box-sizing: border-box;
     width: 100%;
@@ -88,7 +88,7 @@
       outline: none;
       border-color: #667eea;
       box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
-      background: #fff;
+      background: #16161e;
     }
   }
 }
@@ -134,7 +134,7 @@
 }
 
 .results-section {
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid rgba(255,255,255,0.06);
   padding-top: 24px;
 }
 
@@ -159,7 +159,7 @@
 }
 
 .result-card {
-  background: #f9fafb;
+  background: rgba(255,255,255,0.03);
   border-radius: 12px;
   padding: 20px;
   display: flex;
@@ -170,7 +170,7 @@
 
   .result-label {
     font-size: 0.8rem;
-    color: #888;
+    color: #71717a;
     text-transform: uppercase;
     letter-spacing: 0.3px;
   }
@@ -178,7 +178,7 @@
   .result-value {
     font-size: 1.4rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: #e4e4e7;
     letter-spacing: -0.5px;
   }
 
@@ -198,8 +198,8 @@
 .no-quotes {
   text-align: center;
   padding: 60px 20px;
-  color: #999;
-  background: #f9fafb;
+  color: #71717a;
+  background: rgba(255,255,255,0.03);
   border-radius: 12px;
   font-weight: 500;
 }
@@ -215,14 +215,14 @@
     th, td {
       padding: 12px 14px;
       text-align: left;
-      border-bottom: 1px solid #f0f0f0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
       font-size: 0.9rem;
     }
 
     th {
-      background: #f9fafb;
+      background: rgba(255,255,255,0.03);
       font-weight: 700;
-      color: #555;
+      color: #a1a1aa;
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.3px;
@@ -232,13 +232,13 @@
       transition: background 0.15s;
 
       &:hover {
-        background: #f9fafb;
+        background: rgba(255,255,255,0.03);
       }
     }
 
     .lender-cell {
       font-weight: 700;
-      color: #1a1a2e;
+      color: #e4e4e7;
     }
 
     .cell-highlight {
@@ -251,7 +251,7 @@
 .btn-delete {
   background: none;
   border: none;
-  color: #999;
+  color: #71717a;
   cursor: pointer;
   padding: 4px;
   border-radius: 6px;
@@ -259,7 +259,7 @@
   display: flex;
 
   &:hover {
-    background: #fde8e8;
+    background: rgba(239,68,68,0.1);
     color: #ef4444;
   }
 }
