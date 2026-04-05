@@ -12,7 +12,7 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    color: #667eea;
+    color: var(--color-accent);
     text-decoration: none;
     margin-bottom: 0.75rem;
     font-weight: 600;
@@ -26,13 +26,13 @@
   h2 {
     font-size: 1.8rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: var(--text-heading);
     margin-bottom: 0.25rem;
     letter-spacing: -0.5px;
   }
 
   .page-subtitle {
-    color: #999;
+    color: var(--text-tertiary);
     font-size: 1rem;
   }
 }
@@ -42,15 +42,15 @@
 }
 
 .deal-card {
-  background: white;
+  background: var(--bg-card);
   border-radius: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-card-lg);
   overflow: hidden;
   transition: box-shadow 0.3s;
-  border: 1px solid rgba(0,0,0,0.04);
+  border: 1px solid var(--border-default);
 
   &:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3), 0 16px 40px rgba(0,0,0,0.3);
   }
 }
 
@@ -60,11 +60,11 @@
   align-items: center;
   padding: 2rem;
   cursor: pointer;
-  background: white;
-  border-bottom: 1px solid #f0f0f0;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-divider);
 
   &:hover {
-    background: #fafbfc;
+    background: var(--bg-section);
   }
 }
 
@@ -74,7 +74,7 @@
 
 .deal-address {
   font-size: 1.4rem;
-  color: #1a1a2e;
+  color: var(--text-primary);
   margin: 0 0 1rem 0;
   font-weight: 800;
   letter-spacing: -0.5px;
@@ -109,7 +109,7 @@
 .status-selector-label {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #999;
+  color: var(--text-tertiary);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -138,7 +138,7 @@
 
   &.active {
     opacity: 1;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    box-shadow: var(--shadow-active);
   }
 }
 
@@ -147,27 +147,26 @@
   border-radius: 50px;
   font-size: 0.85rem;
   font-weight: 600;
-  background: #f3f4f8;
-  color: #666;
+  background: var(--bg-card-border);
 
   &.good-deal {
-    background: #d4edda;
-    color: #155724;
+    background: var(--color-success-bg);
+    color: var(--color-success);
   }
 
   &.bad-deal {
-    background: #f8d7da;
-    color: #721c24;
+    background: var(--color-danger-bg);
+    color: var(--color-danger);
   }
 
   &.positive {
-    background: #d4edda;
-    color: #155724;
+    background: var(--color-success-bg);
+    color: var(--color-success);
   }
 
   &.negative {
-    background: #f8d7da;
-    color: #721c24;
+    background: var(--color-danger-bg);
+    color: var(--color-danger);
   }
 }
 
@@ -180,7 +179,7 @@
 
   .arrow {
     display: inline-block;
-    color: #667eea;
+    color: var(--color-accent);
     font-size: 0.8rem;
     transition: transform 0.3s;
   }
@@ -191,7 +190,7 @@
 }
 
 .deal-card-body {
-  background: #fff;
+  background: var(--bg-card);
 }
 
 .detail-sections {
@@ -201,7 +200,7 @@
 .detail-section {
   margin-bottom: 2.5rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--border-divider);
 
   &:last-child {
     border-bottom: none;
@@ -210,7 +209,7 @@
   }
 
   h4 {
-    color: #667eea;
+    color: var(--color-accent);
     font-size: 0.9rem;
     font-weight: 700;
     margin-bottom: 1.25rem;
@@ -226,7 +225,7 @@
 }
 
 .detail-item {
-  background: #f9fafb;
+  background: var(--bg-section);
   padding: 1rem 1.25rem;
   border-radius: 12px;
   display: flex;
@@ -236,13 +235,13 @@
 
   &.editable {
     cursor: pointer;
-    border: 1px dashed rgba(102, 126, 234, 0.3);
-    background: #f8faff;
+    border: 1px dashed var(--bg-editable-border);
+    background: var(--bg-editable);
 
     &:hover {
-      background: #eef3ff;
+      background: var(--bg-icon-hover);
       border-style: solid;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      box-shadow: var(--shadow-focus);
     }
 
     .value {
@@ -257,7 +256,7 @@
         transform: translateY(-50%);
         width: 16px;
         height: 16px;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'/%3E%3Cpath d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'/%3E%3C/svg%3E");
         background-size: contain;
         background-repeat: no-repeat;
         opacity: 0.4;
@@ -274,16 +273,16 @@
   }
 
   &.total {
-    background: #f0f3ff;
-    border-left: 3px solid #667eea;
+    background: var(--bg-highlight);
+    border-left: 3px solid var(--color-accent);
   }
 
   &.highlight {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-highlight);
     color: white;
 
     .label {
-      color: rgba(255, 255, 255, 0.85);
+      color: var(--text-on-highlight);
     }
 
     .value {
@@ -293,7 +292,7 @@
 
   .label {
     font-size: 0.7rem;
-    color: #999;
+    color: var(--text-tertiary);
     text-transform: uppercase;
     letter-spacing: 0.8px;
     font-weight: 700;
@@ -302,19 +301,19 @@
   .value {
     font-size: 1.15rem;
     font-weight: 700;
-    color: #333;
+    color: var(--text-primary);
     letter-spacing: -0.3px;
 
     &.arvalue {
-      color: #22c55e;
+      color: var(--color-success);
     }
 
     &.positive {
-      color: #22c55e;
+      color: var(--color-success);
     }
 
     &.negative {
-      color: #ef4444;
+      color: var(--color-danger);
     }
   }
 }
@@ -322,17 +321,17 @@
 .inline-edit-input {
   width: 100%;
   padding: 0.6rem 0.8rem;
-  border: 2px solid #667eea;
+  border: 2px solid var(--color-accent);
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
-  background: white;
-  color: #333;
+  background: var(--bg-input);
+  color: var(--text-primary);
   font-family: inherit;
 
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
+    box-shadow: var(--shadow-focus);
   }
 }
 
@@ -342,7 +341,7 @@
   gap: 1.5rem;
   margin-bottom: 2rem;
   padding: 0.75rem 1rem;
-  background: #f9fafb;
+  background: var(--bg-section);
   border-radius: 10px;
   font-size: 0.8rem;
   align-items: center;
@@ -360,24 +359,24 @@
   border-radius: 4px;
 
   &.editable {
-    background: #f0f3ff;
-    border: 2px solid #667eea;
+    background: var(--bg-editable);
+    border: 2px solid var(--color-accent);
   }
 
   &.calculated {
-    background: #f5f5f5;
-    border: 1px solid #e0e0e0;
+    background: var(--bg-hover);
+    border: 1px solid var(--border-input);
     opacity: 0.8;
   }
 }
 
 .legend-label {
-  color: #777;
+  color: var(--text-secondary);
   font-weight: 500;
 }
 
 .summary-section {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--gradient-primary);
   padding: 2rem;
   border-radius: 16px;
   margin-top: 1.5rem;
@@ -428,13 +427,13 @@
 }
 
 .mao-section {
-  background: #fefcf3;
+  background: var(--bg-mao-section);
   padding: 2rem;
   border-radius: 16px;
-  border: 1.5px solid #f0dea0;
+  border: 1.5px solid var(--bg-mao-section-border);
 
   h4 {
-    color: #333;
+    color: var(--text-primary);
   }
 }
 
@@ -451,7 +450,7 @@
 
   .mao-label {
     font-size: 0.7rem;
-    color: #999;
+    color: var(--text-tertiary);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.8px;
@@ -460,7 +459,7 @@
   .mao-value {
     font-size: 1.4rem;
     font-weight: 800;
-    color: #1a1a2e;
+    color: var(--text-primary);
     letter-spacing: -0.5px;
   }
 
@@ -472,31 +471,31 @@
     font-weight: 500;
 
     &.over {
-      background: #fde8e8;
-      color: #c62828;
+      background: var(--color-danger-bg);
+      color: var(--color-danger);
     }
 
     &.under {
-      background: #e6f5e9;
-      color: #2e7d32;
+      background: var(--color-success-bg);
+      color: var(--color-success);
     }
   }
 }
 
 .notes-text {
-  background: #f9fafb;
+  background: var(--bg-section);
   padding: 1.25rem;
   border-radius: 12px;
-  color: #555;
+  color: var(--text-secondary);
   line-height: 1.7;
-  border-left: 3px solid #ffc107;
+  border-left: 3px solid var(--color-warning);
   font-size: 0.9rem;
 }
 
 .deal-actions {
   margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid #f0f0f0;
+  border-top: 1px solid var(--border-divider);
   display: flex;
   justify-content: flex-end;
 }
@@ -516,8 +515,8 @@
   gap: 6px;
 
   &:hover {
-    background: #dc2626;
-    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+    background: var(--color-danger-hover);
+    box-shadow: var(--shadow-delete);
     transform: translateY(-1px);
   }
 }
@@ -528,9 +527,9 @@
   gap: 4px;
   margin-top: 12px;
   padding: 4px;
-  background: white;
+  background: var(--bg-card);
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  box-shadow: var(--shadow-card);
   overflow-x: auto;
 }
 
@@ -544,7 +543,7 @@
   border-radius: 8px;
   font-size: 0.85rem;
   font-weight: 600;
-  color: #666;
+  color: var(--text-secondary);
   cursor: pointer;
   white-space: nowrap;
   font-family: inherit;
@@ -554,24 +553,24 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--status-color, #999);
+    background: var(--status-color, var(--text-tertiary));
   }
 
   .count {
     font-size: 0.7rem;
-    background: rgba(0,0,0,0.06);
+    background: var(--bg-hover);
     padding: 1px 6px;
     border-radius: 10px;
-    color: #999;
+    color: var(--text-tertiary);
   }
 
   &:hover {
-    background: #f5f5f7;
-    color: #333;
+    background: var(--bg-hover);
+    color: var(--text-primary);
   }
 
   &.active {
-    background: #1a1a2e;
+    background: var(--bg-active);
     color: white;
 
     .count {
@@ -588,12 +587,12 @@
 .no-deals {
   text-align: center;
   padding: 4rem 2rem;
-  background: white;
+  background: var(--bg-card);
   border-radius: 20px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  box-shadow: var(--shadow-card-lg);
 
   p {
-    color: #999;
+    color: var(--text-tertiary);
     margin-bottom: 1.5rem;
     font-size: 1.1rem;
     font-weight: 500;
@@ -602,7 +601,7 @@
 
 .btn {
   &.btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--gradient-primary);
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
@@ -615,7 +614,7 @@
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 4px 14px rgba(102, 126, 234, 0.3);
+      box-shadow: var(--shadow-btn-primary);
     }
   }
 }

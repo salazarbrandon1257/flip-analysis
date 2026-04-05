@@ -1,9 +1,9 @@
 .comparison-container {
-  background: #fff;
+  background: var(--bg-card);
   border-radius: 20px;
   padding: 28px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.04);
+  box-shadow: var(--shadow-card-lg);
+  border: 1px solid var(--border-default);
 }
 
 .comparison-header {
@@ -14,7 +14,7 @@
 
   h2 {
     margin: 0;
-    color: #1a1a2e;
+    color: var(--text-heading);
     font-size: 1.3rem;
     font-weight: 800;
     letter-spacing: -0.3px;
@@ -29,24 +29,24 @@
 
 .selection-count {
   font-size: 0.85rem;
-  color: #999;
+  color: var(--text-tertiary);
   font-weight: 500;
 }
 
 .btn-clear {
   padding: 6px 14px;
-  background: #f5f5f5;
+  background: var(--bg-hover);
   border: none;
   border-radius: 8px;
   font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.2s;
   font-weight: 500;
-  color: #666;
+  color: var(--text-secondary);
 
   &:hover {
-    background: #e8e8e8;
-    color: #333;
+    background: var(--bg-hover-strong);
+    color: var(--text-primary);
   }
 }
 
@@ -56,7 +56,7 @@
   gap: 10px;
   margin-bottom: 20px;
   padding: 16px;
-  background: #f9fafb;
+  background: var(--bg-section);
   border-radius: 12px;
 }
 
@@ -65,26 +65,26 @@
   align-items: center;
   gap: 8px;
   padding: 8px 14px;
-  background: #fff;
-  border: 1.5px solid #e8e8ec;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border-input);
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
 
   &:hover {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.08);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-focus);
   }
 
   &.selected {
-    background: #f0f3ff;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.08);
+    background: var(--bg-highlight);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-focus);
   }
 
   input {
     cursor: pointer;
-    accent-color: #667eea;
+    accent-color: var(--color-accent);
   }
 
   .deal-name {
@@ -111,13 +111,13 @@
   td {
     padding: 14px 16px;
     text-align: center;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-divider);
   }
 
   th {
-    background: #f9fafb;
+    background: var(--bg-header);
     font-weight: 700;
-    color: #333;
+    color: var(--text-heading);
     font-size: 0.9rem;
     letter-spacing: -0.2px;
   }
@@ -125,27 +125,25 @@
   .label-col {
     text-align: left;
     width: 220px;
-    color: #666;
+    color: var(--text-secondary);
     font-weight: 500;
   }
 
-  .section-header {
-    td {
-      background: #1a1a2e;
-      color: #fff;
-      font-weight: 700;
-      text-align: left;
-      padding-left: 16px;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-    }
+  .section-header td {
+    background: var(--bg-active);
+    color: #fff;
+    font-weight: 700;
+    text-align: left;
+    padding-left: 16px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
   }
 
   .highlight-row {
     td {
       font-weight: 700;
-      background: #f8faff;
+      background: var(--bg-highlight);
 
       &.big {
         font-size: 1.05rem;
@@ -153,7 +151,7 @@
     }
 
     &.negative {
-      color: #ef4444;
+      color: var(--color-danger);
     }
   }
 
@@ -166,20 +164,20 @@
   }
 
   .best {
-    background: #d4edda !important;
+    background: var(--color-success-bg) !important;
     font-weight: 700;
   }
 
   .negative {
-    color: #ef4444;
+    color: var(--color-danger);
   }
 }
 
 .empty-state {
   text-align: center;
   padding: 40px 20px;
-  color: #999;
-  background: #f9fafb;
+  color: var(--text-tertiary);
+  background: var(--bg-section);
   border-radius: 12px;
   font-weight: 500;
 }
@@ -192,12 +190,12 @@
   }
 
   .good-deal {
-    background: #d4edda !important;
-    color: #155724;
+    background: var(--color-success-bg) !important;
+    color: var(--color-success);
   }
 
   .bad-deal {
-    background: #f8d7da !important;
-    color: #721c24;
+    background: var(--color-danger-bg) !important;
+    color: var(--color-danger);
   }
 }

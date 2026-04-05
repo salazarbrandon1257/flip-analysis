@@ -1,16 +1,252 @@
-/* Global styles */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 * {
   box-sizing: border-box;
 }
 
+/* ── Theme Variables: Dark (default) ── */
+:root,
+[data-theme="dark"] {
+  --bg-primary: #0f0e17;
+  --bg-card: #16161e;
+  --bg-input: #232330;
+  --bg-input-focus: #16161e;
+  --bg-hover: rgba(255, 255, 255, 0.06);
+  --bg-hover-strong: rgba(255, 255, 255, 0.1);
+  --bg-card-border: rgba(255, 255, 255, 0.06);
+  --bg-section: rgba(255, 255, 255, 0.03);
+  --bg-header: rgba(255, 255, 255, 0.03);
+  --bg-section-alt: rgba(255, 255, 255, 0.03);
+  --bg-active: #1a1a2e;
+  --bg-overlay-dark: rgba(0, 0, 0, 0.3);
+  --bg-overlay-light: rgba(0, 0, 0, 0.2);
+  --bg-icon: rgba(255, 255, 255, 0.06);
+  --bg-icon-hover: rgba(102, 126, 234, 0.12);
+  --bg-badge: rgba(102, 126, 234, 0.15);
+  --bg-tag: rgba(102, 126, 234, 0.08);
+  --bg-mao-good: rgba(34, 197, 94, 0.08);
+  --bg-mao-good-border: rgba(34, 197, 94, 0.15);
+  --bg-returns: rgba(102, 126, 234, 0.08);
+  --bg-returns-border: rgba(102, 126, 234, 0.15);
+  --bg-auto-calc: rgba(102, 126, 234, 0.08);
+  --bg-editable: rgba(102, 126, 234, 0.08);
+  --bg-editable-border: rgba(102, 126, 234, 0.3);
+  --bg-highlight: rgba(102, 126, 234, 0.08);
+  --bg-row-alt: rgba(255, 255, 255, 0.03);
+  --bg-mao-section: rgba(254, 252, 243, 0.06);
+  --bg-mao-section-border: rgba(240, 222, 160, 0.2);
+  --bg-table-header: rgba(255, 255, 255, 0.06);
+  --bg-table-header-border: rgba(255, 255, 255, 0.08);
+
+  --text-primary: #e4e4e7;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+  --text-muted: #52525b;
+  --text-heading: #e4e4e7;
+  --text-badge: #8b9cf7;
+  --text-desc: #94a3b8;
+  --text-on-highlight: rgba(255, 255, 255, 0.85);
+
+  --border-default: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(255, 255, 255, 0.1);
+  --border-input: rgba(255, 255, 255, 0.08);
+  --border-divider: rgba(255, 255, 255, 0.06);
+  --border-editable: rgba(102, 126, 234, 0.3);
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 6px 16px rgba(0,0,0,0.3);
+  --shadow-card-lg: 0 1px 3px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.3);
+  --shadow-card-hover: 0 4px 12px rgba(0,0,0,0.3), 0 12px 32px rgba(0,0,0,0.3);
+  --shadow-btn-primary: 0 4px 14px rgba(102, 126, 234, 0.3);
+  --shadow-btn-primary-hover: 0 6px 20px rgba(102, 126, 234, 0.4);
+  --shadow-focus: 0 0 0 3px rgba(102, 126, 234, 0.15);
+  --shadow-focus-error: 0 0 0 3px rgba(239, 68, 68, 0.15);
+  --shadow-active: 0 2px 8px rgba(102, 126, 234, 0.25);
+  --shadow-delete: 0 4px 12px rgba(239, 68, 68, 0.25);
+  --shadow-header: 0 2px 8px rgba(102, 126, 234, 0.25);
+  --shadow-dropdown: 0 4px 20px rgba(0, 0, 0, 0.4);
+
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #5a6fd6 0%, #6a4294 100%);
+  --gradient-hero-text: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #667eea 100%);
+  --gradient-header: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-highlight: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-footer-border: linear-gradient(90deg, transparent, rgba(102,126,234,0.3), transparent);
+  --gradient-footer-logo: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-hero-border-top: linear-gradient(90deg, transparent, rgba(102,126,234,0.3), transparent);
+  --gradient-progress: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  --gradient-circle: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-glow1: radial-gradient(circle, rgba(102,126,234,0.25) 0%, transparent 70%);
+  --gradient-glow2: radial-gradient(circle, rgba(118,75,162,0.2) 0%, transparent 70%);
+  --gradient-glow3: radial-gradient(circle, rgba(165,180,252,0.15) 0%, transparent 70%);
+
+  --color-accent: #667eea;
+  --color-accent-hover: #5a6fd6;
+  --color-success: #22c55e;
+  --color-success-bg: rgba(34,197,94,0.12);
+  --color-danger: #ef4444;
+  --color-danger-bg: rgba(239,68,68,0.12);
+  --color-danger-hover: #dc2626;
+  --color-warning: #ffc107;
+  --color-green: #059669;
+  --color-orange: #e65100;
+  --color-blue: #1565c0;
+  --color-red: #c62828;
+
+  --icon-deals-bg: rgba(124,58,237,0.12);
+  --icon-deals-color: #7c3aed;
+  --icon-profit-bg: rgba(5,150,105,0.12);
+  --icon-profit-color: #059669;
+  --icon-roi-bg: rgba(37,99,235,0.12);
+  --icon-roi-color: #2563eb;
+  --icon-best-bg: rgba(217,119,6,0.12);
+  --icon-best-color: #d97706;
+  --icon-section-property-bg: rgba(34,197,94,0.12);
+  --icon-section-property-color: #22c55e;
+  --icon-section-financial-bg: rgba(230,81,0,0.12);
+  --icon-section-financial-color: #e65100;
+  --icon-section-loan-bg: rgba(21,101,192,0.12);
+  --icon-section-loan-color: #1565c0;
+  --icon-section-notes-bg: rgba(198,40,40,0.12);
+  --icon-section-notes-color: #c62828;
+  --icon-budget-bg: rgba(230,81,0,0.12);
+  --icon-budget-color: #e65100;
+  --icon-avg-bg: rgba(46,125,50,0.12);
+  --icon-avg-color: #2e7d32;
+  --icon-time-bg: rgba(21,101,192,0.12);
+  --icon-time-color: #1565c0;
+
+  --header-bg: rgba(15, 14, 23, 0.9);
+  --header-tagline-display: none;
+  --footer-bg: #16161e;
+  --cta-banner-bg: linear-gradient(180deg, transparent 0%, rgba(102,126,234,0.06) 50%, transparent 100%);
+  --landing-card-bg: #16161e;
+}
+
+/* ── Theme Variables: Light ── */
+[data-theme="light"] {
+  --bg-primary: #f8f9fc;
+  --bg-card: #ffffff;
+  --bg-input: #f0f0f5;
+  --bg-input-focus: #ffffff;
+  --bg-hover: rgba(0, 0, 0, 0.04);
+  --bg-hover-strong: rgba(0, 0, 0, 0.08);
+  --bg-card-border: rgba(0, 0, 0, 0.08);
+  --bg-section: rgba(0, 0, 0, 0.02);
+  --bg-header: rgba(0, 0, 0, 0.02);
+  --bg-section-alt: #f5f5fa;
+  --bg-active: #f0f0f5;
+  --bg-overlay-dark: rgba(0, 0, 0, 0.03);
+  --bg-overlay-light: rgba(0, 0, 0, 0.02);
+  --bg-icon: rgba(0, 0, 0, 0.04);
+  --bg-icon-hover: rgba(102, 126, 234, 0.1);
+  --bg-badge: rgba(102, 126, 234, 0.12);
+  --bg-tag: rgba(102, 126, 234, 0.06);
+  --bg-mao-good: rgba(34, 197, 94, 0.06);
+  --bg-mao-good-border: rgba(34, 197, 94, 0.15);
+  --bg-returns: rgba(102, 126, 234, 0.06);
+  --bg-returns-border: rgba(102, 126, 234, 0.12);
+  --bg-auto-calc: rgba(102, 126, 234, 0.06);
+  --bg-editable: rgba(102, 126, 234, 0.06);
+  --bg-editable-border: rgba(102, 126, 234, 0.3);
+  --bg-highlight: rgba(102, 126, 234, 0.06);
+  --bg-row-alt: #fafafa;
+  --bg-mao-section: rgba(254, 252, 243, 0.5);
+  --bg-mao-section-border: rgba(240, 222, 160, 0.4);
+  --bg-table-header: #f0f0f5;
+  --bg-table-header-border: rgba(0, 0, 0, 0.08);
+
+  --text-primary: #1a1a2e;
+  --text-secondary: #555568;
+  --text-tertiary: #8888a0;
+  --text-muted: #aaaabc;
+  --text-heading: #1a1a2e;
+  --text-badge: #667eea;
+  --text-desc: #666680;
+  --text-on-highlight: rgba(255, 255, 255, 0.85);
+
+  --border-default: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 0, 0, 0.15);
+  --border-input: rgba(0, 0, 0, 0.1);
+  --border-divider: rgba(0, 0, 0, 0.08);
+  --border-editable: rgba(102, 126, 234, 0.3);
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.08), 0 6px 16px rgba(0,0,0,0.04);
+  --shadow-card-lg: 0 1px 3px rgba(0,0,0,0.04), 0 0 0 1px rgba(0,0,0,0.08), 0 8px 24px rgba(0,0,0,0.04);
+  --shadow-card-hover: 0 4px 12px rgba(0,0,0,0.06), 0 12px 32px rgba(0,0,0,0.04);
+  --shadow-btn-primary: 0 4px 14px rgba(102, 126, 234, 0.3);
+  --shadow-btn-primary-hover: 0 6px 20px rgba(102, 126, 234, 0.4);
+  --shadow-focus: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  --shadow-focus-error: 0 0 0 3px rgba(239, 68, 68, 0.2);
+  --shadow-active: 0 2px 8px rgba(102, 126, 234, 0.2);
+  --shadow-delete: 0 4px 12px rgba(239, 68, 68, 0.15);
+  --shadow-header: 0 2px 8px rgba(102, 126, 234, 0.15);
+  --shadow-dropdown: 0 4px 20px rgba(0, 0, 0, 0.1);
+
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-primary-hover: linear-gradient(135deg, #5a6fd6 0%, #6a4294 100%);
+  --gradient-hero-text: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #667eea 100%);
+  --gradient-header: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-highlight: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-footer-border: linear-gradient(90deg, transparent, rgba(102,126,234,0.25), transparent);
+  --gradient-footer-logo: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-hero-border-top: linear-gradient(90deg, transparent, rgba(102,126,234,0.3), transparent);
+  --gradient-progress: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  --gradient-circle: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-glow1: radial-gradient(circle, rgba(102,126,234,0.15) 0%, transparent 70%);
+  --gradient-glow2: radial-gradient(circle, rgba(118,75,162,0.1) 0%, transparent 70%);
+  --gradient-glow3: radial-gradient(circle, rgba(165,180,252,0.08) 0%, transparent 70%);
+
+  --color-accent: #667eea;
+  --color-accent-hover: #5a6fd6;
+  --color-success: #16a34a;
+  --color-success-bg: rgba(22,163,74,0.1);
+  --color-danger: #ef4444;
+  --color-danger-bg: rgba(239,68,68,0.1);
+  --color-danger-hover: #dc2626;
+  --color-warning: #e6a800;
+  --color-green: #059669;
+  --color-orange: #e65100;
+  --color-blue: #1565c0;
+  --color-red: #c62828;
+
+  --icon-deals-bg: #ede9fe;
+  --icon-deals-color: #7c3aed;
+  --icon-profit-bg: #d1fae5;
+  --icon-profit-color: #059669;
+  --icon-roi-bg: #dbeafe;
+  --icon-roi-color: #2563eb;
+  --icon-best-bg: #fef3c7;
+  --icon-best-color: #d97706;
+  --icon-section-property-bg: rgba(34,197,94,0.1);
+  --icon-section-property-color: #22c55e;
+  --icon-section-financial-bg: rgba(230,81,0,0.1);
+  --icon-section-financial-color: #e65100;
+  --icon-section-loan-bg: rgba(21,101,192,0.1);
+  --icon-section-loan-color: #1565c0;
+  --icon-section-notes-bg: rgba(198,40,40,0.1);
+  --icon-section-notes-color: #c62828;
+  --icon-budget-bg: rgba(230,81,0,0.1);
+  --icon-budget-color: #e65100;
+  --icon-avg-bg: rgba(46,125,50,0.1);
+  --icon-avg-color: #2e7d32;
+  --icon-time-bg: rgba(21,101,192,0.1);
+  --icon-time-color: #1565c0;
+
+  --header-bg: rgba(248, 249, 252, 0.92);
+  --header-tagline-display: none;
+  --footer-bg: #f0f0f5;
+  --cta-banner-bg: linear-gradient(180deg, transparent 0%, rgba(102,126,234,0.04) 100%);
+  --landing-card-bg: #ffffff;
+}
+
+/* ── Base ── */
 body {
   margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-size: 14px;
-  color: #1a1a2e;
-  background: #f3f4f8;
+  color: var(--text-primary);
+  background: var(--bg-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 0.25s ease, color 0.25s ease;
 }

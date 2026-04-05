@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { ThemeService } from './services/theme.service';
 
 @Component({
     selector: 'app-root',
@@ -12,7 +13,10 @@ export class AppComponent {
   currentYear = new Date().getFullYear();
   activeDropdown: string | null = null;
 
-  constructor(public auth: AuthService) {}
+  constructor(
+    public auth: AuthService,
+    public themeService: ThemeService
+  ) {}
 
   toggleDropdown(name: string): void {
     this.activeDropdown = this.activeDropdown === name ? null : name;
@@ -20,6 +24,10 @@ export class AppComponent {
 
   closeDropdown(): void {
     this.activeDropdown = null;
+  }
+
+  toggleTheme(): void {
+    this.themeService.toggleTheme();
   }
 
   async onLogout(): Promise<void> {
