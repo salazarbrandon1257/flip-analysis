@@ -1,27 +1,43 @@
 <div class="arv-finder">
   <div class="header-section">
-    <h2>ARV Finder</h2>
-    <p class="subtitle">Add comps to estimate the After Repair Value for your deals</p>
+    <div class="header-top">
+      <h2>ARV Finder</h2>
+      <button class="btn-back" *ngIf="selectedDealId" (click)="backToDeals()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back to Deals
+      </button>
+    </div>
+    <p class="subtitle">
+      <ng-container *ngIf="!selectedDealId">Select a deal to start adding comps</ng-container>
+      <ng-container *ngIf="selectedDealId">
+        <span class="selected-deal-label">Analyzing:</span> {{ selectedDealAddress }}
+      </ng-container>
+    </p>
   </div>
 
-  <div class="deal-selector">
-    <label for="deal-select">Select Deal</label>
-    <select id="deal-select" [(ngModel)]="selectedDealId" (ngModelChange)="onDealSelected()">
-      <option value="">Select a deal...</option>
-      <option *ngFor="let deal of deals" [value]="deal.id">
-        {{ deal.address }} - ${{ deal.purchasePrice | number }}
-      </option>
-    </select>
+  <!-- Deal Selection Grid -->
+  <div class="deals-grid" *ngIf="!selectedDealId">
+    <div class="deal-card" *ngFor="let deal of deals" (click)="selectDeal(deal.id)">
+      <div class="deal-card-top">
+        <span class="deal-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <span class="deal-status-pill" [style.background]="statusBackground(deal.status)" [style.color]="statusColor(deal.status)">{{ deal.status }}</span>
+      </div>
+      <div class="deal-card-address">{{ deal.address }}</div>
+      <div class="deal-card-price">${{ deal.purchasePrice | number }}</div>
+    </div>
+    <div class="deal-card-empty" *ngIf="deals.length === 0">
+      <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <p>No deals yet. Add a deal first, then come back.</p>
+    </div>
   </div>
 
-  <div class="comps-section">
+  <!-- Comps Editor -->
+  <div class="comps-section" *ngIf="selectedDealId">
     <div class="comps-header">
       <h3>Comparable Sales</h3>
       <div class="comps-actions">
-        <button class="btn-add" (click)="addComp()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-          Add Comp
-        </button>
         <span class="saved-message" *ngIf="savedMessage">{{ savedMessage }}</span>
         <button class="btn-save" (click)="saveComps()">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
@@ -50,11 +66,11 @@
           <div class="form-row">
             <div class="form-group">
               <label>Sold Price ($)</label>
-              <input type="number" [(ngModel)]="comp.soldPrice" (ngModelChange)="calculateArv()" placeholder="250000" class="form-control" />
+              <input type="text" [ngModel]="formatCurrency(comp.soldPrice)" (ngModelChange)="updateCompSoldPrice(comp, $event)" (blur)="formatCompFieldBlur(comp, 'soldPrice')" placeholder="250,000" class="form-control" />
             </div>
             <div class="form-group">
               <label>Sq Ft</label>
-              <input type="number" [(ngModel)]="comp.sqft" (ngModelChange)="calculateArv()" placeholder="1500" class="form-control" />
+              <input type="text" [ngModel]="formatCurrency(comp.sqft)" (ngModelChange)="updateCompSqft(comp, $event)" (blur)="formatCompFieldBlur(comp, 'sqft')" placeholder="1,500" class="form-control" />
             </div>
           </div>
 
@@ -86,9 +102,14 @@
         </div>
       </div>
     </div>
+
+    <button class="btn-add-comp" (click)="addComp()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Add Another Comp
+    </button>
   </div>
 
-  <div class="arv-results" *ngIf="suggestedArv > 0">
+  <div class="arv-results" *ngIf="selectedDealId && suggestedArv > 0">
     <h3>Estimated ARV</h3>
     <div class="arv-cards">
       <div class="arv-card">

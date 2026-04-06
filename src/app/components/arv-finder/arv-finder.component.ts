@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DealService } from '../../services/deal.service';
 import { ArvCompsService } from '../../services/arv-comps.service';
-import { Deal } from '../../models/deal';
+import { Deal, statusColor, statusBackground } from '../../models/deal';
 import { Auth, authState } from '@angular/fire/auth';
 import { firstValueFrom, timeout } from 'rxjs';
 
@@ -30,23 +30,44 @@ export class ArvFinderComponent implements OnInit {
   avgPricePerSqft: number = 0;
   suggestedArv: number = 0;
   savedMessage = '';
-  routeDealId: string | null = null;
+
+  statusColor = statusColor;
+  statusBackground = statusBackground;
 
   constructor(
     private dealService: DealService,
     private arvCompsService: ArvCompsService,
     private auth: Auth,
     private route: ActivatedRoute,
+    private router: Router,
   ) {
     this.resetForm();
   }
 
   ngOnInit(): void {
-    this.routeDealId = this.route.snapshot.paramMap.get('dealId');
-    if (this.routeDealId) {
-      this.selectedDealId = this.routeDealId;
+    const routeDealId = this.route.snapshot.paramMap.get('dealId');
+    if (routeDealId && this.deals.find(d => d.id === routeDealId)) {
+      this.selectedDealId = routeDealId;
       this.loadCompsForSelectedDeal();
     }
+  }
+
+  get deals(): Deal[] {
+    return this.dealService.deals;
+  }
+
+  get selectedDealAddress(): string {
+    const deal = this.deals.find(d => d.id === this.selectedDealId);
+    return deal?.address ?? '';
+  }
+
+  selectDeal(dealId: string): void {
+    this.selectedDealId = dealId;
+    this.loadCompsForSelectedDeal();
+  }
+
+  backToDeals(): void {
+    this.selectedDealId = '';
   }
 
   private async getUserId(): Promise<string | null> {
@@ -56,10 +77,6 @@ export class ArvFinderComponent implements OnInit {
     } catch {
       return null;
     }
-  }
-
-  onDealSelected(): void {
-    this.loadCompsForSelectedDeal();
   }
 
   async loadCompsForSelectedDeal(): Promise<void> {
@@ -104,10 +121,6 @@ export class ArvFinderComponent implements OnInit {
     setTimeout(() => { this.savedMessage = ''; }, 2000);
   }
 
-  get deals(): Deal[] {
-    return this.dealService.deals;
-  }
-
   resetForm(): void {
     this.comps = [
       this.emptyComp(),
@@ -120,6 +133,29 @@ export class ArvFinderComponent implements OnInit {
 
   addComp(): void {
     this.comps.push(this.emptyComp());
+  }
+
+  formatCurrency(value: number): string {
+    if (!value) return '';
+    return value.toLocaleString('en-US');
+  }
+
+  parseValue(val: string): number {
+    return Number(val.replace(/,/g, '')) || 0;
+  }
+
+  updateCompSoldPrice(comp: Comp, formattedValue: string): void {
+    comp.soldPrice = this.parseValue(formattedValue);
+    this.calculateArv();
+  }
+
+  updateCompSqft(comp: Comp, formattedValue: string): void {
+    comp.sqft = this.parseValue(formattedValue);
+    this.calculateArv();
+  }
+
+  formatCompFieldBlur(comp: Comp, field: 'soldPrice' | 'sqft'): void {
+    comp[field] = this.parseValue(comp[field].toString());
   }
 
   removeComp(index: number): void {
