@@ -23,6 +23,7 @@ const routes: Routes = [
   { path: 'deals/:id', component: DealsDetailComponent, canActivate: [authGuard] },
   { path: 'compare', component: CompareDealsPageComponent, canActivate: [authGuard] },
   { path: 'arv-finder', component: ArvFinderComponent, canActivate: [authGuard] },
+  { path: 'arv-finder/:dealId', component: ArvFinderComponent, canActivate: [authGuard] },
   { path: 'lender/personal-loan', component: PersonalLoanRehabComponent, canActivate: [authGuard] },
   { path: 'lender/hard-money', component: HardMoneyLenderComponent, canActivate: [authGuard] },
 ];

@@ -8,6 +8,8 @@ describe('ArvFinderComponent', () => {
       { deals: [] } as any,
       {} as any,
       {} as any,
+      {} as any,
+      { navigate: jasmine.createSpy('navigate') } as any,
     );
   });
 

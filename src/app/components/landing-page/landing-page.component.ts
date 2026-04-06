@@ -41,7 +41,7 @@ export class LandingPageComponent {
     for (const deal of this.analyzedDeals) {
       counts[deal.deal.status] = (counts[deal.deal.status] || 0) + 1;
     }
-    const order = ['Analyzing', 'Offer Made', 'Contract', 'Rehab', 'Listed', 'Sold'];
+    const order = ['Analyzing', 'Offer Made', 'Contract', 'Rehab', 'Listed', 'Sold', 'Passed'];
     return order.map(status => ({
       status,
       count: counts[status] || 0,

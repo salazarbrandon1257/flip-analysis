@@ -50,17 +50,18 @@ function makeDeal(overrides: { netProfit?: number; roi?: number; profitMargin?: 
 
 describe('LandingPageComponent', () => {
   describe('DEAL_STATUSES', () => {
-    it('should have exactly 6 statuses', () => {
-      expect(DEAL_STATUSES.length).toBe(6);
+    it('should have exactly 7 statuses', () => {
+      expect(DEAL_STATUSES.length).toBe(7);
     });
 
-    it('should include Analyzing, Offer Made, Contract, Rehab, Listed, Sold', () => {
+    it('should include Analyzing, Offer Made, Contract, Rehab, Listed, Sold, Passed', () => {
       expect(DEAL_STATUSES).toContain('Analyzing');
       expect(DEAL_STATUSES).toContain('Offer Made');
       expect(DEAL_STATUSES).toContain('Contract');
       expect(DEAL_STATUSES).toContain('Rehab');
       expect(DEAL_STATUSES).toContain('Listed');
       expect(DEAL_STATUSES).toContain('Sold');
+      expect(DEAL_STATUSES).toContain('Passed');
     });
   });
 
@@ -68,7 +69,7 @@ describe('LandingPageComponent', () => {
     it('should return distinct colors for each status', () => {
       const colors = DEAL_STATUSES.map(s => statusColor(s));
       const uniqueColors = new Set(colors);
-      expect(uniqueColors.size).toBe(6);
+      expect(uniqueColors.size).toBe(7);
     });
 
     it('should return gray for unknown status', () => {
