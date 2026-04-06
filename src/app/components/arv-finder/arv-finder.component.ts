@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DealService } from '../../services/deal.service';
 import { ArvCompsService } from '../../services/arv-comps.service';
 import { Deal } from '../../models/deal';
@@ -22,20 +23,30 @@ export interface Comp {
   styleUrls: ['./arv-finder.component.scss'],
   standalone: false
 })
-export class ArvFinderComponent {
+export class ArvFinderComponent implements OnInit {
   selectedDealId: string = '';
   comps: Comp[] = [];
   avgCompPrice: number = 0;
   avgPricePerSqft: number = 0;
   suggestedArv: number = 0;
   savedMessage = '';
+  routeDealId: string | null = null;
 
   constructor(
     private dealService: DealService,
     private arvCompsService: ArvCompsService,
     private auth: Auth,
+    private route: ActivatedRoute,
   ) {
     this.resetForm();
+  }
+
+  ngOnInit(): void {
+    this.routeDealId = this.route.snapshot.paramMap.get('dealId');
+    if (this.routeDealId) {
+      this.selectedDealId = this.routeDealId;
+      this.loadCompsForSelectedDeal();
+    }
   }
 
   private async getUserId(): Promise<string | null> {

@@ -219,3 +219,26 @@
     transform: translateY(0);
   }
 }
+
+.btn-arv-finder {
+  width: 100%;
+  padding: 14px 24px;
+  background: var(--bg-section);
+  color: var(--color-accent);
+  border: 1.5px solid var(--color-accent);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+
+  &:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+}

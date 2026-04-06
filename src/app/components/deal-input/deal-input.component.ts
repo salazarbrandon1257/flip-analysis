@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DealService } from '../../services/deal.service';
+import { Router } from '@angular/router';
 
 // Custom currency formatter that adds commas
 function formatWithCommas(value: number): string {
@@ -27,10 +28,12 @@ export class DealInputComponent {
 
   dealForm: FormGroup;
   submitted = false;
+  lastDealId: string | null = null;
 
   constructor(
     private fb: FormBuilder,
-    private dealService: DealService
+    private dealService: DealService,
+    private router: Router,
   ) {
     this.dealForm = this.createForm();
   }
@@ -123,7 +126,8 @@ export class DealInputComponent {
       notes: rawValue.notes,
     };
 
-    await this.dealService.addDeal(deal);
+    const dealId = await this.dealService.addDeal(deal);
+    this.lastDealId = dealId;
 
     this.dealForm.reset({
       purchasePrice: '0',
@@ -140,6 +144,12 @@ export class DealInputComponent {
 
     this.submitted = false;
     this.dealAdded.emit();
+  }
+
+  openArvFinder(): void {
+    if (this.lastDealId) {
+      this.router.navigate(['/arv-finder', this.lastDealId]);
+    }
   }
 
   get f() {
