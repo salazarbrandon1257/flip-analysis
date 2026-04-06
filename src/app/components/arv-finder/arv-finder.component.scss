@@ -119,6 +119,51 @@
   }
 }
 
+.btn-save {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--color-accent-hover);
+    box-shadow: var(--shadow-active);
+  }
+}
+
+.btn-clear {
+  background: var(--bg-hover);
+  color: var(--text-tertiary);
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.2s;
+
+  &:hover {
+    background: var(--bg-hover-strong);
+    color: var(--color-danger, #ef4444);
+  }
+}
+
+.saved-message {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-success, #22c55e);
+  margin-left: 8px;
+  justify-self: center;
+}
+
 .comps-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));

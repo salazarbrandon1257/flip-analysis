@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { DealService } from '../../services/deal.service';
+import { ArvCompsService } from '../../services/arv-comps.service';
 import { Deal } from '../../models/deal';
+import { Auth, authState } from '@angular/fire/auth';
+import { firstValueFrom, timeout } from 'rxjs';
 
-interface Comp {
+export interface Comp {
   address: string;
   soldPrice: number;
   sqft: number;
@@ -25,9 +28,69 @@ export class ArvFinderComponent {
   avgCompPrice: number = 0;
   avgPricePerSqft: number = 0;
   suggestedArv: number = 0;
+  savedMessage = '';
 
-  constructor(private dealService: DealService) {
+  constructor(
+    private dealService: DealService,
+    private arvCompsService: ArvCompsService,
+    private auth: Auth,
+  ) {
     this.resetForm();
+  }
+
+  private async getUserId(): Promise<string | null> {
+    try {
+      const user = await firstValueFrom(authState(this.auth).pipe(timeout(1000)));
+      return user?.uid ?? null;
+    } catch {
+      return null;
+    }
+  }
+
+  onDealSelected(): void {
+    this.loadCompsForSelectedDeal();
+  }
+
+  async loadCompsForSelectedDeal(): Promise<void> {
+    if (!this.selectedDealId) {
+      this.resetForm();
+      return;
+    }
+
+    const userId = await this.getUserId();
+    if (!userId) return;
+
+    const saved = await this.arvCompsService.loadComps(userId, this.selectedDealId);
+    if (saved.length > 0) {
+      this.comps = [...saved];
+    } else {
+      this.resetForm();
+      return;
+    }
+    this.calculateArv();
+  }
+
+  async saveComps(): Promise<void> {
+    if (!this.selectedDealId) return;
+
+    const userId = await this.getUserId();
+    if (!userId) return;
+
+    await this.arvCompsService.saveComps(userId, this.selectedDealId, this.comps);
+    this.savedMessage = 'Saved!';
+    setTimeout(() => { this.savedMessage = ''; }, 2000);
+  }
+
+  async clearComps(): Promise<void> {
+    if (!this.selectedDealId) return;
+
+    const userId = await this.getUserId();
+    if (!userId) return;
+
+    await this.arvCompsService.deleteComps(userId, this.selectedDealId);
+    this.resetForm();
+    this.savedMessage = 'Cleared!';
+    setTimeout(() => { this.savedMessage = ''; }, 2000);
   }
 
   get deals(): Deal[] {
@@ -40,6 +103,7 @@ export class ArvFinderComponent {
       this.emptyComp(),
       this.emptyComp(),
     ];
+    this.savedMessage = '';
     this.calculateArv();
   }
 
