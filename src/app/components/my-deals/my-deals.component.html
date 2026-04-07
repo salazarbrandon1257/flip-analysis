@@ -6,7 +6,13 @@
   <app-deal-input (dealAdded)="onDealAdded()"></app-deal-input>
 
   <div class="deals-section">
-    <h3>All Deals</h3>
+    <div class="deals-header-row">
+      <h3>All Deals</h3>
+      <button class="btn-export" (click)="exportDealsToCsv()" [disabled]="analyzedDeals.length === 0">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Export CSV
+      </button>
+    </div>
 
     <div class="deals-grid" *ngIf="analyzedDeals.length > 0">
       <div class="deal-card" *ngFor="let deal of analyzedDeals" (click)="navigateToDeal(deal.deal.id)">

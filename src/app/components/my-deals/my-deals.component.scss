@@ -15,10 +15,45 @@
   margin-top: 40px;
 
   h3 {
-    margin-bottom: 20px;
+    margin: 0;
     color: var(--text-heading);
     font-size: 1.2rem;
     font-weight: 700;
+  }
+}
+
+.deals-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.btn-export {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-section);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-default);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background: var(--bg-hover-strong);
+    color: var(--text-primary);
+    border-color: var(--color-accent);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
   }
 }
 
