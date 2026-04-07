@@ -23,6 +23,7 @@ export class DealsDetailComponent implements OnInit {
   editingField: string | null = null;
   editValue: string | number = '';
   activeFilter = 'All';
+  searchQuery = '';
 
   constructor(
     public dealService: DealService,
@@ -223,8 +224,15 @@ export class DealsDetailComponent implements OnInit {
   }
 
   get filteredDeals(): DealAnalysis[] {
-    if (this.activeFilter === 'All') return this.analyzedDeals;
-    return this.analyzedDeals.filter(d => d.deal.status === this.activeFilter);
+    let deals = this.activeFilter === 'All' ? this.analyzedDeals : this.analyzedDeals.filter(d => d.deal.status === this.activeFilter);
+    const q = this.searchQuery.trim().toLowerCase();
+    if (q) {
+      deals = deals.filter(d =>
+        d.deal.address.toLowerCase().includes(q) ||
+        d.deal.notes?.toLowerCase().includes(q)
+      );
+    }
+    return deals;
   }
 
   filterCount(status: string): number {
@@ -234,5 +242,81 @@ export class DealsDetailComponent implements OnInit {
 
   setFilter(status: string): void {
     this.activeFilter = status;
+  }
+
+  exportDealsToCsv(): void {
+    const deals = this.analyzedDeals;
+    if (deals.length === 0) return;
+
+    const headers = [
+      'Address',
+      'Status',
+      'Purchase Price',
+      'Asking Price',
+      'ARV',
+      'Rehab Costs',
+      'Buyer Closing Costs',
+      'Title Closing Costs',
+      'Down Payment %',
+      'Interest Rate %',
+      'Hold Period (Months)',
+      'Loan Monthly Interest',
+      'Personal Loan Amount',
+      'Personal Loan APR',
+      'Personal Loan Monthly Payment',
+      'Taxes/Insurance/Utilities',
+      'Agent Commission %',
+      'Seller Closing Costs',
+      'Total Project Cost',
+      'Cash Required',
+      'Net Profit',
+      'ROI %',
+      'Profit Margin %',
+      'MAO 70%',
+      'MAO 65%',
+      'Notes',
+    ];
+
+    const rows = deals.map((d) => [
+      `"${d.deal.address}"`,
+      d.deal.status,
+      d.deal.purchasePrice,
+      d.deal.askingPrice,
+      d.deal.afterRepairValue,
+      d.deal.rehabCosts,
+      d.deal.buyerClosingCosts,
+      d.deal.titleClosingCosts,
+      d.deal.downPaymentPercent,
+      d.deal.interestRatePercent,
+      d.deal.holdPeriodMonths,
+      d.deal.loanMonthlyInterest,
+      d.deal.personalLoanAmount,
+      d.deal.personalLoanApr,
+      d.deal.personalLoanMonthlyPayment,
+      d.deal.taxesInsuranceUtilities,
+      d.deal.agentCommissionPercent,
+      d.deal.sellerClosingCosts,
+      d.totalProjectCost,
+      d.cashRequired,
+      d.netProfit,
+      d.roi,
+      d.profitMargin,
+      d.mao70,
+      d.mao65,
+      `"${d.deal.notes ?? ''}"`,
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map((r) => r.join(',')),
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `deals-${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
   }
 }
